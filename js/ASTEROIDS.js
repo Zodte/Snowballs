@@ -48,11 +48,10 @@ var g_ctx = g_canvas.getContext("2d");
 
 function createInitialShips() {
 
-    entityManager.generateShip({
+    entityManager.generateSleigh({
         cx : 200,
         cy : 200,
-		sprite : g_sprites.ship[2],
-        sprites : g_sprites.ship
+		sprite : g_sprites.sleigh
     });  
 }
 
@@ -183,19 +182,9 @@ var g_images = {};
 function requestPreloads() {
 
     var requiredImages = {
-        sheet1  : "./images/r-typesheet1.gif",
-        sheet3  : "./images/r-typesheet3.gif",
-        sheet5  : "./images/r-typesheet5.gif",
-		sheet8	: "./images/r-typesheet8.gif",
-        sheet10 : "./images/r-typesheet10.gif",
-        sheet16 : "./images/r-typesheet16.gif",
-        sheet30 : "./images/r-typesheet30.gif",
-        sheet43 : "./images/r-typesheet43.gif",
-		sheet44 : "./images/r-typesheet44.gif",
-        rock    : "./images/rock.png",
-		starField: "./images/starfield2.png",
-		wall 	: "./images/wall.png",
-		missile : "./images/missile.png"
+        sleigh  	: "./images/sleigh.png",
+		snowball	: "./images/snowball.png"
+
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);

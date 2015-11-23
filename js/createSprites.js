@@ -1,8 +1,15 @@
 function createSprites(images, sprites, animatedSprites) {
-	sprites.test = new Sprite(images.sheet1);
+
+	//Sprites
+	sprites.sleigh = new Sprite(images.sleigh);
+	sprites.sleigh.scale = 0.2;
+	sprites.snowball = new Sprite(images.snowball);
+	sprites.snowball.scale = 0.2;
+	//Animated Sprites
+	
 
     // When ship is moving up and down
-    sprites.ship = [];
+/*    sprites.ship = [];
     sprites.rock  = new Sprite(images.rock);
     sprites.laserCharge = [];
     sprites.deathExplosion = [];
@@ -97,8 +104,8 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.greaterDeathExplosion.push(new Sprite(images.sheet44, 227, 2, 33, 31));
 	sprites.greaterDeathExplosion.push(new Sprite(images.sheet44, 259, 1, 33, 32));
 	sprites.greaterDeathExplosion.push(new Sprite(images.sheet44, 293, 1, 32, 32));
-	*/
+
 	
     sprites.bullet = new Sprite(images.sheet1, 248,88,17,6);
-    sprites.bullet.scale = 1;
+    sprites.bullet.scale = 1;*/
 }
