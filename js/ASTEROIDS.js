@@ -188,7 +188,8 @@ function requestPreloads() {
 		foreGround  : "./images/foreGround.png",
 		milk		: "./images/milk.gif",
 		cookie		: "./images/cookie.gif",
-		bgColor		: "./images/bgColor.png"
+		bgColor		: "./images/bgColor.png",
+		redGift     : "./images/redGift.png"
 
     };
 
