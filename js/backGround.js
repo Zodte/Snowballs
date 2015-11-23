@@ -13,6 +13,9 @@ backGround.prototype.rotation = 0;
 
 backGround.prototype.update = function(du) {
 	//this.cx -= MAP_SPEED;
+	for(var i = 0; i < Math.floor(util.randRange(0,2)); i++){
+		entityManager.generateSnow()
+	}
 };
 
 backGround.prototype.render = function(ctx) {
