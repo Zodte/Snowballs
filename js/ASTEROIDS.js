@@ -183,7 +183,8 @@ function requestPreloads() {
 
     var requiredImages = {
         sleigh  	: "./images/sleigh.png",
-		snowball	: "./images/snowball.png"
+		snowball	: "./images/snowball.png",
+		foreGround  : "./images/foreGround.png"
 
     };
 
