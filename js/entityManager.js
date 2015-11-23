@@ -66,7 +66,7 @@ gameIsWon: false,
 // i.e. thing which need `this` to be defined.
 //
 deferredSetup : function () {
-    this._categories = [this._bg, this._sleighs, this._snowballs, this._enemies, this._animations, this._powerups, this._snow, this._foreGround];
+    this._categories = [this._bg, this._sleighs, this._snowballs, this._enemies, this._animations, this._powerups, this._foreGround,this._snow];
 },
 
 init: function() {	
@@ -104,8 +104,8 @@ generateSnowball : function(cx,cy,velX,velY,damage){
 	}));
 },
 
-generateSnow : function(descr){
-	this._snow.push(new Snow(desccr));
+generateSnow : function(){
+	this._snow.push(new Snow());
 },
 /*
 createGreaterExplosion : function(descr) {
