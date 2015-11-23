@@ -52,19 +52,18 @@ Sleigh.prototype.update = function(du){
 	}
 	if(keys[this.UP]){
 		this.rotation += 1.98;
-		if(this.cy > 25){
+		if(this.cy > g_canvas.height - 550){
 			this.cy -= this.speed * du;
-		}else {this.cy = 25;}
+		}else {this.cy = g_canvas.height - 550;}
 	}
 	else if(keys[this.DOWN]){
 		this.rotation += 0.02;
-		if(this.cy < g_canvas.height - 25){
+		if(this.cy < g_canvas.height - 105){
 			this.cy += this.speed * du;
-		}else {this.cy = g_canvas.height - 25;}
+		}else {this.cy = g_canvas.height - 105;}
 	}
 	
 	this.updateVars();
-	this.hitForeGround();
 	//Shooting
 	
 	if(this.reloading > 0){this.reloading -= Player.getStrength()/5;}
@@ -72,12 +71,6 @@ Sleigh.prototype.update = function(du){
 	//Holding space stops shooting when another key is pressed...
 	spatialManager.unregister(this);
 }
-
-Sleigh.prototype.hitForeGround = function() {
-	if(this.cy >= g_canvas.height - 100) {
-		this.kill();
-	}
-};
 
 Sleigh.prototype.throwSnowball = function(){
 	if (this.reloading == 0) {

@@ -86,10 +86,6 @@ generateBg : function(descr) {
 	this._bg.push(new backGround(descr));
 },
 
-generateRock : function(descr) {
-    this._rocks.push(new Rock(descr));
-},
-
 generatePowerUp : function(descr) {
     this._powerups.push(new PowerUp(descr));
 },
