@@ -106,7 +106,7 @@ generateSnowball : function(cx,cy,velX,velY,damage){
 
 generateSnow : function(descr){
 	this._snow.push(new Snow(desccr));
-}
+},
 /*
 createGreaterExplosion : function(descr) {
 	this._animations.push(new GreaterExplosion(descr));
