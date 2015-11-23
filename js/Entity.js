@@ -44,6 +44,8 @@ Entity.prototype.setup = function (descr) {
     
     // I am not dead yet!
     this._isDeadNow = false;
+	
+	this.lived = 0;
 };
 
 Entity.prototype.setPos = function (cx, cy, width, height) {

@@ -7,7 +7,22 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.snowball.scale = 0.2;
 	sprites.foreGround = new Sprite(images.foreGround);
 	//Animated Sprites
+	sprites.milk = [];
+	sprites.coockie = [];
+	sprites.powerUps = [];
 	
+	
+	//Images for Animated Sprites
+	sprites.powerUps.push(sprites.milk);
+	//sprites.powerUps.push(sprites.cockie);
+	
+	sprites.milk.push(new Sprite(images.milk,0,0,19,19));
+	sprites.milk.push(new Sprite(images.milk,19,0,19,19));
+	sprites.milk.push(new Sprite(images.milk,39,0,19,19));
+	
+	
+	
+	//Animation Only Sprites
 
     // When ship is moving up and down
 /*    sprites.ship = [];

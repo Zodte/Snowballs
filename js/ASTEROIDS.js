@@ -53,6 +53,7 @@ function createInitialShips() {
         cy : 200,
 		sprite : g_sprites.sleigh
     });  
+	
 }
 
 // =============
@@ -184,7 +185,8 @@ function requestPreloads() {
     var requiredImages = {
         sleigh  	: "./images/sleigh.png",
 		snowball	: "./images/snowball.png",
-		foreGround  : "./images/foreGround.png"
+		foreGround  : "./images/foreGround.png",
+		milk		: "./images/milk.gif"
 
     };
 
