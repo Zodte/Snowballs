@@ -6,6 +6,7 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.snowball = new Sprite(images.snowball);
 	sprites.snowball.scale = 0.2;
 	sprites.foreGround = new Sprite(images.foreGround);
+	sprites.bgColor = new Sprite(images.bgColor);
 	//Animated Sprites
 	sprites.milk = [];
 	sprites.cookie = [];

@@ -187,7 +187,8 @@ function requestPreloads() {
 		snowball	: "./images/snowball.png",
 		foreGround  : "./images/foreGround.png",
 		milk		: "./images/milk.gif",
-		cookie		: "./images/cookie.gif"
+		cookie		: "./images/cookie.gif",
+		bgColor		: "./images/bgColor.png"
 
     };
 
