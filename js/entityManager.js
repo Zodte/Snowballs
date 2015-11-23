@@ -33,6 +33,7 @@ _sleighs    : [],
 _enemies    : [],
 _animations : [],
 _powerups	: [],
+_snow		: [],
 _foreGround : [],
 
 _bShowRocks : true,
@@ -65,7 +66,7 @@ gameIsWon: false,
 // i.e. thing which need `this` to be defined.
 //
 deferredSetup : function () {
-    this._categories = [this._bg, this._foreGround, this._sleighs, this._snowballs, this._enemies, this._animations, this._powerups];
+    this._categories = [this._bg, this._sleighs, this._snowballs, this._enemies, this._animations, this._powerups,this._snow, this._foreground];
 },
 
 init: function() {	
@@ -106,6 +107,10 @@ generateSnowball : function(cx,cy,velX,velY,damage){
 		damage	:	damage
 	}));
 },
+
+generateSnow : function(descr){
+	this._snow.push(new Snow(desccr));
+}
 /*
 createGreaterExplosion : function(descr) {
 	this._animations.push(new GreaterExplosion(descr));
