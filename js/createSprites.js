@@ -5,6 +5,7 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.sleigh.scale = 0.2;
 	sprites.snowball = new Sprite(images.snowball);
 	sprites.snowball.scale = 0.2;
+	sprites.foreGround = new Sprite(images.foreGround);
 	//Animated Sprites
 	
 
