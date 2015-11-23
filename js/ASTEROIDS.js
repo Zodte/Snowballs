@@ -186,7 +186,8 @@ function requestPreloads() {
         sleigh  	: "./images/sleigh.png",
 		snowball	: "./images/snowball.png",
 		foreGround  : "./images/foreGround.png",
-		milk		: "./images/milk.gif"
+		milk		: "./images/milk.gif",
+		cookie		: "./images/cookie.gif"
 
     };
 

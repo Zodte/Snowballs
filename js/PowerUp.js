@@ -17,12 +17,12 @@ function PowerUp(descr) {
 
 PowerUp.prototype = new Entity();
 
-PowerUp.prototype.allPowers = ["milk","cockie"];
+PowerUp.prototype.allPowers = ["milk","cookie"];
 
 PowerUp.prototype.choosePower = function(){
-	var num = Math.floor(util.randRange(0,3.9999));
-	this.power = this.allPowers[num];
-	this.sprites = g_sprites.powerUps[0];
+	this.powerNum = Math.floor(util.randRange(0,1.999));
+	this.power = this.allPowers[this.powerNum];
+	this.sprites = g_sprites.powerUps[this.powerNum];
 }
 
 PowerUp.prototype.update = function (du) {
@@ -59,14 +59,14 @@ PowerUp.prototype.getPower = function () {
 };
 
 PowerUp.prototype.spriteIndex = 0;
+PowerUp.prototype.numImages = [3,7];
 PowerUp.prototype.render = function (ctx) {
     var delay = 10
 	var spriteDelay = this.lived % delay;
-	if(spriteDelay == 0) this.spriteIndex = (this.spriteIndex + 1)%3;
+	if(spriteDelay == 0) this.spriteIndex = (this.spriteIndex + 1)%this.numImages[this.powerNum];
 	var origScale = this.sprites[this.spriteIndex].scale;
     // pass my scale into the sprite, for drawing
     this.sprites[this.spriteIndex].scale = this.scale;
-	console.log(this.spriteIndex)
 	this.sprites[this.spriteIndex].drawCentredAt(
         ctx, this.cx, this.cy, this.rotation
     );

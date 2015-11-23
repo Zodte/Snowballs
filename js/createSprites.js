@@ -8,17 +8,25 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.foreGround = new Sprite(images.foreGround);
 	//Animated Sprites
 	sprites.milk = [];
-	sprites.coockie = [];
+	sprites.cookie = [];
 	sprites.powerUps = [];
 	
 	
 	//Images for Animated Sprites
 	sprites.powerUps.push(sprites.milk);
-	//sprites.powerUps.push(sprites.cockie);
+	sprites.powerUps.push(sprites.cookie);
 	
 	sprites.milk.push(new Sprite(images.milk,0,0,19,19));
 	sprites.milk.push(new Sprite(images.milk,19,0,19,19));
 	sprites.milk.push(new Sprite(images.milk,39,0,19,19));
+	
+	sprites.cookie.push(new Sprite(images.cookie,0,5,32,21));
+	sprites.cookie.push(new Sprite(images.cookie,32,5,32,21));
+	sprites.cookie.push(new Sprite(images.cookie,64,5,32,21));
+	sprites.cookie.push(new Sprite(images.cookie,96,5,32,21));
+	sprites.cookie.push(new Sprite(images.cookie,128,5,32,21));
+	sprites.cookie.push(new Sprite(images.cookie,160,5,32,21));
+	sprites.cookie.push(new Sprite(images.cookie,192,5,32,21));
 	
 	
 	
