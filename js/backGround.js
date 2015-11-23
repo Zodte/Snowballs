@@ -16,10 +16,10 @@ backGround.prototype.update = function(du) {
 };
 
 backGround.prototype.render = function(ctx) {
-	
+	/*
 	this.sprite.drawWrappedCentredAt(
 	ctx, this.cx, this.cy, this.rotation
 	);
-
+*/
 };
 

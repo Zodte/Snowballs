@@ -3,9 +3,10 @@ function Sleigh(descr){
 		this[property] = descr[property];
 	}
 	
-	
+	this.sprite = this.sprite || g_sprites.sleigh;
 }
 
+Sleigh.prototype = new Entity();
 //Controls ============================
 
 Sleigh.prototype.FOWARD = 'D'.charCodeAt(0);
@@ -32,6 +33,10 @@ Sleigh.prototype.fuelComsumption = Player.getFuelComsuption();
 Sleigh.prototype.update = function(du){
 	this.rotation = 0;
 	
+	spatialManager.register(this);
+    if( this._isDeadNow ) {
+        return entityManager.KILL_ME_NOW;
+    }
 	//Moving
 	if(keys[this.FOWARD]){
 		if(this.cx < g_canvas.width - 150){
@@ -59,13 +64,20 @@ Sleigh.prototype.update = function(du){
 	}
 	
 	this.updateVars();
-	
+	this.hitForeGround();
 	//Shooting
 	
 	if(this.reloading > 0){this.reloading -= Player.getStrength()/5;}
 	if(this.reloading < 0){this.reloading = 0;}
 	//Holding space stops shooting when another key is pressed...
+	spatialManager.unregister(this);
 }
+
+Sleigh.prototype.hitForeGround = function() {
+	if(this.cy >= g_canvas.height - 100) {
+		this.kill();
+	}
+};
 
 Sleigh.prototype.throwSnowball = function(){
 	if (this.reloading == 0) {
@@ -101,7 +113,7 @@ Sleigh.prototype.getPos = function(){
 
 Sleigh.prototype.render = function(ctx){
 	this.renderFuelBar(ctx);
-	g_sprites.sleigh.drawCentredAt(
+	this.sprite.drawCentredAt(
 	ctx, this.cx, this.cy, Math.PI*this.rotation
     );
 }

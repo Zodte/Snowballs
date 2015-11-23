@@ -28,16 +28,19 @@ var entityManager = {
 // "PRIVATE" DATA
 _tiles		: [],
 _bg 		: [],
-_rocks      : [],
 _snowballs  : [],
 _sleighs    : [],
 _enemies    : [],
 _animations : [],
 _powerups	: [],
+_foreGround : [],
 
 _bShowRocks : true,
 
 // "PRIVATE" METHODS
+_generateForeGrounds: function() {
+	this.generateForeGround();
+},
 
 _generateBgs : function() {
 	this.generateBg();
@@ -62,10 +65,11 @@ gameIsWon: false,
 // i.e. thing which need `this` to be defined.
 //
 deferredSetup : function () {
-    this._categories = [this._bg, this._tiles, this._rocks, this._sleighs,this._snowballs, this._enemies, this._animations, this._powerups];
+    this._categories = [this._bg, this._foreGround, this._sleighs, this._snowballs, this._enemies, this._animations, this._powerups];
 },
 
 init: function() {	
+	this._generateForeGrounds();
 	this._generateBgs();
 },
 
@@ -73,6 +77,9 @@ init: function() {
 
 //Generating---------------------------------------------------------------------------------------------------------
 
+generateForeGround : function(descr) {
+	this._foreGround.push(new foreGround(descr));
+},
 
 generateBg : function(descr) {
 	this._bg.push(new backGround(descr));

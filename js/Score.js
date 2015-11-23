@@ -1,10 +1,10 @@
 var Score = {
 	score: 0,
-	music: new Audio("sounds/CoinDrop.ogg"),
+	//music: new Audio("sounds/CoinDrop.ogg"),
 	
 	addScore : function(x) {
-		this.music.volume = 0.3;
-		if(!MUTE) this.music.play();
+		//this.music.volume = 0.3;
+		//if(!MUTE) this.music.play();
 		this.score += x;
 	},
 
