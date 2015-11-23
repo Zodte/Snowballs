@@ -60,9 +60,9 @@ Snowball.prototype.update = function (du) {
     // Handle collisions
     var hitEntity = this.findHitEntity();
     if (hitEntity) {
-        var canTakeHit = hitEntity.takeBulletHit;
+        var canTakeHit = hitEntity.takeSnowball;
         if (canTakeHit) {
-			canTakeHit.call(hitEntity, 1); 
+			canTakeHit.call(hitEntity, this.damage); 
 			return entityManager.KILL_ME_NOW;
 		}
     }

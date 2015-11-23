@@ -16,8 +16,7 @@ Sleigh.prototype.FIRE = ' '.charCodeAt(0);
 
 //Properties ==========================
 
-Sleigh.prototype.xSpeed = 3;
-Sleigh.prototype.ySpeed = 3;
+Sleigh.prototype.speed = Player.getSpeed();
 Sleigh.prototype.rotation = 0;
 
 //Shooting
@@ -25,8 +24,8 @@ Sleigh.prototype.reloadTime = 0.2*SECS_TO_NOMINALS;
 Sleigh.prototype.reloading = 0;
 
 //Fuel
-Sleigh.prototype.fuel = 100;
-Sleigh.prototype.fuelComsumption = 1;
+Sleigh.prototype.fuel = Player.getFuelCapacity();
+Sleigh.prototype.fuelComsumption = Player.getFuelComsuption();
 //Sleigh.prototype.halfHeight = g_images.sleigh.height/2;
 
 
@@ -36,26 +35,26 @@ Sleigh.prototype.update = function(du){
 	//Moving
 	if(keys[this.FOWARD]){
 		if(this.cx < g_canvas.width - 150){
-			this.cx += this.xSpeed * du;
+			this.cx += this.speed * du;
 			}else {this.cx = g_canvas.width-150;}
 		this.rotation += 1.98;
 	}
 	else if(keys[this.BACKWARD]){
 		if(this.cx > 50){
-			this.cx -= this.xSpeed * du;
+			this.cx -= this.speed * du;
 		}else {this.cx = 50;}
 		this.rotation += 0.02;
 	}
 	if(keys[this.UP]){
 		this.rotation += 1.98;
 		if(this.cy > 25){
-			this.cy -= this.ySpeed * du;
+			this.cy -= this.speed * du;
 		}else {this.cy = 25;}
 	}
 	else if(keys[this.DOWN]){
 		this.rotation += 0.02;
 		if(this.cy < g_canvas.height - 25){
-			this.cy += this.ySpeed * du;
+			this.cy += this.speed * du;
 		}else {this.cy = g_canvas.height - 25;}
 	}
 	
