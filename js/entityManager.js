@@ -35,6 +35,7 @@ _animations : [],
 _powerups	: [],
 _snow		: [],
 _foreGround : [],
+_gifts       : [],
 
 _bShowRocks : true,
 
