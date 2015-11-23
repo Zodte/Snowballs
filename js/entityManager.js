@@ -66,7 +66,7 @@ gameIsWon: false,
 // i.e. thing which need `this` to be defined.
 //
 deferredSetup : function () {
-    this._categories = [this._bg, this._sleighs, this._snowballs, this._enemies, this._animations, this._powerups,this._snow, this._foreground];
+    this._categories = [this._bg, this._sleighs, this._snowballs, this._enemies, this._animations, this._powerups, this._snow, this._foreGround];
 },
 
 init: function() {	
