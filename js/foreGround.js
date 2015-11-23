@@ -11,7 +11,10 @@ foreGround.prototype.cy = 500;
 foreGround.prototype.rotation = 0;
 
 foreGround.prototype.update = function(du) {
-	this.cx -= FOREGROUND_SPEED;
+	this.cx -= FOREGROUND_SPEED * du;
+	if(this.cx < 0) {
+		this.cx = g_canvas.width;
+	}
 };
 
 foreGround.prototype.render = function(ctx) {
