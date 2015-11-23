@@ -7,7 +7,7 @@ function foreGround(descr) {
 foreGround.prototype = new Entity();
 
 foreGround.prototype.cx = 0;
-foreGround.prototype.cy = 500;
+foreGround.prototype.cy = 497;
 foreGround.prototype.rotation = 0;
 
 foreGround.prototype.update = function(du) {

@@ -58,9 +58,9 @@ Sleigh.prototype.update = function(du){
 	}
 	else if(keys[this.DOWN]){
 		this.rotation += 0.02;
-		if(this.cy < g_canvas.height - 105){
+		if(this.cy < g_canvas.height - 107){
 			this.cy += this.speed * du;
-		}else {this.cy = g_canvas.height - 105;}
+		}else {this.cy = g_canvas.height - 107;}
 	}
 	
 	this.updateVars();
