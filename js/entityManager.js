@@ -44,7 +44,7 @@ _foreGround : [],
 _bShowRocks : true,
 
 // "PRIVATE" METHODS
-_generateForeGrounds: function() {
+_generateForeGrounds : function() {
 	this.generateForeGround();
 },
 
@@ -173,12 +173,13 @@ playAgain: function(){
 		cy : 300
 	});
 	
-	this.generateXMasTree({
-		cx : 500,
-		cy : this.GROUND_HEIGHT-29,
-		rotation : 0
-	});
-
+	for(var i = 0; i <= 30; i++) {
+		this.generateXMasTree({
+			cx : g_canvas.width-(30*i),
+			cy : this.GROUND_HEIGHT-29,
+			rotation : 0
+		});
+	}
 },
 //-------------------------------------------------------------------------------------------------------------------
 
