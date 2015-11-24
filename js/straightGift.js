@@ -33,7 +33,7 @@ straightGift.prototype.update = function(du) {
 };
 
 straightGift.prototype.getRadius = function() {
-	return this.sprite.width/3.5;
+	return this.sprite.scale * (this.sprite.width/2);
 };
 
 straightGift.prototype.render = function(ctx) {
