@@ -189,7 +189,8 @@ function requestPreloads() {
 		milk		: "./images/milk.gif",
 		cookie		: "./images/cookie.gif",
 		bgColor		: "./images/bgColor.png",
-		redGift     : "./images/redGift.png"
+		straightGift: "./images/redGift.png",
+		snakeGift   : "./images/blueGift.png"
 
     };
 

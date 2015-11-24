@@ -7,7 +7,8 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.snowball.scale = 0.2;
 	sprites.foreGround = new Sprite(images.foreGround);
 	sprites.bgColor = new Sprite(images.bgColor);
-	sprites.redGift = new Sprite(images.redGift);
+	sprites.straightGift = new Sprite(images.straightGift);
+	sprites.straightGift.scale = 0.5;
 	//Animated Sprites
 	sprites.milk = [];
 	sprites.cookie = [];

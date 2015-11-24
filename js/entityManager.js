@@ -31,11 +31,12 @@ _bg 		: [],
 _snowballs  : [],
 _sleighs    : [],
 _enemies    : [],
-_animations : [],
+_gifts      : [],
 _powerups	: [],
+_animations : [],
 _snow		: [],
 _foreGround : [],
-_gifts       : [],
+
 
 _bShowRocks : true,
 
@@ -67,7 +68,8 @@ gameIsWon: false,
 // i.e. thing which need `this` to be defined.
 //
 deferredSetup : function () {
-    this._categories = [this._bg, this._sleighs, this._snowballs, this._enemies, this._animations, this._powerups, this._foreGround,this._snow];
+    this._categories = [this._bg, this._sleighs, this._snowballs, this._enemies, 
+						this._gifts, this._powerups, this._animations, this._foreGround, this._snow];
 },
 
 init: function() {	
@@ -78,6 +80,9 @@ init: function() {
 
 
 //Generating---------------------------------------------------------------------------------------------------------
+generateGifts : function(descr) {
+	this._gifts.push(new straightGift(descr));
+},
 
 generateForeGround : function(descr) {
 	this._foreGround.push(new foreGround(descr));
@@ -144,6 +149,11 @@ playAgain: function(){
         cy : 200,
 		sprite : g_sprites.sleigh
     }); 
+	
+	this.generateGifts({
+		cx : 400,
+		cy : 400
+	});
 	
 	this.generatePowerUp({
 		cx : 200,

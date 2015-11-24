@@ -1,7 +1,5 @@
 function Sleigh(descr){
-	for(var property in descr){
-		this[property] = descr[property];
-	}
+	this.setup(descr);
 	
 	this.sprite = this.sprite || g_sprites.sleigh;
 }
