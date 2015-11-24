@@ -7,6 +7,8 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.snowball.scale = 0.22;
 	sprites.foreGround = new Sprite(images.foreGround);
 	sprites.bgColor = new Sprite(images.bgColor);
+	sprites.bgMountains = new Sprite(images.bgMountains);
+	sprites.bgMountains.scale = 1.5;
 	sprites.straightGift = new Sprite(images.straightGift);
 	sprites.straightGift.scale = 0.5;
 	//Animated Sprites
