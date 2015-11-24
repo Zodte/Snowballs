@@ -44,7 +44,6 @@ straightGift.prototype.getRadius = function() {
 	return this.sprite.scale * (this.sprite.width/2);
 };
 
-
 straightGift.prototype.render = function(ctx) {
 	
 	this.sprite.drawCentredAt(

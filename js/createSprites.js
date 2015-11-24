@@ -11,6 +11,8 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.bgMountains.scale = 1.5;
 	sprites.straightGift = new Sprite(images.straightGift);
 	sprites.straightGift.scale = 0.5;
+	sprites.snakeGift = new Sprite(images.snakeGift);
+	sprites.snakeGift.scale = 0.5;
 	
 	//Animated Sprites
 	sprites.milk = [];
