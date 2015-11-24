@@ -49,7 +49,7 @@ PowerUp.prototype.update = function (du) {
 };
 
 PowerUp.prototype.getRadius = function () {
-    //return this.scale * (this.sprite.width / 2) * 0.9;
+    return this.sprites[this.spriteIndex].scale * (this.sprites[this.spriteIndex].width / 2);
 };
 
 

@@ -106,6 +106,13 @@ Sleigh.prototype.getPos = function(){
 	return {posX : this.cx, posY : this.cy};
 }
 
+
+//Collision function
+
+Sleigh.prototype.takePowerUp = function(power){
+	
+}
+
 Sleigh.prototype.render = function(ctx){
 	this.renderFuelBar(ctx);
 	this.sprite.drawCentredAt(
