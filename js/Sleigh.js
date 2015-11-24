@@ -104,21 +104,25 @@ Sleigh.prototype.getRadius = function() {
 
 Sleigh.prototype.getPos = function(){
 	return {posX : this.cx, posY : this.cy};
-}
+};
 
 
 //Collision function
 
 Sleigh.prototype.takePowerUp = function(power){
 	
-}
+};
+
+Sleigh.prototype.takeGift = function(gift) {
+	
+};
 
 Sleigh.prototype.render = function(ctx){
 	this.renderFuelBar(ctx);
 	this.sprite.drawCentredAt(
 	ctx, this.cx, this.cy, Math.PI*this.rotation
     );
-}
+};
 
 Sleigh.prototype.renderFuelBar = function(ctx){
 	ctx.save();
@@ -126,8 +130,8 @@ Sleigh.prototype.renderFuelBar = function(ctx){
 	ctx.fillText("Fuel",5,12);
 	ctx.restore();
 	ctx.fillRect(5,18,this.fuel,6);
-}
+};
 
 Sleigh.prototype.addFuel = function(x){
 	this.fuel += x;
-}
+};
