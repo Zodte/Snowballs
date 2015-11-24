@@ -25,3 +25,4 @@ var MAP_SPEED = 1.5;
 var MUTE = false;
 var GRAVITY = 0.04;
 var FOREGROUND_SPEED = 1.5;
+var SNOW_VELOCITY = 8 + FOREGROUND_SPEED;
