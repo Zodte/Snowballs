@@ -2,21 +2,34 @@ function Snow(descr){
 	this.setup(descr);
 	
 	this.sprite = g_sprites.snowball;
-	this.scale = util.randRange(0.05,0.1);
+	this.scale = util.randRange(0.05,0.14);
 	this.cyStart = this.cy;	
 } 
 Snow.prototype = new Entity(); 
 Snow.prototype.rotation = 0;
-Snow.prototype.vel = 5;
+Snow.prototype.vel = SNOW_VELOCITY;
 
 Snow.prototype.update = function(du){
+	this.lived++;
 	if(this.cx < -10) return entityManager.KILL_ME_NOW;
-	var amount = 600;
-	var values = Math.cos((this.cx % amount-amount/2)/amount/2*Math.PI);
-	var values2 = Math.sin((this.cx % 200-100)/50*Math.PI*-1);
-    var nextY = this.cyStart + values * 20; 
-    this.cx -= this.vel* Math.cos((this.cx % amount-amount/2)/amount/2) * du ;
+	
+	var velDif = this.vel - SNOW_VELOCITY
+	if(Math.abs(velDif) > 0.3){
+		if(velDif < 0){
+			this.vel += 0.05;
+		}else if(velDif  > 0){
+			this.vel -= 0.05;
+		}
+	}
+	
+	var amount = 800;
+	var values = Math.cos(((this.lived % amount-amount/2)/(amount/2))*Math.PI);
+	var values2 = Math.cos(((this.lived % amount-amount/2)/(amount/2))*Math.PI);
+	var nextX = this.vel + values2;
+	var nextY = this.cyStart + values * 2; 
+    this.cx -= nextX * du ;
     this.cy = nextY;
+	this.cyStart += GRAVITY*20;
 	
 	
 };
