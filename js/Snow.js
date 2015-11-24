@@ -2,7 +2,8 @@ function Snow(descr){
 	this.setup(descr);
 	
 	this.sprite = g_sprites.snowball;
-	this.scale = util.randRange(0.05,0.14);
+	this.scale = util.randRange(0.008,0.05);
+	this.difVel = -this.scale * 10
 	this.cyStart = this.cy;	
 } 
 Snow.prototype = new Entity(); 
@@ -22,12 +23,13 @@ Snow.prototype.update = function(du){
 		}
 	}
 	
-	var amount = 800;
+	var amount = 400;
+	var amount2 = 100;
 	var values = Math.cos(((this.lived % amount-amount/2)/(amount/2))*Math.PI);
-	var values2 = Math.cos(((this.lived % amount-amount/2)/(amount/2))*Math.PI);
-	var nextX = this.vel + values2;
+	var values2 = Math.cos(((this.lived % amount2-amount2/2)/(amount2/2))*Math.PI);
+	var nextX = this.vel + values2 + this.difVel;
 	var nextY = this.cyStart + values * 2; 
-    this.cx -= nextX * du ;
+    this.cx -= nextX * du;
     this.cy = nextY;
 	this.cyStart += GRAVITY*20;
 	
@@ -37,5 +39,5 @@ Snow.prototype.update = function(du){
 Snow.prototype.render = function(ctx){
 	this.sprite.scale = this.scale;
 	this.sprite.drawCentredAt(ctx, this.cx,this.cy,this.rotation);
-	this.sprite.scale = 0.2;
+	this.sprite.scale = 0.22;
 }
