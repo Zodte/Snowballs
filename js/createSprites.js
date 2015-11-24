@@ -11,10 +11,12 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.bgMountains.scale = 1.5;
 	sprites.straightGift = new Sprite(images.straightGift);
 	sprites.straightGift.scale = 0.5;
+	
 	//Animated Sprites
 	sprites.milk = [];
 	sprites.cookie = [];
 	sprites.powerUps = [];
+	sprites.xMasTree = [];
 	
 	//Images for Animated Sprites
 	sprites.powerUps.push(sprites.milk);
@@ -32,8 +34,11 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.cookie.push(new Sprite(images.cookie,160,5,32,21));
 	sprites.cookie.push(new Sprite(images.cookie,192,5,32,21));
 	
-	
-	
+	sprites.xMasTree.push(new Sprite(images.xMasTree, 24, 14, 70, 86));
+	sprites.xMasTree.push(new Sprite(images.xMasTree, 144, 14, 70, 86));
+	sprites.xMasTree.push(new Sprite(images.xMasTree, 264, 14, 70, 86));
+	sprites.xMasTree.push(new Sprite(images.xMasTree, 384, 14, 70, 86));
+
 	//Animation Only Sprites
 
     // When ship is moving up and down

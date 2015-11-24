@@ -191,8 +191,8 @@ function requestPreloads() {
 		bgColor		: "./images/bgColor.png",
 		bgMountains : "./images/bgMountains.png",
 		straightGift: "./images/redGift.png",
-		snakeGift   : "./images/blueGift.png"
-
+		snakeGift   : "./images/blueGift.png",
+		xMasTree    : "./images/xmasTree.gif"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
