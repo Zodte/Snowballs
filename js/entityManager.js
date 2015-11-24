@@ -105,8 +105,8 @@ generateSnowball : function(cx,cy,velX,velY,damage){
 	}));
 },
 
-generateSnow : function(){
-	this._snow.push(new Snow());
+generateSnow : function(descr){
+	this._snow.push(new Snow(descr));
 },
 /*
 createGreaterExplosion : function(descr) {
@@ -184,7 +184,6 @@ update: function(du) {
             }
         }
     }
-
 },
 
 renderGameLost: function(ctx){

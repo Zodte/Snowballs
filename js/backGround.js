@@ -1,7 +1,7 @@
 function backGround(descr) {
 	this.setup(descr);
 	
-	this.sprite = this.sprite || g_sprites.bgColor
+	this.sprite = this.sprite || g_sprites.bgColor;
 	
 };
 
@@ -14,13 +14,16 @@ backGround.prototype.rotation = 0;
 backGround.prototype.update = function(du) {
 	//this.cx -= MAP_SPEED;
 	for(var i = 0; i < Math.floor(util.randRange(0,2)); i++){
-		entityManager.generateSnow()
+		entityManager.generateSnow({
+			cx : g_canvas.width,
+			cy : util.randRange(0,g_canvas.height);
+		});
 	}
 };
 
 backGround.prototype.render = function(ctx) {
 	for(var i = 0; i < 8; i++){
-		this.sprite.drawWrappedCentredAt(ctx,this.sprite.width/2 + i*this.sprite.width, this.sprite.height/2,this.rotation)
+		this.sprite.drawWrappedCentredAt(ctx,this.sprite.width/2 + i*this.sprite.width, this.sprite.height/2,this.rotation);
 	}
 	/*
 	this.sprite.drawWrappedCentredAt(
