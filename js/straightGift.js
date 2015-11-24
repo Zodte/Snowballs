@@ -7,11 +7,16 @@ function straightGift(descr) {
 
 straightGift.prototype = new Entity();
 
-straightGift.prototype.velX = 1;
+straightGift.prototype.vel = 2;
 
 straightGift.prototype.decideDirection = function() {
-	this.endCx = -50;
-	this.endCy = util.randRange(0, entityManager.GROUND_HEIGHT);
+	var endCx = -50;
+	var endCy = util.randRange(0, entityManager.GROUND_HEIGHT);
+	var dx = endCx - this.cx;
+	var dy = endCy - this.cy;
+	var mag = Math.sqrt(dx*dx + dy*dy);
+	this.velX = -(dx/mag)*this.vel;
+	this.velY = -(dy/mag)*this.vel;
 };
 
 straightGift.prototype.update = function(du) {
@@ -22,6 +27,7 @@ straightGift.prototype.update = function(du) {
 	
 	
 	this.cx -= this.velX;
+	this.cy -= this.velY;
 	
 	spatialManager.register(this);
 };

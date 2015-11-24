@@ -31,7 +31,7 @@ Sleigh.prototype.fuelComsumption = Player.getFuelComsuption();
 Sleigh.prototype.update = function(du){
 	this.rotation = 0;
 	
-	spatialManager.register(this);
+	spatialManager.unregister(this);
     if( this._isDeadNow ) {
         return entityManager.KILL_ME_NOW;
     }
@@ -67,7 +67,7 @@ Sleigh.prototype.update = function(du){
 	if(this.reloading > 0){this.reloading -= Player.getStrength()/5;}
 	if(this.reloading < 0){this.reloading = 0;}
 	//Holding space stops shooting when another key is pressed...
-	spatialManager.unregister(this);
+	spatialManager.register(this);
 }
 
 Sleigh.prototype.throwSnowball = function(){
@@ -97,6 +97,10 @@ Sleigh.prototype.setPos = function(x,y){
 	this.cx = x;
 	this.cy = y;
 }
+
+Sleigh.prototype.getRadius = function() {
+	return this.sprite.height/8;
+};
 
 Sleigh.prototype.getPos = function(){
 	return {posX : this.cx, posY : this.cy};
