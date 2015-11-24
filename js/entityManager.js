@@ -61,6 +61,7 @@ _forEachOf: function(aCategory, fn) {
 // to request the blessed release of death!
 //
 KILL_ME_NOW : -1,
+GROUND_HEIGHT: g_canvas.height - 107,
 gameHasStarted: false,
 gameIsWon: false,
 

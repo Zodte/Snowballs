@@ -56,9 +56,9 @@ Sleigh.prototype.update = function(du){
 	}
 	else if(keys[this.DOWN]){
 		this.rotation += 0.02;
-		if(this.cy < g_canvas.height - 107){
+		if(this.cy < entityManager.GROUND_HEIGHT){
 			this.cy += this.speed * du;
-		}else {this.cy = g_canvas.height - 107;}
+		}else {this.cy = entityManager.GROUND_HEIGHT;}
 	}
 	
 	this.updateVars();
