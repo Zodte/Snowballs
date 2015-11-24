@@ -16,14 +16,14 @@ backGround.prototype.update = function(du) {
 	for(var i = 0; i < Math.floor(util.randRange(0,2)); i++){
 		entityManager.generateSnow({
 			cx : g_canvas.width,
-			cy : util.randRange(0,g_canvas.height);
+			cy : util.randRange(0,g_canvas.height)
 		});
 	}
 };
 
 backGround.prototype.render = function(ctx) {
 	for(var i = 0; i < 8; i++){
-		this.sprite.drawWrappedCentredAt(ctx,this.sprite.width/2 + i*this.sprite.width, this.sprite.height/2,this.rotation);
+		this.sprite.drawWrappedCentredAt(ctx,this.sprite.width/2 + i*this.sprite.width, this.sprite.height/2,this.rotation)
 	}
 	/*
 	this.sprite.drawWrappedCentredAt(
