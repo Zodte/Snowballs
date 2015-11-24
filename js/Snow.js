@@ -11,7 +11,7 @@ Snow.prototype.vel = SNOW_VELOCITY;
 
 Snow.prototype.update = function(du){
 	this.lived++;
-	if(this.cx < -10) return entityManager.KILL_ME_NOW;
+	if(this.cx < -10 || this.cy > entityManager.GROUND_HEIGHT+10) return entityManager.KILL_ME_NOW;
 	
 	var velDif = this.vel - SNOW_VELOCITY
 	if(Math.abs(velDif) > 0.3){
