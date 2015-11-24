@@ -30,7 +30,7 @@ Sleigh.prototype.fuelComsumption = Player.getFuelComsuption();
 
 Sleigh.prototype.update = function(du){
 	this.rotation = 0;
-	
+	this.lived++;
 	spatialManager.unregister(this);
     if( this._isDeadNow ) {
         return entityManager.KILL_ME_NOW;
@@ -78,25 +78,40 @@ Sleigh.prototype.movement = function(du){
 	}
 	if(dustVelX && dustVelY){
 		entityManager.generateStardust({
-			cx  : util.randRange(this.cx-this.getRadius(),this.cx+this.getRadius()),
+			cx  : util.randRange(this.cx-this.getRadius()*3,this.cx),
 			cy 	: util.randRange(this.cy-this.getRadius(),this.cy+this.getRadius()),
-			velX: dustVelX,
-			velY: dustVelY
-		})
-	}else if(dustVelX){
-		entityManager.generateStardust({
-			cx  : util.randRange(this.cx-this.getRadius(),this.cx+this.getRadius()),
-			cy 	: util.randRange(this.cy-this.getRadius(),this.cy+this.getRadius()),
-			velX: dustVelX,
-			velY: 0
+			velX: dustVelX/2,
+			velY: dustVelY/2
 		})
 	}else if(dustVelY){
 		entityManager.generateStardust({
-			cx  : util.randRange(this.cx-this.getRadius(),this.cx+this.getRadius()),
+			cx  : util.randRange(this.cx-this.getRadius()*3,this.cx),
 			cy 	: util.randRange(this.cy-this.getRadius(),this.cy+this.getRadius()),
 			velX: 0,
 			velY: dustVelY
 		})
+	}else if(dustVelX){
+		entityManager.generateStardust({
+			cx  : util.randRange(this.cx-this.getRadius()*3,this.cx),
+			cy 	: util.randRange(this.cy-this.getRadius(),this.cy+this.getRadius()),
+			velX: dustVelX,
+			velY: 0
+		})
+	}else{
+		entityManager.generateStardust({
+			cx  : util.randRange(this.cx-this.getRadius()*3,this.cx),
+			cy 	: util.randRange(this.cy-this.getRadius(),this.cy+this.getRadius()),
+			velX: -0.5,
+			velY: 0
+		})
+	}
+	//Shake
+	if(this.cx+this.getRadius() < entityManager.GROUND_HEIGHT-100){
+		if(this.lived % 20 == 9){
+			this.cy+= 0.5;
+		}else if(this.lived % 20 == 19){
+			this.cy-= 0.5;
+		}
 	}
 }
 
