@@ -34,6 +34,7 @@ _enemies    : [],
 _gifts      : [],
 _powerups	: [],
 _animations : [],
+_stardust   : [],
 _snow		: [],
 _foreGround : [],
 
@@ -70,7 +71,7 @@ gameIsWon: false,
 //
 deferredSetup : function () {
     this._categories = [this._bg, this._sleighs, this._snowballs, this._enemies, 
-						this._gifts, this._powerups, this._animations, this._foreGround, this._snow];
+						this._gifts, this._powerups, this._animations, this._stardust, this._snow, this._foreGround,];
 },
 
 init: function() {	
@@ -113,6 +114,10 @@ generateSnowball : function(cx,cy,velX,velY,damage){
 
 generateSnow : function(descr){
 	this._snow.push(new Snow(descr));
+},
+
+generateStardust : function(descr){
+	this._stardust.push(new Stardust(descr));
 },
 /*
 createGreaterExplosion : function(descr) {

@@ -36,30 +36,7 @@ Sleigh.prototype.update = function(du){
         return entityManager.KILL_ME_NOW;
     }
 	//Moving
-	if(keys[this.FOWARD]){
-		if(this.cx < g_canvas.width - 150){
-			this.cx += this.speed * du;
-			}else {this.cx = g_canvas.width-150;}
-		this.rotation += 1.98;
-	}
-	else if(keys[this.BACKWARD]){
-		if(this.cx > 50){
-			this.cx -= this.speed * du;
-		}else {this.cx = 50;}
-		this.rotation += 0.02;
-	}
-	if(keys[this.UP]){
-		this.rotation += 1.98;
-		if(this.cy > g_canvas.height - 550){
-			this.cy -= this.speed * du;
-		}else {this.cy = g_canvas.height - 550;}
-	}
-	else if(keys[this.DOWN]){
-		this.rotation += 0.02;
-		if(this.cy < entityManager.GROUND_HEIGHT){
-			this.cy += this.speed * du;
-		}else {this.cy = entityManager.GROUND_HEIGHT;}
-	}
+	this.movement(du);
 	
 	this.updateVars();
 	//Shooting
@@ -68,6 +45,59 @@ Sleigh.prototype.update = function(du){
 	if(this.reloading < 0){this.reloading = 0;}
 	//Holding space stops shooting when another key is pressed...
 	spatialManager.register(this);
+}
+
+Sleigh.prototype.movement = function(du){
+	if(keys[this.FOWARD]){
+		if(this.cx < g_canvas.width - 150){
+			this.cx += this.speed * du;
+			var dustVelX = -1;
+		}else {this.cx = g_canvas.width-150;}
+		this.rotation += 1.98;
+	}
+	else if(keys[this.BACKWARD]){
+		if(this.cx > 50){
+			this.cx -= this.speed * du;
+			dustVelX = 1;
+		}else {this.cx = 50;}
+		this.rotation += 0.02;
+	}
+	if(keys[this.UP]){
+		this.rotation += 1.98;
+		if(this.cy > g_canvas.height - 550){
+			this.cy -= this.speed * du;
+			var dustVelY = 1;
+		}else {this.cy = g_canvas.height - 550;}
+	}
+	else if(keys[this.DOWN]){
+		this.rotation += 0.02;
+		if(this.cy < entityManager.GROUND_HEIGHT){
+			this.cy += this.speed * du;
+			dustVelY = -1;
+		}else {this.cy = entityManager.GROUND_HEIGHT;}
+	}
+	if(dustVelX && dustVelY){
+		entityManager.generateStardust({
+			cx  : util.randRange(this.cx-this.getRadius(),this.cx+this.getRadius()),
+			cy 	: util.randRange(this.cy-this.getRadius(),this.cy+this.getRadius()),
+			velX: dustVelX,
+			velY: dustVelY
+		})
+	}else if(dustVelX){
+		entityManager.generateStardust({
+			cx  : util.randRange(this.cx-this.getRadius(),this.cx+this.getRadius()),
+			cy 	: util.randRange(this.cy-this.getRadius(),this.cy+this.getRadius()),
+			velX: dustVelX,
+			velY: 0
+		})
+	}else if(dustVelY){
+		entityManager.generateStardust({
+			cx  : util.randRange(this.cx-this.getRadius(),this.cx+this.getRadius()),
+			cy 	: util.randRange(this.cy-this.getRadius(),this.cy+this.getRadius()),
+			velX: 0,
+			velY: dustVelY
+		})
+	}
 }
 
 Sleigh.prototype.throwSnowball = function(){

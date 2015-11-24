@@ -5,7 +5,7 @@ function Stardust(descr){
 	this.scale = util.randRange(0.05,0.08);
 	this.difVel = -this.scale * 10
 	this.rotationSpeed = 0;
-	this.lifeLength = Math.floor(util.randRange(100,200))
+	this.lifeLength = Math.floor(util.randRange(10,30))
 } 
 Stardust.prototype = new Entity(); 
 
