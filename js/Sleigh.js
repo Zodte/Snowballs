@@ -22,9 +22,9 @@ Sleigh.prototype.rotation = 0;
 Sleigh.prototype.reloadTime = 0.2*SECS_TO_NOMINALS;
 Sleigh.prototype.reloading = 0;
 
-//Fuel
-Sleigh.prototype.fuel = Player.getFuelCapacity();
-Sleigh.prototype.fuelComsumption = Player.getFuelComsuption();
+//Magic
+Sleigh.prototype.magic = Player.getMagicCapacity();
+Sleigh.prototype.magicComsumption = Player.getMagicComsuption();
 //Sleigh.prototype.halfHeight = g_images.sleigh.height/2;
 
 
@@ -77,9 +77,9 @@ Sleigh.prototype.movement = function(du){
 			dustVelY = -this.dustVel;
 		}else {this.cy = entityManager.GROUND_HEIGHT;}
 	}
-	if(this.lived % 3 == 0){
+	if(util.randRange(0,1) > 0.5){
 		var randCx = util.randRange(this.cx-this.getRadius()*2,this.cx-this.getRadius());
-		var randCy = util.randRange(this.cy+this.getRadius()/2,this.cy+this.getRadius());
+		var randCy = util.randRange(this.cy-this.getRadius(),this.cy+this.getRadius());
 		if(dustVelX && dustVelY){
 			entityManager.generateStardust({
 				cx  : randCx,
@@ -139,8 +139,8 @@ Sleigh.prototype.throwSnowball = function(){
 };
 
 Sleigh.prototype.updateVars = function(){
-	if(this.fuel>0){
-		this.addFuel(-0.1);
+	if(this.magic>0){
+		this.addMagic(Player.getMagicComsuption());
 	}
 }
 
@@ -158,6 +158,11 @@ Sleigh.prototype.getPos = function(){
 };
 
 
+Sleigh.prototype.addMagic = function(x){
+	this.magic += x;
+};
+
+
 //Collision function
 
 Sleigh.prototype.takePowerUp = function(power){
@@ -172,21 +177,22 @@ Sleigh.prototype.getEnemyHit = function(damage){
 	console.log("got damage")
 }
 
+//Render functions
+
+Sleigh.prototype.renderMagicBar = function(ctx){
+	ctx.save();
+	ctx.font = "10px Arial";
+	ctx.fillText("Magic",5,12);
+	ctx.restore();
+	ctx.fillRect(5,18,this.magic,6);
+};
+
 Sleigh.prototype.render = function(ctx){
-	this.renderFuelBar(ctx);
+	this.renderMagicBar(ctx);
 	this.sprite.drawCentredAt(
 	ctx, this.cx, this.cy, Math.PI*this.rotation
     );
 };
 
-Sleigh.prototype.renderFuelBar = function(ctx){
-	ctx.save();
-	ctx.font = "10px Arial";
-	ctx.fillText("Fuel",5,12);
-	ctx.restore();
-	ctx.fillRect(5,18,this.fuel,6);
-};
 
-Sleigh.prototype.addFuel = function(x){
-	this.fuel += x;
-};
+

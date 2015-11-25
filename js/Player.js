@@ -2,8 +2,8 @@ var Player = {
 //Private Data
 _Strength: 5.00,
 _Speed: 3.00,
-_fuelCapacity: 100,
-_fuelComsuption: 1,
+_magicCapacity: 100,
+_magicComsuption: -0.1,
 
 
 
@@ -18,12 +18,12 @@ getSpeed: function(){
 	return this._Speed;
 },
 
-getFuelCapacity: function(){
-	return this._fuelCapacity;
+getMagicCapacity: function(){
+	return this._magicCapacity;
 },
 
-getFuelComsuption: function(){
-	return this._fuelComsuption;
+getMagicComsuption: function(){
+	return this._magicComsuption;
 },
 
 }
