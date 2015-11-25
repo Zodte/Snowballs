@@ -47,66 +47,72 @@ Sleigh.prototype.update = function(du){
 	spatialManager.register(this);
 }
 
+Sleigh.prototype.dustVel = 2.4;
 Sleigh.prototype.movement = function(du){
 	if(keys[this.FOWARD]){
-		if(this.cx < g_canvas.width - 150){
+		if(this.cx < g_canvas.width-this.getRadius()){
 			this.cx += this.speed * du;
-			var dustVelX = -1;
-		}else {this.cx = g_canvas.width-150;}
+			var dustVelX = -this.dustVel;
+		}else {this.cx = g_canvas.width-this.getRadius();}
 		this.rotation += 1.98;
 	}
 	else if(keys[this.BACKWARD]){
-		if(this.cx > 50){
+		if(this.cx > 0+this.getRadius()){
 			this.cx -= this.speed * du;
-			dustVelX = 1;
-		}else {this.cx = 50;}
+			dustVelX = this.dustVel;
+		}else {this.cx = 0+this.getRadius();}
 		this.rotation += 0.02;
 	}
 	if(keys[this.UP]){
 		this.rotation += 1.98;
-		if(this.cy > g_canvas.height - 550){
+		if(this.cy > 0+this.getRadius()){
 			this.cy -= this.speed * du;
-			var dustVelY = 1;
-		}else {this.cy = g_canvas.height - 550;}
+			var dustVelY = this.dustVel;
+		}else {this.cy = 0+this.getRadius();}
 	}
 	else if(keys[this.DOWN]){
 		this.rotation += 0.02;
 		if(this.cy < entityManager.GROUND_HEIGHT){
 			this.cy += this.speed * du;
-			dustVelY = -1;
+			dustVelY = -this.dustVel;
 		}else {this.cy = entityManager.GROUND_HEIGHT;}
 	}
-	if(dustVelX && dustVelY){
-		entityManager.generateStardust({
-			cx  : util.randRange(this.cx-this.getRadius()*3,this.cx),
-			cy 	: util.randRange(this.cy-this.getRadius(),this.cy+this.getRadius()),
-			velX: dustVelX/2,
-			velY: dustVelY/2
-		})
-	}else if(dustVelY){
-		entityManager.generateStardust({
-			cx  : util.randRange(this.cx-this.getRadius()*3,this.cx),
-			cy 	: util.randRange(this.cy-this.getRadius(),this.cy+this.getRadius()),
-			velX: 0,
-			velY: dustVelY
-		})
-	}else if(dustVelX){
-		entityManager.generateStardust({
-			cx  : util.randRange(this.cx-this.getRadius()*3,this.cx),
-			cy 	: util.randRange(this.cy-this.getRadius(),this.cy+this.getRadius()),
-			velX: dustVelX,
-			velY: 0
-		})
-	}else{
-		entityManager.generateStardust({
-			cx  : util.randRange(this.cx-this.getRadius()*3,this.cx),
-			cy 	: util.randRange(this.cy-this.getRadius(),this.cy+this.getRadius()),
-			velX: -0.5,
-			velY: 0
-		})
+	if(this.lived % 3 == 0){
+		var randCx = util.randRange(this.cx-this.getRadius()*2,this.cx-this.getRadius());
+		var randCy = util.randRange(this.cy+this.getRadius()/2,this.cy+this.getRadius());
+		if(dustVelX && dustVelY){
+			entityManager.generateStardust({
+				cx  : randCx,
+				cy 	: randCy,
+				velX: dustVelX/2,
+				velY: dustVelY/2
+			})
+		}else if(dustVelY){
+			entityManager.generateStardust({
+				cx  : randCx,
+				cy 	: randCy,
+				velX: 0,
+				velY: dustVelY
+			})
+		}else if(dustVelX){
+			entityManager.generateStardust({
+				cx  : randCx,
+				cy 	: randCy,
+				velX: dustVelX,
+				velY: 0
+			})
+		}else{
+			entityManager.generateStardust({
+				cx  : randCx,
+				cy 	: randCy,
+				velX: -this.dustVel/2,
+				velY: 0
+			})
+		}
 	}
 	//Shake
-	if(this.cy+this.getRadius() < entityManager.GROUND_HEIGHT+10){
+	if(this.cy+this.getRadius() < entityManager.GROUND_HEIGHT+15
+		&& this.cy-this.getRadius() > 1){
 		if(this.lived % 20 < 10){
 			this.cy+= 0.3;
 		}else{
