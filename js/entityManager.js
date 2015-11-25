@@ -173,11 +173,13 @@ playAgain: function(){
 		cy : 300
 	});
 	
-	this.generateTree({
-		cx : 200,
-		cy : this.GROUND_HEIGHT - 29,
-		rotation : 0
-	});
+	for(var i = 1; i < 20; i++) {
+		this.generateTree({
+			cx : g_canvas.width - 50*i,
+			cy : this.GROUND_HEIGHT - 29,
+			rotation : 0
+		});
+	}
 },
 //-------------------------------------------------------------------------------------------------------------------
 

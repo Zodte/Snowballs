@@ -7,7 +7,6 @@ function Tree(descr) {
 Tree.prototype = new Entity();
 
 Tree.prototype.spriteIndex = 0;
-
 Tree.prototype.chooseTree = function() {
 	this.sprites = this.sprites || g_sprites.xMasTree;
 };
@@ -15,7 +14,9 @@ Tree.prototype.chooseTree = function() {
 Tree.prototype.update = function(du) {
 	spatialManager.unregister(this);
 	this.lived++;
-
+	
+	this.cx -= FOREGROUND_SPEED * du;
+	
 	spatialManager.register(this);
 };
 
