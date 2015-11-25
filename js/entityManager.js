@@ -33,6 +33,7 @@ _snowballs  : [],
 _sleighs    : [],
 _enemies    : [],
 _gifts      : [],
+_snakeGifts : [],
 _powerups	: [],
 _animations : [],
 _stardust   : [],
@@ -73,8 +74,8 @@ gameIsWon: false,
 //
 deferredSetup : function () {
     this._categories = [this._bg, this._trees, this._sleighs, this._snowballs, this._enemies, 
-						this._gifts, this._powerups, this._animations, this._stardust, this._snow, 
-						this._foreGround];
+						this._gifts, this._snakeGifts, this._powerups, this._animations, 
+						this._stardust, this._snow, this._foreGround];
 },
 
 init: function() {	
@@ -91,6 +92,10 @@ generateTree : function(descr) {
 
 generateGifts : function(descr) {
 	this._gifts.push(new straightGift(descr));
+},
+
+generateSnakeGifts : function(descr) {
+	this._snakeGifts.push(new snakeGift(descr));
 },
 
 generateForeGround : function(descr) {
@@ -166,6 +171,11 @@ playAgain: function(){
 	this.generateGifts({
 		cx : 400,
 		cy : 400
+	});
+	
+	this.generateSnakeGifts({
+		cx : 600,
+		cy : 300
 	});
 	
 	this.generatePowerUp({
