@@ -192,7 +192,8 @@ function requestPreloads() {
 		bgMountains : "./images/bgMountains.png",
 		straightGift: "./images/redGift.png",
 		snakeGift   : "./images/blueGift.png",
-		xMasTree    : "./images/xmasTree.gif"
+		xMasTree    : "./images/xmasTree.gif",
+		blueStardust: "./images/stardust.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
