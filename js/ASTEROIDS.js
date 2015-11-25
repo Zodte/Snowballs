@@ -193,6 +193,7 @@ function requestPreloads() {
 		straightGift: "./images/redGift.png",
 		snakeGift   : "./images/blueGift.png",
 		xMasTree    : "./images/xmasTree.gif",
+		oldTree1    : "./images/oldTree1.png",
 		blueStardust: "./images/stardust.png"
     };
 
