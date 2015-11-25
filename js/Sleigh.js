@@ -106,11 +106,11 @@ Sleigh.prototype.movement = function(du){
 		})
 	}
 	//Shake
-	if(this.cx+this.getRadius() < entityManager.GROUND_HEIGHT-100){
-		if(this.lived % 20 == 9){
-			this.cy+= 0.5;
-		}else if(this.lived % 20 == 19){
-			this.cy-= 0.5;
+	if(this.cy+this.getRadius() < entityManager.GROUND_HEIGHT+10){
+		if(this.lived % 20 < 10){
+			this.cy+= 0.3;
+		}else{
+			this.cy-= 0.3;
 		}
 	}
 }
