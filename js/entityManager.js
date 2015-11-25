@@ -28,6 +28,7 @@ var entityManager = {
 // "PRIVATE" DATA
 _tiles		: [],
 _bg 		: [],
+_trees      : [],
 _snowballs  : [],
 _sleighs    : [],
 _enemies    : [],
@@ -71,7 +72,7 @@ gameIsWon: false,
 // i.e. thing which need `this` to be defined.
 //
 deferredSetup : function () {
-    this._categories = [this._bg, this._sleighs, this._snowballs, this._enemies, 
+    this._categories = [this._bg, this._trees, this._sleighs, this._snowballs, this._enemies, 
 						this._gifts, this._powerups, this._animations, this._stardust, this._snow, 
 						this._foreGround];
 },
@@ -84,6 +85,10 @@ init: function() {
 
 
 //Generating---------------------------------------------------------------------------------------------------------
+generateTree : function(descr) {
+	this._trees.push(new Tree(descr));
+},
+
 generateGifts : function(descr) {
 	this._gifts.push(new straightGift(descr));
 },
@@ -167,7 +172,12 @@ playAgain: function(){
 		cx : 200,
 		cy : 300
 	});
-
+	
+	this.generateTree({
+		cx : 200,
+		cy : this.GROUND_HEIGHT - 29,
+		rotation : 0
+	});
 },
 //-------------------------------------------------------------------------------------------------------------------
 

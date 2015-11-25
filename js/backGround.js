@@ -3,7 +3,6 @@ function backGround(descr) {
 	
 	this.sprite = this.sprite || g_sprites.bgColor;
 	this.sprite2 = g_sprites.bgMountains;
-	this.treeSprites = g_sprites.xMasTree;
 };
 
 backGround.prototype = new Entity();
@@ -27,8 +26,6 @@ backGround.prototype.update = function(du) {
 	this.lived++;
 };
 
-//backGround.prototype.spriteIndex = 0;
-//backGround.prototype.numImages = [0,4];
 backGround.prototype.render = function(ctx) {
 
 	for(var i = 0; i < 8; i++){
@@ -36,10 +33,5 @@ backGround.prototype.render = function(ctx) {
 	}
 	this.sprite2.drawAt(ctx,this.cx,this.sprite.height/2,this.rotation);
 	
-	//var delay = 30;
-	//var spriteDelay = this.lived % delay;
-	//if(spriteDelay == 0) this.spriteIndex = (this.spriteIndex + 1) % this.numImages[1];
-	this.treeSprites[Math.floor(Math.random(0,4))].drawAt(ctx, 100, entityManager.GROUND_HEIGHT-87);
-
 };
 
