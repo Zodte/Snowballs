@@ -150,7 +150,7 @@ Sleigh.prototype.setPos = function(x,y){
 }
 
 Sleigh.prototype.getRadius = function() {
-	return this.sprite.height/8;
+	return this.sprite.scale * this.sprite.height/1.8;
 };
 
 Sleigh.prototype.getPos = function(){
@@ -165,8 +165,12 @@ Sleigh.prototype.takePowerUp = function(power){
 };
 
 Sleigh.prototype.takeGift = function(gift) {
-	
+	console.log("got gift")
 };
+
+Sleigh.prototype.getEnemyHit = function(damage){
+	console.log("got damage")
+}
 
 Sleigh.prototype.render = function(ctx){
 	this.renderFuelBar(ctx);
