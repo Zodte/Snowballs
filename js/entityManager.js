@@ -173,10 +173,7 @@ playAgain: function(){
 		cy : 400
 	});
 	
-	this.generateSnakeGifts({
-		cx : 600,
-		cy : 300
-	});
+	this.generateSnakeGifts();
 	
 	this.generatePowerUp({
 		cx : 200,
