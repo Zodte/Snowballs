@@ -22,8 +22,7 @@ Tree.prototype.update = function(du) {
 
 Tree.prototype.numImages = [0,4];
 Tree.prototype.render = function(ctx) {
-	var delay = 30;
-	var spriteDelay = this.lived % delay;
+	var spriteDelay = this.lived % this.delay;
 	if(spriteDelay == 0) this.spriteIndex = (this.spriteIndex + 1) % this.numImages[1];
 	this.sprites[this.spriteIndex].drawCentredAt(
 	ctx, this.cx, this.cy, this.rotation

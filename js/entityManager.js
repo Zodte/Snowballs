@@ -177,7 +177,8 @@ playAgain: function(){
 		this.generateTree({
 			cx : g_canvas.width - 50*i,
 			cy : this.GROUND_HEIGHT - 29,
-			rotation : 0
+			rotation : 0,
+			delay: 30*i
 		});
 	}
 },
