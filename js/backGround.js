@@ -2,8 +2,9 @@ function backGround(descr) {
 	this.setup(descr);
 	
 	this.sprite = this.sprite || g_sprites.bgColor;
-	this.sprite2 = g_sprites.bgMountains;
-	this.sprite3 = g_sprites.oldTree1;
+	this.bgMountainsprite = g_sprites.bgMountains;
+	this.oldTreeSprite1 = g_sprites.oldTree1;
+	this.oldTreeSprite2 = g_sprites.oldTree2;
 };
 
 backGround.prototype = new Entity();
@@ -32,7 +33,8 @@ backGround.prototype.render = function(ctx) {
 	for(var i = 0; i < 8; i++){
 		this.sprite.drawWrappedCentredAt(ctx,this.sprite.width/2 + i*this.sprite.width, this.sprite.height/2,this.rotation);
 	}
-	this.sprite2.drawAt(ctx,this.cx,this.sprite.height/2);
-	this.sprite3.drawAt(ctx, this.cx + 520, entityManager.GROUND_HEIGHT-39);
+	this.bgMountainsprite.drawAt(ctx,this.cx,this.sprite.height/2);
+	this.oldTreeSprite1.drawAt(ctx, this.cx + 520, entityManager.GROUND_HEIGHT-39);
+	this.oldTreeSprite2.drawAt(ctx, this.cx + 700, entityManager.GROUND_HEIGHT-74);
 };
 
