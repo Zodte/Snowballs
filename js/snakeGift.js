@@ -18,9 +18,11 @@ snakeGift.prototype.update = function(du) {
 };
 
 snakeGift.prototype.computeFloatingStep = function(du) {
-	var val1 = Math.cos(this.cx*Math.PI/0.1);
+	//var rand = util.randRange(0.1,0.5);
+	var val1 = Math.sin(this.cx*Math.PI/0.1);
+	//var val2 = Math.cos(this.cx*Math.PI/0.5);
 	var nextX = this.cx - this.vel*du;
-	var nextY = this.cy + val1*du;
+	var nextY = this.cy + val1/0.8*du;
 	this.cx = nextX;
 	this.cy = nextY;
 };
