@@ -81,8 +81,8 @@ Gift.prototype.getRadius = function() {
 
 Gift.prototype.render = function(ctx) {
 	this.sprite.scale = this.scale;
-	ctx.globalAlpha = 45 / (this.lived/0.5);
-	console.log(45/(this.lived/0.5));
+	ctx.globalAlpha = 45 / this.lived;
+	console.log(45/(this.lived));
 	this.sprite.drawCentredAt(
 	ctx, this.cx, this.cy, this.rotation
 	);
