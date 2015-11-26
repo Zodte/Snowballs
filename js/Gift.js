@@ -17,7 +17,6 @@ Gift.prototype.decideDirection = function() {
 	var dir = util.randRange(0,2*Math.PI);
 	this.velX = Math.cos(dir) * this.vel;
 	this.velY = Math.sin(dir) * this.vel;
-	console.log(this.velX, this.velY)
 };
 
 Gift.prototype.update = function(du) {
@@ -35,7 +34,22 @@ Gift.prototype.update = function(du) {
 	}else{
 		this.velY = 0;
 	}
-		
+	
+	var inMagnetRange = spatialManager.findEntityInRange(
+						this.cx,this.cy, Player.getMagnetRadius()
+						);
+	if(inMagnetRange){
+		var canPullGift = inMagnetRange.pullGift;
+		if(canPullGift){
+			var pos = inMagnetRange.getPos();
+			var dx = pos.posX - this.cx;
+			var dy = pos.posY - this.cy;
+			var mag = Math.sqrt(dx * dx + dy * dy);
+			var strength = 3;
+			this.velX = (dx / mag) * strength;
+			this.velY = (dy / mag) * strength;
+		}
+	}
 	this.cx += this.velX;
 	this.cy += this.velY;
 		

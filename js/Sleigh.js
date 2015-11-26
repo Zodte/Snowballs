@@ -175,7 +175,11 @@ Sleigh.prototype.takeGift = function(gift) {
 
 Sleigh.prototype.getEnemyHit = function(damage){
 	console.log("got damage")
-}
+};
+
+Sleigh.prototype.pullGift = function(){
+	
+};
 
 //Render functions
 

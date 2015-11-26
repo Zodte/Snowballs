@@ -4,7 +4,7 @@ _Strength: 5.00,
 _Speed: 3.00,
 _magicCapacity: 100,
 _magicComsuption: -0.1,
-_magnetRadius: 50,
+_magnetRadius: 100,
 
 
 
