@@ -209,7 +209,7 @@ playAgain: function(){
 	});
 	
 	this.generatePowerUp({
-		cx : 200,
+		cx : 800,
 		cy : 300
 	});
 	

@@ -11,19 +11,19 @@ function PowerUp(descr) {
     // Default sprite and scale, if not otherwise specified
     this.scale  = this.scale  || 1;
 	this.rotation = this.rotation || 0;
-	this.xVel = this.speed || 0;
 	this.choosePower();
 };
 
 PowerUp.prototype = new Entity();
 
 PowerUp.prototype.allPowers = ["milk","cookie"];
+PowerUp.prototype.velY = 0;
 
 PowerUp.prototype.choosePower = function(){
 	this.powerNum = Math.floor(util.randRange(0,1.999));
 	this.power = this.allPowers[this.powerNum];
 	this.sprites = g_sprites.powerUps[this.powerNum];
-}
+};
 
 PowerUp.prototype.update = function (du) {
 	
@@ -34,7 +34,8 @@ PowerUp.prototype.update = function (du) {
 	 if( this._isDeadNow || this.cx < -50) {
         return entityManager.KILL_ME_NOW;
     }
-    this.cx -= this.xVel;
+	
+    this.cx -= MAP_SPEED;
 	
 	// Handle collisions
     var hitEntity = this.findHitEntity();

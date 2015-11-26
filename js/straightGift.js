@@ -69,7 +69,8 @@ straightGift.prototype.createStarDust = function(){
 		cx 	: this.cx,
 		cy 	: util.randRange(this.cy - this.getRadius(), this.cy+this.getRadius()),
 		velX: this.velX,
-		velY: this.velY
+		velY: this.velY,
+		color: "rgba(255,0,0,0.2)"
 	})
 }
 

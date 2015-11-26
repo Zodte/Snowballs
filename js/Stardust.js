@@ -2,13 +2,14 @@ function Stardust(descr){
 	this.setup(descr);
 	
 	this.sprite = g_sprites.goldStardust;
-	this.scale = this.scale || util.randRange(0.2,0.5);
+	this.scale = this.scale || util.randRange(0.1,0.3);
 	this.rotationSpeed = util.randRange(-2,2);
-	this.lifeLength = Math.floor(util.randRange(10,30))
+	this.lifeLength = Math.floor(util.randRange(10,30));
+	this.color = this.color || "rgba(255,255,255,0.1)"
 } 
 Stardust.prototype = new Entity(); 
 
-Stardust.prototype.color = "blue"
+
 Stardust.prototype.rotation = 0
 Stardust.prototype.difVel = 0;
 
@@ -24,6 +25,10 @@ Stardust.prototype.update = function(du){
 	this.cy += this.velY + this.difVel;	
 };
 
+Stardust.prototype.getRadius = function(){
+	return this.sprite.scale * this.sprite.width/2;
+};
+
 Stardust.prototype.render = function(ctx){
 	ctx.save();
 	ctx.globalAlpha = 1.2 - (this.lived / this.lifeLength);
@@ -31,5 +36,9 @@ Stardust.prototype.render = function(ctx){
 	this.sprite.drawCentredAt(ctx,this.cx,this.cy,this.rotation);
 	ctx.globalAlpha = 1;
 	ctx.restore();
+	ctx.beginPath();
+	ctx.fillStyle = this.color;
+	ctx.arc(this.cx,this.cy,this.getRadius(),0,2*Math.PI);
+	ctx.fill();
 }
 	

@@ -63,7 +63,8 @@ snakeGift.prototype.createStarDust = function() {
 		cx 	: this.cx,
 		cy 	: util.randRange(this.cy - this.getRadius(), this.cy+this.getRadius()),
 		velX: this.velX,
-		velY: -this.velY
+		velY: -this.velY,
+		color: "rgba(0,0,255,0.2)"
 	})
 };
 
