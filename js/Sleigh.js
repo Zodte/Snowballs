@@ -198,30 +198,42 @@ Sleigh.prototype.pullGift = function(){
 };
 
 //Render functions
+Sleigh.prototype.displayAmountGifts = function(ctx) {
+	var numGifts = 0;
+	for(var i = 0; i < this.gifts.length;i++){
+		numGifts += this.gifts[i];
+	}
+	ctx.font = '20px sans-serif';
+	ctx.fillStyle = 'white';
+	ctx.fillText(numGifts, g_canvas.width - 216, 22);
+};
+
 Sleigh.prototype.renderGifts = function(ctx) {
 	this.straightGiftSprite.scale = 0.5;
 	this.straightGiftSprite.drawCentredAt(ctx, g_canvas.width-255, 15, 1.75*Math.PI);
 	this.straightGiftSprite.drawCentredAt(ctx, g_canvas.width-235, 15, 0.25*Math.PI);
 	this.snakeGiftSprite.scale = 0.75;
 	this.snakeGiftSprite.drawCentredAt(ctx, g_canvas.width-245, 15, 0.1*Math.PI);
-	var numGifts = 0;
-	for(var i = 0; i < this.gifts.length;i++){
-		numGifts += this.gifts[i];
-	}
-	ctx.fillText(numGifts, g_canvas.width - 216, 22);
+
 };
 
 Sleigh.prototype.renderMagicBar = function(ctx){
-	ctx.save();
+	ctx.fillStyle = 'white';	
+	//ctx.save();
 	ctx.font = "10px Arial";
 	ctx.fillText("Magic",5,12);
-	ctx.restore();
+	//ctx.restore();
+	ctx.rect(5,18,100,6);
+	ctx.strokeStyle = 'white';
+	ctx.stroke();
 	ctx.fillRect(5,18,this.magic,6);
+
 };
 
 Sleigh.prototype.render = function(ctx){
 	this.renderMagicBar(ctx);
 	this.renderGifts(ctx);
+	this.displayAmountGifts(ctx);
 	this.sprite.drawCentredAt(
 	ctx, this.cx, this.cy, Math.PI*this.rotation
     );

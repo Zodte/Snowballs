@@ -312,7 +312,6 @@ render: function(ctx) {
         debugY += 10;
     }
 	
-	Score.render(ctx);
 	if(entityManager.isPlayerDead() && entityManager.gameHasStarted){
         entityManager.gameIsWon = false;
 		this.renderGameLost(ctx);	
