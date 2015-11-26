@@ -15,7 +15,6 @@ Gift.prototype = new Entity();
 Gift.prototype.vel = 5;
 Gift.prototype.rotation = 0;
 
-
 Gift.prototype.decideDirection = function() {
 	var dir = util.randRange(0,2*Math.PI);
 	this.velX = Math.cos(dir) * this.vel;
@@ -28,7 +27,7 @@ Gift.prototype.update = function(du) {
 	this.lived++;
 	
 	var slowDownSpeed = 0.82;
-	if(this.cx < -this.getRadius()) return entityManager.KILL_ME_NOW;
+	if(this.cx < -this.getRadius() || this.lived >= 200) return entityManager.KILL_ME_NOW;
 	if(Math.abs(this.velX) > 0.01){
 		this.velX *= slowDownSpeed;
 	}else{
@@ -80,12 +79,13 @@ Gift.prototype.getRadius = function() {
 	return this.sprite.scale * (this.sprite.width/2);
 };
 
-
 Gift.prototype.render = function(ctx) {
 	this.sprite.scale = this.scale;
+	ctx.globalAlpha = 45 / (this.lived/0.5);
+	console.log(45/(this.lived/0.5));
 	this.sprite.drawCentredAt(
 	ctx, this.cx, this.cy, this.rotation
 	);
 	this.sprite.scale = this.oriScale;
-	
+	ctx.globalAlpha = 1;
 };
