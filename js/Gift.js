@@ -1,10 +1,13 @@
 function Gift(descr) {
 	this.setup(descr);
 	
-	this.sprite = this.sprite || g_sprites.straightGift;
+	this.gift = this.gift || 0;
+	this.giftSprite = g_sprites.gifts;
+	this.sprite = this.giftSprite[this.gift] || g_sprites.straightGift;
 	this.decideDirection();
 	this.oriScale = this.sprite.scale
 	this.scale = this.oriScale*0.7;
+
 };
 
 Gift.prototype = new Entity();

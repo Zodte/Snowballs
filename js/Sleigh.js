@@ -2,6 +2,8 @@ function Sleigh(descr){
 	this.setup(descr);
 	
 	this.sprite = this.sprite || g_sprites.sleigh;
+	this.straightGiftSprite = g_sprites.straightGift;
+	this.snakeGiftSprite = g_sprites.snakeGift;
 }
 
 Sleigh.prototype = new Entity();
@@ -17,6 +19,7 @@ Sleigh.prototype.FIRE = ' '.charCodeAt(0);
 
 Sleigh.prototype.speed = Player.getSpeed();
 Sleigh.prototype.rotation = 0;
+Sleigh.prototype.gifts = [0,0];
 
 //Shooting
 Sleigh.prototype.reloadTime = 0.2*SECS_TO_NOMINALS;
@@ -167,6 +170,9 @@ Sleigh.prototype.addMagic = function(x){
 	this.magic += x;
 };
 
+Sleigh.prototype.addGifts = function(x) {
+	this.gifts[x] += 1;
+};
 
 //Collision function
 
@@ -175,7 +181,7 @@ Sleigh.prototype.takePowerUp = function(power){
 };
 
 Sleigh.prototype.takeGift = function(gift) {
-	console.log("got gift")
+	this.addGifts(gift);
 };
 
 Sleigh.prototype.getEnemyHit = function(damage){
@@ -187,6 +193,18 @@ Sleigh.prototype.pullGift = function(){
 };
 
 //Render functions
+Sleigh.prototype.renderGifts = function(ctx) {
+	this.straightGiftSprite.scale = 0.5;
+	this.straightGiftSprite.drawCentredAt(ctx, g_canvas.width-255, 15, 1.75*Math.PI);
+	this.straightGiftSprite.drawCentredAt(ctx, g_canvas.width-235, 15, 0.25*Math.PI);
+	this.snakeGiftSprite.scale = 0.75;
+	this.snakeGiftSprite.drawCentredAt(ctx, g_canvas.width-245, 15, 0.1*Math.PI);
+	var numGifts = 0;
+	for(var i = 0; i < this.gifts.length;i++){
+		numGifts += this.gifts[i];
+	}
+	ctx.fillText(numGifts, g_canvas.width - 216, 22);
+};
 
 Sleigh.prototype.renderMagicBar = function(ctx){
 	ctx.save();
@@ -198,6 +216,7 @@ Sleigh.prototype.renderMagicBar = function(ctx){
 
 Sleigh.prototype.render = function(ctx){
 	this.renderMagicBar(ctx);
+	this.renderGifts(ctx);
 	this.sprite.drawCentredAt(
 	ctx, this.cx, this.cy, Math.PI*this.rotation
     );

@@ -18,15 +18,20 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.oldTree1 = new Sprite(images.oldTree1);
 	sprites.oldTree2 = new Sprite(images.oldTree2);
 	
+
+
 	//Animated Sprites
 	sprites.milk = [];
 	sprites.cookie = [];
 	sprites.powerUps = [];
 	sprites.xMasTree = [];
+	sprites.gifts = [];
 	
 	//Images for Animated Sprites
 	sprites.powerUps.push(sprites.milk);
 	sprites.powerUps.push(sprites.cookie);
+	sprites.gifts.push(sprites.straightGift);
+	sprites.gifts.push(sprites.snakeGift);
 	
 	sprites.milk.push(new Sprite(images.milk,0,0,19,19));
 	sprites.milk.push(new Sprite(images.milk,19,0,19,19));
@@ -40,6 +45,7 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.cookie.push(new Sprite(images.cookie,160,5,32,21));
 	sprites.cookie.push(new Sprite(images.cookie,192,5,32,21));
 	
+
 	sprites.xMasTree.push(new Sprite(images.xMasTree, 24, 14, 70, 86));
 	sprites.xMasTree.push(new Sprite(images.xMasTree, 144, 14, 70, 86));
 	sprites.xMasTree.push(new Sprite(images.xMasTree, 264, 14, 70, 86));
