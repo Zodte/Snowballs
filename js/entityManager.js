@@ -86,25 +86,26 @@ init: function() {
 
 
 //Generating---------------------------------------------------------------------------------------------------------
-generateTree : function(descr) {
-	this._trees.push(new Tree(descr));
-},
-
-generateGifts : function(descr) {
-	this._gifts.push(new straightGift(descr));
-},
-
-generateSnakeGifts : function(descr) {
-	this._snakeGifts.push(new snakeGift(descr));
+generateBg : function(descr) {
+	this._bg.push(new backGround(descr));
 },
 
 generateForeGround : function(descr) {
 	this._foreGround.push(new foreGround(descr));
 },
 
-generateBg : function(descr) {
-	this._bg.push(new backGround(descr));
+generateGifts : function(descr){
+	this._gifts.push(new Gift(descr));
 },
+
+generateStraightGifts : function(descr) {
+	this._enemies.push(new straightGift(descr));
+},
+
+generateSnakeGifts : function(descr) {
+	this._enemies.push(new snakeGift(descr));
+},
+
 
 generatePowerUp : function(descr) {
     this._powerups.push(new PowerUp(descr));
@@ -112,6 +113,10 @@ generatePowerUp : function(descr) {
 
 generateSleigh : function(descr) {
     this._sleighs.push(new Sleigh(descr));
+},
+
+generateSnow : function(descr){
+	this._snow.push(new Snow(descr));
 },
 
 generateSnowball : function(cx,cy,velX,velY,damage){
@@ -124,12 +129,12 @@ generateSnowball : function(cx,cy,velX,velY,damage){
 	}));
 },
 
-generateSnow : function(descr){
-	this._snow.push(new Snow(descr));
-},
-
 generateStardust : function(descr){
 	this._stardust.push(new Stardust(descr));
+},
+
+generateTree : function(descr) {
+	this._trees.push(new Tree(descr));
 },
 /*
 createGreaterExplosion : function(descr) {
@@ -168,8 +173,8 @@ playAgain: function(){
 		sprite : g_sprites.sleigh
     }); 
 	
-	this.generateGifts({
-		cx : 400,
+	this.generateStraightGifts({
+		cx : g_canvas.width,
 		cy : 400
 	});
 	

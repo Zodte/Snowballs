@@ -4,6 +4,7 @@ _Strength: 5.00,
 _Speed: 3.00,
 _magicCapacity: 100,
 _magicComsuption: -0.1,
+_magnetRadius: 50,
 
 
 
@@ -25,5 +26,10 @@ getMagicCapacity: function(){
 getMagicComsuption: function(){
 	return this._magicComsuption;
 },
+
+getMagnetRadius: function(){
+	return this._magnetRadius;
+}
+
 
 }
