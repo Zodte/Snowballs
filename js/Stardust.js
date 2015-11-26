@@ -1,8 +1,8 @@
 function Stardust(descr){
 	this.setup(descr);
 	
-	this.sprite = g_sprites.blueStardust;
-	this.scale = util.randRange(0.2,0.5);
+	this.sprite = g_sprites.goldStardust;
+	this.scale = this.scale || util.randRange(0.2,0.5);
 	this.rotationSpeed = util.randRange(-2,2);
 	this.lifeLength = Math.floor(util.randRange(10,30))
 } 

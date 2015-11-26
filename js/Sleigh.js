@@ -80,33 +80,38 @@ Sleigh.prototype.movement = function(du){
 	if(util.randRange(0,1) > 0.5){
 		var randCx = util.randRange(this.cx-this.getRadius()*2,this.cx-this.getRadius());
 		var randCy = util.randRange(this.cy-this.getRadius(),this.cy+this.getRadius());
+		var scale = util.randRange(0.1,0.3);
 		if(dustVelX && dustVelY){
 			entityManager.generateStardust({
 				cx  : randCx,
 				cy 	: randCy,
 				velX: dustVelX/2,
-				velY: dustVelY/2
+				velY: dustVelY/2,
+				scale: scale
 			})
 		}else if(dustVelY){
 			entityManager.generateStardust({
 				cx  : randCx,
 				cy 	: randCy,
 				velX: 0,
-				velY: dustVelY
+				velY: dustVelY,
+				scale: scale
 			})
 		}else if(dustVelX){
 			entityManager.generateStardust({
 				cx  : randCx,
 				cy 	: randCy,
 				velX: dustVelX,
-				velY: 0
+				velY: 0,
+				scale: scale
 			})
 		}else{
 			entityManager.generateStardust({
 				cx  : randCx,
 				cy 	: randCy,
 				velX: -this.dustVel/2,
-				velY: 0
+				velY: 0,
+				scale: scale
 			})
 		}
 	}
