@@ -22,6 +22,8 @@ Gift.prototype.decideDirection = function() {
 Gift.prototype.update = function(du) {
 	
 	spatialManager.unregister(this);
+	this.lived++;
+	
 	var slowDownSpeed = 0.82;
 	if(this.cx < -this.getRadius()) return entityManager.KILL_ME_NOW;
 	if(Math.abs(this.velX) > 0.01){
@@ -38,7 +40,7 @@ Gift.prototype.update = function(du) {
 	var inMagnetRange = spatialManager.findEntityInRange(
 						this.cx,this.cy, Player.getMagnetRadius()
 						);
-	if(inMagnetRange){
+	if(inMagnetRange && this.lived > 14){
 		var canPullGift = inMagnetRange.pullGift;
 		if(canPullGift){
 			var pos = inMagnetRange.getPos();
@@ -50,8 +52,12 @@ Gift.prototype.update = function(du) {
 			this.velY = (dy / mag) * strength;
 		}
 	}
-	this.cx += this.velX;
-	this.cy += this.velY;
+	if(this.cx + this.velX <= g_canvas.width - this.getRadius() && this.cx + this.velX > this.getRadius()){
+		this.cx += this.velX;
+	}
+	if(this.cy + this.velY <= entityManager.GROUND_HEIGHT + this.getRadius()/2 && this.cy + this.velY > 0+	this.getRadius()){
+		this.cy += this.velY;
+	}
 		
 	
 	//handle collision
