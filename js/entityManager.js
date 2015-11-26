@@ -28,6 +28,7 @@ var entityManager = {
 // "PRIVATE" DATA
 _tiles		: [],
 _bg 		: [],
+_generator  : [],
 _trees      : [],
 _snowballs  : [],
 _sleighs    : [],
@@ -53,6 +54,10 @@ _generateBgs : function() {
 	this.generateBg();
 },
 
+_generateGenerator: function(){
+	this.generateGenerator();
+},
+
 _forEachOf: function(aCategory, fn) {
     for (var i = 0; i < aCategory.length; ++i) {
         fn.call(aCategory[i]);
@@ -73,7 +78,7 @@ gameIsWon: false,
 // i.e. thing which need `this` to be defined.
 //
 deferredSetup : function () {
-    this._categories = [this._bg, this._trees, this._sleighs, this._snowballs, this._enemies, 
+    this._categories = [this._bg, this._generator, this._trees, this._sleighs, this._snowballs, this._enemies, 
 						this._gifts, this._snakeGifts, this._powerups, this._animations, 
 						this._stardust, this._snow, this._foreGround];
 },
@@ -94,6 +99,10 @@ generateForeGround : function(descr) {
 	this._foreGround.push(new foreGround(descr));
 },
 
+generateGenerator: function(descr){
+	this._generator.push(new Generator(descr));
+},
+
 generateGifts : function(descr){
 	this._gifts.push(new Gift(descr));
 },
@@ -105,7 +114,6 @@ generateStraightGifts : function(descr) {
 generateSnakeGifts : function(descr) {
 	this._enemies.push(new snakeGift(descr));
 },
-
 
 generatePowerUp : function(descr) {
     this._powerups.push(new PowerUp(descr));
@@ -215,12 +223,13 @@ playAgain: function(){
 	
 	for(var i = 1; i < 20; i++) {
 		this.generateTree({
-			cx : g_canvas.width - 50*i,
+			cx : 250*i,
 			cy : this.GROUND_HEIGHT - 29,
 			rotation : 0,
 			delay: 30*i
 		});
 	}
+	this._generateGenerator();
 },
 //-------------------------------------------------------------------------------------------------------------------
 

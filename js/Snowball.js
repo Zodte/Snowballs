@@ -48,7 +48,9 @@ Snowball.prototype.update = function (du) {
         return entityManager.KILL_ME_NOW;
     }
 	
-    if (this.cx > g_canvas.width + 50) return entityManager.KILL_ME_NOW;
+    if (this.cx > g_canvas.width + this.getRadius() 
+		|| this.cx < - this.getRadius()
+		|| this.cy > entityManager.GROUND_HEIGHT + this.getRadius()) return entityManager.KILL_ME_NOW;
 
 	this.velY += GRAVITY;
 	if(this.vel > 0){
