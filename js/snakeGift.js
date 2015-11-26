@@ -19,7 +19,6 @@ snakeGift.prototype.update = function(du) {
 	
 	this.computeFloatingStep(du);
 	if(this.cx < -this.getRadius() || this._isDeadNow) return entityManager.KILL_ME_NOW;
-	
 
 	var hitEntity = this.findHitEntity();
 	if (hitEntity) {
@@ -36,7 +35,7 @@ snakeGift.prototype.update = function(du) {
 snakeGift.prototype.computeFloatingStep = function(du) {
 	var val1 = Math.sin(this.cx*Math.PI/0.1);
 	this.velX = this.vel * du;
-	this.velY = val1/0.6 * du;
+	this.velY = val1/0.9 * du;
 	var nextX = this.cx - this.velX;
 	var nextY = this.cy + this.velY;
 	this.cx = nextX;
