@@ -195,7 +195,8 @@ function requestPreloads() {
 		xMasTree    : "./images/xmasTree.gif",
 		oldTree1    : "./images/oldTree1.png",
 		oldTree2    : "./images/oldTree2.png",
-		blueStardust: "./images/stardust.png"
+		blueStardust: "./images/stardust.png",
+		goldStardust: "./images/stardust2.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
