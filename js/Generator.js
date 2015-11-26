@@ -10,7 +10,7 @@ Generator.prototype.straightGift = {next: 0,
 									generate: function(){
 										entityManager.generateStraightGifts({
 										cx : g_canvas.width,
-										cy : util.randRange(30,entityManager.GROUND_HEIGTH-30)
+										cy : util.randRange(30,entityManager.GROUND_HEIGHT-30)
 										});
 									}
 									};
@@ -19,7 +19,7 @@ Generator.prototype.snakeGift = {next: 0,
 							generate: function(){
 								entityManager.generateSnakeGifts({
 								cx : g_canvas.width,
-								cy : util.randRange(30,entityManager.GROUND_HEIGTH-30)
+								cy : util.randRange(30,entityManager.GROUND_HEIGHT-30)
 								});
 							}
 							};
