@@ -5,6 +5,7 @@ _Speed: 3.00,
 _magicCapacity: 100,
 _magicComsuption: -0.1,
 _magnetRadius: 100,
+_luck: 0,
 
 
 
@@ -29,6 +30,10 @@ getMagicComsuption: function(){
 
 getMagnetRadius: function(){
 	return this._magnetRadius;
+},
+
+getLuck: function(){
+	return this._luck;
 }
 
 

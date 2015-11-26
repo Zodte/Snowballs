@@ -44,10 +44,18 @@ snakeGift.prototype.computeFloatingStep = function(du) {
 };
 
 snakeGift.prototype.getSnowballHit = function(damage){
-	entityManager.generateGifts({
-		cx : this.cx,
-		cy : this.cy
-	})
+		numGifts = entityManager.getGifts();
+	console.log(numGifts)
+	for(var i = 0; i < numGifts.length; i++){
+		for(var j = 0; j < numGifts[i]; j++)
+		{
+			entityManager.generateGifts({
+				cx 	: this.cx,
+				cy 	: this.cy,
+				gift: i
+			})
+		}
+	}
 	this.kill();
 }
 

@@ -153,6 +153,33 @@ isPlayerDead: function(){
 	return (this._sleighs.length === 0);
 },
 
+getGifts: function(){
+	var amountArr = [0,0,0,0];
+	var luck = Player.getLuck();
+	if(Math.floor(util.randRange(0,10)) <= 4 + luck){
+		var amount = Math.floor(util.randRange(1,3.9999+luck))
+	}
+	while(amount >= 20){
+		amountArr[3] +=1;
+		amount -= 20;
+	}
+	while(amount >= 10){
+		amountArr[2] +=1;
+		amount -= 10;
+	}
+	while(amount >= 5){
+		amountArr[1] += 1;
+		amount -= 5;
+	}
+	while(amount >= 1){
+		amountArr[0] += 1;
+		amount -= 1;
+	}
+	
+	return amountArr;
+	
+},
+
 playAgain: function(){
 /*	this.clearBullets();
 	this._enemies.forEach(function(enemy){
@@ -216,7 +243,6 @@ update: function(du) {
 
         var aCategory = this._categories[c];
         var i = 0;
-
         while (i < aCategory.length) {
 
             var status = aCategory[i].update(du);
