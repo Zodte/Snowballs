@@ -35,8 +35,8 @@ snakeGift.prototype.update = function(du) {
 
 snakeGift.prototype.computeFloatingStep = function(du) {
 	var val1 = Math.sin(this.cx*Math.PI/0.1);
-	this.velX = this.vel*du
-	this.velY = val1/0.6*du
+	this.velX = this.vel * du;
+	this.velY = val1/0.6 * du;
 	var nextX = this.cx - this.velX;
 	var nextY = this.cy + this.velY;
 	this.cx = nextX;
@@ -44,8 +44,7 @@ snakeGift.prototype.computeFloatingStep = function(du) {
 };
 
 snakeGift.prototype.getSnowballHit = function(damage){
-		numGifts = entityManager.getGifts();
-	console.log(numGifts)
+	numGifts = entityManager.getGifts(0.8);
 	for(var i = 0; i < numGifts.length; i++){
 		for(var j = 0; j < numGifts[i]; j++)
 		{

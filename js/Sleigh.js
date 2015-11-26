@@ -122,9 +122,9 @@ Sleigh.prototype.movement = function(du){
 	if(this.cy+this.getRadius() < entityManager.GROUND_HEIGHT+15
 		&& this.cy-this.getRadius() > 1){
 		if(this.lived % 20 < 10){
-			this.cy+= 0.3;
+			this.cy+= 0.2;
 		}else{
-			this.cy-= 0.3;
+			this.cy-= 0.2;
 		}
 	}
 }

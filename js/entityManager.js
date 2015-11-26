@@ -153,12 +153,10 @@ isPlayerDead: function(){
 	return (this._sleighs.length === 0);
 },
 
-getGifts: function(){
+getGifts: function(lvl){
 	var amountArr = [0,0,0,0];
 	var luck = Player.getLuck();
-	if(Math.floor(util.randRange(0,10)) <= 4 + luck){
-		var amount = Math.floor(util.randRange(1,3.9999+luck))
-	}
+	var amount = Math.floor(util.randRange(1,1.999+luck+lvl))
 	while(amount >= 20){
 		amountArr[3] +=1;
 		amount -= 20;

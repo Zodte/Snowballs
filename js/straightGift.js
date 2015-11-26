@@ -46,8 +46,7 @@ if(this.cx < -this.getRadius() || this._isDeadNow) return entityManager.KILL_ME_
 };
 
 straightGift.prototype.getSnowballHit = function(damage){
-	numGifts = entityManager.getGifts();
-	console.log(numGifts)
+	numGifts = entityManager.getGifts(0.5);
 	for(var i = 0; i < numGifts.length; i++){
 		for(var j = 0; j < numGifts[i]; j++)
 		{
