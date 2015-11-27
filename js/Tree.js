@@ -16,7 +16,7 @@ Tree.prototype.update = function(du) {
 	this.lived++;
 	
 	this.cx -= FOREGROUND_SPEED * du;
-	
+
 	spatialManager.register(this);
 };
 
