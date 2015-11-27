@@ -192,6 +192,7 @@ function requestPreloads() {
 		bgMountains : "./images/bgMountains.png",
 		straightGift: "./images/redGift.png",
 		snakeGift   : "./images/blueGift.png",
+		scoreGift   : "./images/scoreGift.gif",
 		xMasTree    : "./images/xmasTree.gif",
 		oldTree1    : "./images/oldTree1.png",
 		oldTree2    : "./images/oldTree2.png",

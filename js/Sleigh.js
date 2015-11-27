@@ -2,8 +2,7 @@ function Sleigh(descr){
 	this.setup(descr);
 	
 	this.sprite = this.sprite || g_sprites.sleigh;
-	this.straightGiftSprite = g_sprites.straightGift;
-	this.snakeGiftSprite = g_sprites.snakeGift;
+	this.scoreGiftSprite = g_sprites.scoreGift;
 }
 
 Sleigh.prototype = new Entity();
@@ -192,6 +191,8 @@ Sleigh.prototype.addMagic = function(x){
 
 Sleigh.prototype.addGifts = function(x) {
 	this.gifts[x] += 1;
+	this.delay = 6;
+	this.scoreGiftIndex = 1;
 };
 
 //Collision function
@@ -218,18 +219,21 @@ Sleigh.prototype.displayAmountGifts = function(ctx) {
 	for(var i = 0; i < this.gifts.length;i++){
 		numGifts += this.gifts[i];
 	}
-	ctx.font = '20px sans-serif';
+	ctx.font = '30px sans-serif';
 	ctx.fillStyle = 'white';
-	ctx.fillText(numGifts, g_canvas.width - 216, 22);
+	ctx.fillText(numGifts, 615, g_canvas.height - ((g_canvas.height - entityManager.GROUND_HEIGHT)/2)+12);
 };
 
+Sleigh.prototype.delay = 6;
+Sleigh.prototype.scoreGiftIndex = 0;
 Sleigh.prototype.renderGifts = function(ctx) {
-	this.straightGiftSprite.scale = 0.5;
-	this.straightGiftSprite.drawCentredAt(ctx, g_canvas.width-255, 15, 1.75*Math.PI);
-	this.straightGiftSprite.drawCentredAt(ctx, g_canvas.width-235, 15, 0.25*Math.PI);
-	this.snakeGiftSprite.scale = 0.75;
-	this.snakeGiftSprite.drawCentredAt(ctx, g_canvas.width-245, 15, 0.1*Math.PI);
-
+	this.scoreGiftSprite[this.scoreGiftIndex].scale = 0.8;
+	this.scoreGiftSprite[this.scoreGiftIndex].drawCentredAt(ctx, 580, g_canvas.height - (g_canvas.height - entityManager.GROUND_HEIGHT)/2, 0);
+	if(this.delay == 0) {
+		this.scoreGiftIndex = 0;
+	} else {
+		this.delay--;
+	}
 };
 
 Sleigh.prototype.renderMagicBar = function(ctx){

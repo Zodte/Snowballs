@@ -25,7 +25,8 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.oldTree2 = [];
 	sprites.trees = [];
 	sprites.gifts = [];
-
+	sprites.scoreGift = [];
+	
 	//Images for Animated Sprites
 	sprites.powerUps.push(sprites.milk);
 	sprites.powerUps.push(sprites.cookie);
@@ -62,6 +63,8 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.oldTree2.push(new Sprite(images.oldTree2));
 	sprites.oldTree2.push(new Sprite(images.oldTree2));
 	
+	sprites.scoreGift.push(new Sprite(images.scoreGift, 11, 0, 64, 57));
+	sprites.scoreGift.push(new Sprite(images.scoreGift, 100, 0, 64, 57));
 	//Animation Only Sprites
 
     // When ship is moving up and down
