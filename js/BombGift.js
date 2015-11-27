@@ -8,16 +8,37 @@ function BombGift(descr) {
 	this.scale = this.oriScale;
 	this.oriLife = util.randRange(16,20);
 	this.life = this.oriLife;
+	this.lifeLength = 400;
 	this.damage = this.oriLife;
+	this.blinkRate = (this.lifeLength/2);
 };
 
 BombGift.prototype = new Entity();
+BombGift.prototype.alpha = 1;
+BombGift.prototype.alphaUpOrDown = 1;
 
 BombGift.prototype.update = function(du) {
 	
 	spatialManager.unregister(this);
+	this.lived++;
 	
-if(this._isDeadNow) return entityManager.KILL_ME_NOW;
+	if(this._isDeadNow) return entityManager.KILL_ME_NOW;
+	
+	if(this.lived > this.lifeLength){
+		this.explode();
+	}
+	
+	if(this.alpha <= 0){
+		this.alphaUpOrDown *= -1;
+		this.blinkRate *= 0.5;
+		this.alpha = 0;
+	}
+	if(this.alpha >= 1){
+		this.alphaUpOrDown *= -1;
+		this.alpha = 1;
+	}
+	this.alpha += ((1-this.blinkRate/this.lifeLength)/10)*this.alphaUpOrDown;
+	
 	
 	//handle collision
 
@@ -33,6 +54,10 @@ if(this._isDeadNow) return entityManager.KILL_ME_NOW;
 	spatialManager.register(this);
 };
 
+BombGift.prototype.explode = function(){
+	this.kill();
+};
+
 BombGift.prototype.getSnowballHit = function(damage){
 	this.life -= damage;
 	if(this.life <= 0){
@@ -40,7 +65,7 @@ BombGift.prototype.getSnowballHit = function(damage){
 		numGifts = entityManager.getLoot(0.5,this.getPos());
 		this.kill();
 	}
-}
+};
 
 BombGift.prototype.getRadius = function() {
 	return this.sprite.scale * (this.sprite.width/2);
@@ -59,9 +84,11 @@ BombGift.prototype.createStarDust = function(){
 BombGift.prototype.render = function(ctx) {
 	if(util.randRange(0,1) > 0.7)	this.createStarDust();
 	this.sprite.scale = this.scale;
+	ctx.globalAlpha = this.alpha;
 	this.sprite.drawCentredAt(
 	ctx, this.cx, this.cy, this.rotation
 	);
+	ctx.globalAlpha = 1;
 	this.sprite.scale = this.oriScale;
 	ctx.fillRect(this.cx-this.getRadius(),this.cy+this.getRadius(),(this.getRadius()*2)*(this.life/(this.oriLife)),3)	
 };
