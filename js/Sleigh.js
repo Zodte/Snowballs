@@ -32,6 +32,7 @@ Sleigh.prototype.magicComsumption = Player.getMagicComsuption();
 
 //probability testing, not for actual game
 Sleigh.prototype.hits = 0;
+Sleigh.prototype.velY = 1;
 
 
 Sleigh.prototype.update = function(du){
@@ -58,34 +59,41 @@ Sleigh.prototype.update = function(du){
 
 Sleigh.prototype.dustVel = 2.4;
 Sleigh.prototype.movement = function(du){
-	if(keys[this.FOWARD]){
-		if(this.cx < g_canvas.width-this.getRadius()){
-			this.cx += this.speed * du;
-			var dustVelX = -this.dustVel;
-		}else {this.cx = g_canvas.width-this.getRadius();}
-		this.rotation += 1.98;
+	if(this.magic > 0){
+		if(keys[this.FOWARD]){
+			if(this.cx < g_canvas.width-this.getRadius()){
+				this.cx += this.speed * du;
+				var dustVelX = -this.dustVel;
+			}else {this.cx = g_canvas.width-this.getRadius();}
+			this.rotation += 1.98;
+		}
+		else if(keys[this.BACKWARD]){
+			if(this.cx > 0+this.getRadius()){
+				this.cx -= this.speed * du;
+				dustVelX = this.dustVel;
+			}else {this.cx = 0+this.getRadius();}
+			this.rotation += 0.02;
+		}
+		if(keys[this.UP]){
+			this.rotation += 1.98;
+			if(this.cy > 0+this.getRadius()){
+				this.cy -= this.speed * du;
+				var dustVelY = this.dustVel;
+			}else {this.cy = 0+this.getRadius();}
+		}
+		else if(keys[this.DOWN]){
+			this.rotation += 0.02;
+			if(this.cy < entityManager.GROUND_HEIGHT){
+				this.cy += this.speed * du;
+				dustVelY = -this.dustVel;
+			}else {this.cy = entityManager.GROUND_HEIGHT;}
+		}
+	}else if(this.magic <= 0 && this.cy < entityManager.GROUND_HEIGHT){
+		this.velY += GRAVITY;
+		this.cy += this.velY;
+		this.rotation += 0.05;
 	}
-	else if(keys[this.BACKWARD]){
-		if(this.cx > 0+this.getRadius()){
-			this.cx -= this.speed * du;
-			dustVelX = this.dustVel;
-		}else {this.cx = 0+this.getRadius();}
-		this.rotation += 0.02;
-	}
-	if(keys[this.UP]){
-		this.rotation += 1.98;
-		if(this.cy > 0+this.getRadius()){
-			this.cy -= this.speed * du;
-			var dustVelY = this.dustVel;
-		}else {this.cy = 0+this.getRadius();}
-	}
-	else if(keys[this.DOWN]){
-		this.rotation += 0.02;
-		if(this.cy < entityManager.GROUND_HEIGHT){
-			this.cy += this.speed * du;
-			dustVelY = -this.dustVel;
-		}else {this.cy = entityManager.GROUND_HEIGHT;}
-	}
+	
 	if(util.randRange(0,1) > 0.5){
 		var randCx = util.randRange(this.cx-this.getRadius()*2,this.cx-this.getRadius());
 		var randCy = util.randRange(this.cy-this.getRadius(),this.cy+this.getRadius());
@@ -189,7 +197,7 @@ Sleigh.prototype.addGifts = function(x) {
 //Collision function
 
 Sleigh.prototype.takePowerUp = function(power){
-	
+	this.addMagic(20);
 };
 
 Sleigh.prototype.takeGift = function(gift) {
