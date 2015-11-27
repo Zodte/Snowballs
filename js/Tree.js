@@ -3,7 +3,9 @@ function Tree(descr) {
 	
 	this.chooseTree();
 	this.cx = this.sprites[this.tree].width + g_canvas.width;
+	
 	this.cy = entityManager.GROUND_HEIGHT - (this.scale * this.sprites[0].height/2) +14 ;
+	this.speed = this.scale/1.2;
 };
 
 Tree.prototype = new Entity();

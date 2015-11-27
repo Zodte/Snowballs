@@ -28,8 +28,7 @@ Generator.prototype.frontTree = {next: 0,
 									entityManager.generateTree({
 										rotation : 0,
 										delay : 30,
-										scale : 1,
-										speed : 1
+										scale : 1.2
 									});
 								}
 								};
@@ -40,8 +39,7 @@ Generator.prototype.backTree = {
 		entityManager.generateTree({
 			rotation : 0,
 			delay : 0,
-			scale : 0.6,
-			speed : 0.3
+			scale : util.randRange(0.4,1)
 		});
 	}
 };
