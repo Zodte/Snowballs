@@ -53,7 +53,6 @@ Sleigh.prototype.update = function(du){
 	
 	if(this.reloading > 0){this.reloading -= Player.getStrength()/5;}
 	if(this.reloading < 0){this.reloading = 0;}
-	//Holding space stops shooting when another key is pressed...
 	spatialManager.register(this);
 }
 

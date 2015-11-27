@@ -4,6 +4,7 @@ function snakeGift(descr) {
 	this.sprite = this.sprite || g_sprites.snakeGift;
 	this.oriScale = this.sprite.scale;
 	this.scale = this.oriScale;
+	this.oriLife = util.randRange(13,17);
 	this.life = this.oriLife;
 	this.damage = this.oriLife;
 };
@@ -14,7 +15,6 @@ snakeGift.prototype.vel = 1;
 snakeGift.prototype.damage = this.vel*10;
 snakeGift.prototype.velX = 0;
 snakeGift.prototype.velY = 0;
-snakeGift.prototype.oriLife = 30;
 
 snakeGift.prototype.update = function(du) {
 
@@ -49,17 +49,7 @@ snakeGift.prototype.getSnowballHit = function(damage){
 	this.life -= damage
 	if(this.life <= 0){
 		this.life = 0;
-		numGifts = entityManager.getGifts(0.8);
-		for(var i = 0; i < numGifts.length; i++){
-			for(var j = 0; j < numGifts[i]; j++)
-			{
-				entityManager.generateGifts({
-					cx 	: this.cx,
-					cy 	: this.cy,
-					gift: i
-				})
-			}
-		}
+		numGifts = entityManager.getGifts(0.8,this.getPos());
 		this.kill();
 	}
 }

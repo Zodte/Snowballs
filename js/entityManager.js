@@ -161,7 +161,7 @@ isPlayerDead: function(){
 	return (this._sleighs.length === 0);
 },
 
-getGifts: function(lvl){
+getGifts: function(lvl,pos){
 	var amountArr = [0,0,0,0];
 	var luck = Player.getLuck();
 	var amount = Math.floor(util.randRange(1,1.999+luck+lvl))
@@ -182,8 +182,21 @@ getGifts: function(lvl){
 		amount -= 1;
 	}
 	
-	return amountArr;
+	this.spawnEnemyGifts(amountArr,pos);
 	
+},
+
+spawnEnemyGifts: function(numGifts,pos){
+	for(var i = 0; i < numGifts.length; i++){
+			for(var j = 0; j < numGifts[i]; j++)
+			{
+				entityManager.generateGifts({
+					cx 	: pos.posX,
+					cy 	: pos.posY,
+					gift: i
+				})
+			}
+		}
 },
 
 playAgain: function(){
@@ -221,14 +234,14 @@ playAgain: function(){
 		cy : 300
 	});
 	
-	for(var i = 1; i < 20; i++) {
+	/*for(var i = 1; i < 20; i++) {
 		this.generateTree({
 			cx : 250*i,
 			cy : this.GROUND_HEIGHT - 29,
 			rotation : 0,
 			delay: 30*i
 		});
-	}
+	}*/
 	this._generateGenerator();
 },
 //-------------------------------------------------------------------------------------------------------------------

@@ -6,6 +6,7 @@ function straightGift(descr) {
 	this.decideDirection();
 	this.oriScale = this.sprite.scale
 	this.scale = this.oriScale;
+	this.oriLife = util.randRange(8,12);
 	this.life = this.oriLife;
 	this.damage = this.oriLife;
 };
@@ -13,7 +14,6 @@ function straightGift(descr) {
 straightGift.prototype = new Entity();
 
 straightGift.prototype.vel = 2;
-straightGift.prototype.oriLife = 20;
 
 
 straightGift.prototype.decideDirection = function() {
@@ -52,17 +52,7 @@ straightGift.prototype.getSnowballHit = function(damage){
 	this.life -= damage;
 	if(this.life <= 0){
 		this.life = 0;
-		numGifts = entityManager.getGifts(0.5);
-		for(var i = 0; i < numGifts.length; i++){
-			for(var j = 0; j < numGifts[i]; j++)
-			{
-				entityManager.generateGifts({
-					cx 	: this.cx,
-					cy 	: this.cy,
-					gift: i
-				})
-			}
-		}
+		numGifts = entityManager.getGifts(0.5,this.getPos());
 		this.kill();
 	}
 }

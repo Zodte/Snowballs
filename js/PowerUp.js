@@ -18,6 +18,7 @@ PowerUp.prototype = new Entity();
 
 PowerUp.prototype.allPowers = ["milk","cookie"];
 PowerUp.prototype.velY = 0;
+PowerUp.prototype.life = 300;
 
 PowerUp.prototype.choosePower = function(){
 	this.powerNum = Math.floor(util.randRange(0,1.999));
@@ -31,11 +32,40 @@ PowerUp.prototype.update = function (du) {
 	
 	this.lived ++;
 	
-	 if( this._isDeadNow || this.cx < -50) {
-        return entityManager.KILL_ME_NOW;
-    }
+	 var slowDownSpeed = 0.82;
+	if(this.cx < -this.getRadius() || this.lived >= this.life) return entityManager.KILL_ME_NOW;
+	if(Math.abs(this.velX) > 0.01){
+		this.velX *= slowDownSpeed;
+	}else{
+		this.velX = 0;
+	}
+	if(Math.abs(this.velY) > 0.01){
+		this.velY *= slowDownSpeed;
+	}else{
+		this.velY = 0;
+	}
 	
-    this.cx -= MAP_SPEED;
+	var inMagnetRange = spatialManager.findEntityInRange(
+						this.cx,this.cy, Player.getMagnetRadius()
+						);
+	if(inMagnetRange && this.lived > 14){
+		var canPullGift = inMagnetRange.pullGift;
+		if(canPullGift){
+			var pos = inMagnetRange.getPos();
+			var dx = pos.posX - this.cx;
+			var dy = pos.posY - this.cy;
+			var mag = Math.sqrt(dx * dx + dy * dy);
+			var strength = 3;
+			this.velX = (dx / mag) * strength;
+			this.velY = (dy / mag) * strength;
+		}
+	}
+	if(this.cx + this.velX <= g_canvas.width - this.getRadius() && this.cx + this.velX > this.getRadius()){
+		this.cx += this.velX;
+	}
+	if(this.cy + this.velY <= entityManager.GROUND_HEIGHT + this.getRadius()/2 && this.cy + this.velY > 0+	this.getRadius()){
+		this.cy += this.velY;
+	}
 	
 	// Handle collisions
     var hitEntity = this.findHitEntity();
