@@ -15,7 +15,8 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.snakeGift.scale = 0.7;
 	sprites.blueStardust = new Sprite(images.blueStardust);
 	sprites.goldStardust = new Sprite(images.goldStardust);
-
+	sprites.UI = new Sprite(images.UI);
+	
 	//Animated Sprites
 	sprites.milk = [];
 	sprites.cookie = [];
