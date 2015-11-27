@@ -49,7 +49,7 @@ snakeGift.prototype.getSnowballHit = function(damage){
 	this.life -= damage
 	if(this.life <= 0){
 		this.life = 0;
-		numGifts = entityManager.getGifts(0.8,this.getPos());
+		numGifts = entityManager.getLoot(0.8,this.getPos());
 		this.kill();
 	}
 }

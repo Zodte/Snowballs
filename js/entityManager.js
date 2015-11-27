@@ -161,7 +161,7 @@ isPlayerDead: function(){
 	return (this._sleighs.length === 0);
 },
 
-getGifts: function(lvl,pos){
+getLoot: function(lvl,pos){
 	var amountArr = [0,0,0,0];
 	var luck = Player.getLuck();
 	var amount = Math.floor(util.randRange(1,1.999+luck+lvl))
@@ -182,6 +182,12 @@ getGifts: function(lvl,pos){
 		amount -= 1;
 	}
 	
+	if(util.randRange(1,100) > 80-Player.getLuck()-lvl){
+		this.generatePowerUp({
+			cx : pos.posX,
+			cy : pos.posY
+		});
+	}
 	this.spawnEnemyGifts(amountArr,pos);
 	
 },

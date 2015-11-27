@@ -160,7 +160,7 @@ Sleigh.prototype.throwSnowball = function(){
 Sleigh.prototype.updateVars = function(){
 	if(this.magic>0){
 		this.addMagic(Player.getMagicComsuption());
-	}
+	}else this.magic = 0;
 }
 
 Sleigh.prototype.setPos = function(x,y){
@@ -179,6 +179,7 @@ Sleigh.prototype.getPos = function(){
 
 Sleigh.prototype.addMagic = function(x){
 	this.magic += x;
+	if(this.magic < 0) this.magic = 0;
 };
 
 Sleigh.prototype.addGifts = function(x) {

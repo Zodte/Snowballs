@@ -11,19 +11,25 @@ function PowerUp(descr) {
     // Default sprite and scale, if not otherwise specified
     this.scale  = this.scale  || 1;
 	this.rotation = this.rotation || 0;
+	this.decideDirection();
 	this.choosePower();
 };
 
 PowerUp.prototype = new Entity();
 
 PowerUp.prototype.allPowers = ["milk","cookie"];
-PowerUp.prototype.velY = 0;
 PowerUp.prototype.life = 300;
 
 PowerUp.prototype.choosePower = function(){
 	this.powerNum = Math.floor(util.randRange(0,1.999));
 	this.power = this.allPowers[this.powerNum];
 	this.sprites = g_sprites.powerUps[this.powerNum];
+};
+
+PowerUp.prototype.decideDirection = function() {
+	var dir = util.randRange(0,2*Math.PI);
+	this.velX = Math.cos(dir) * this.vel;
+	this.velY = Math.sin(dir) * this.vel;
 };
 
 PowerUp.prototype.update = function (du) {
