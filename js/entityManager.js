@@ -115,6 +115,10 @@ generateSnakeGifts : function(descr) {
 	this._enemies.push(new snakeGift(descr));
 },
 
+generateBombGifts: function(descr){
+	this._enemies.push(new BombGift(descr));
+},
+
 generatePowerUp : function(descr) {
     this._powerups.push(new PowerUp(descr));
 },
@@ -230,7 +234,7 @@ playAgain: function(){
 		cy : 400
 	});
 	
-	this.generateSnakeGifts({
+	this.generateBombGifts({
 		cx : 800, 
 		cy : 300
 	});

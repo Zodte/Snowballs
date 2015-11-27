@@ -1,12 +1,13 @@
 var Player = {
 //Private Data
-_Strength: 5.00,
+_Strength: 10.00,
 _Speed: 3.00,
 _magicCapacity: 100,
-_magicComsuption: -0.1,
-_magnetRadius: 100,
+_magicComsuption: -0.05,
+_magnetRadius: 300,
 _luck: 0,
 _piercing: 1,
+_mojoBars: 1,
 
 
 
@@ -39,6 +40,10 @@ getLuck: function(){
 
 getPiercing: function(){
 	return this._piercing;
+},
+
+getMojoBars: function(){
+	return this._mojoBars;
 }
 
 
