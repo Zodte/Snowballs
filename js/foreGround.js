@@ -7,7 +7,7 @@ function foreGround(descr) {
 foreGround.prototype = new Entity();
 
 foreGround.prototype.cx = 0;
-foreGround.prototype.cy = 497;
+foreGround.prototype.cy = g_canvas.height - 103;
 foreGround.prototype.rotation = 0;
 
 foreGround.prototype.update = function(du) {
