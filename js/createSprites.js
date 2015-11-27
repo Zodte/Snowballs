@@ -15,23 +15,25 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.snakeGift.scale = 0.7;
 	sprites.blueStardust = new Sprite(images.blueStardust);
 	sprites.goldStardust = new Sprite(images.goldStardust);
-	sprites.oldTree1 = new Sprite(images.oldTree1);
-	sprites.oldTree2 = new Sprite(images.oldTree2);
-	
-
 
 	//Animated Sprites
 	sprites.milk = [];
 	sprites.cookie = [];
 	sprites.powerUps = [];
 	sprites.xMasTree = [];
+	sprites.oldTree1 = [];
+	sprites.oldTree2 = [];
+	sprites.trees = [];
 	sprites.gifts = [];
-	
+
 	//Images for Animated Sprites
 	sprites.powerUps.push(sprites.milk);
 	sprites.powerUps.push(sprites.cookie);
 	sprites.gifts.push(sprites.straightGift);
 	sprites.gifts.push(sprites.snakeGift);
+	sprites.trees.push(sprites.xMasTree);
+	sprites.trees.push(sprites.oldTree1);
+	sprites.trees.push(sprites.oldTree2);
 	
 	sprites.milk.push(new Sprite(images.milk,0,0,19,19));
 	sprites.milk.push(new Sprite(images.milk,19,0,19,19));
@@ -45,11 +47,21 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.cookie.push(new Sprite(images.cookie,160,5,32,21));
 	sprites.cookie.push(new Sprite(images.cookie,192,5,32,21));
 
-	sprites.xMasTree.push(new Sprite(images.xMasTree, 24, 14, 70, 86));
-	sprites.xMasTree.push(new Sprite(images.xMasTree, 144, 14, 70, 86));
-	sprites.xMasTree.push(new Sprite(images.xMasTree, 264, 14, 70, 86));
-	sprites.xMasTree.push(new Sprite(images.xMasTree, 384, 14, 70, 86));
+	sprites.xMasTree.push(new Sprite(images.xMasTree, 27, 34, 70, 85));
+	sprites.xMasTree.push(new Sprite(images.xMasTree, 147, 34, 70, 85));
+	sprites.xMasTree.push(new Sprite(images.xMasTree, 267, 34, 70, 85));
+	sprites.xMasTree.push(new Sprite(images.xMasTree, 387, 34, 70, 85));
 
+	sprites.oldTree1.push(new Sprite(images.oldTree1));
+	sprites.oldTree1.push(new Sprite(images.oldTree1));
+	sprites.oldTree1.push(new Sprite(images.oldTree1));
+	sprites.oldTree1.push(new Sprite(images.oldTree1));
+	
+	sprites.oldTree2.push(new Sprite(images.oldTree2));
+	sprites.oldTree2.push(new Sprite(images.oldTree2));
+	sprites.oldTree2.push(new Sprite(images.oldTree2));
+	sprites.oldTree2.push(new Sprite(images.oldTree2));
+	
 	//Animation Only Sprites
 
     // When ship is moving up and down

@@ -3,8 +3,6 @@ function backGround(descr) {
 	
 	this.sprite = this.sprite || g_sprites.bgColor;
 	this.bgMountainsprite = g_sprites.bgMountains;
-	this.oldTreeSprite1 = g_sprites.oldTree1;
-	this.oldTreeSprite2 = g_sprites.oldTree2;
 };
 
 backGround.prototype = new Entity();
@@ -34,7 +32,5 @@ backGround.prototype.render = function(ctx) {
 		this.sprite.drawWrappedCentredAt(ctx,this.sprite.width/2 + i*this.sprite.width, this.sprite.height/2,this.rotation);
 	}
 	this.bgMountainsprite.drawAt(ctx,this.cx,this.sprite.height/2);
-	this.oldTreeSprite1.drawAt(ctx, this.cx + 520, entityManager.GROUND_HEIGHT-39);
-	this.oldTreeSprite2.drawAt(ctx, this.cx + 700, entityManager.GROUND_HEIGHT-74);
 };
 
