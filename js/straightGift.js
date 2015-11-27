@@ -88,6 +88,6 @@ straightGift.prototype.render = function(ctx) {
 	ctx, this.cx, this.cy, this.rotation
 	);
 	this.sprite.scale = this.oriScale;
-	ctx.fillRect(this.cx-this.getRadius(),this.cy+this.getRadius(),(this.getRadius()*2)*(this.life/(this.getRadius()*2))	,3)
+	ctx.fillRect(this.cx-this.getRadius(),this.cy+this.getRadius(),(this.getRadius()*2)*(this.life/(this.oriLife)),3)
 	
 };
