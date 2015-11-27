@@ -6,6 +6,7 @@ _magicCapacity: 100,
 _magicComsuption: -0.1,
 _magnetRadius: 100,
 _luck: 0,
+_piercing: 5,
 
 
 
@@ -34,6 +35,10 @@ getMagnetRadius: function(){
 
 getLuck: function(){
 	return this._luck;
+},
+
+getPiercing: function(){
+	return this._piercing;
 }
 
 

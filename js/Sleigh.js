@@ -30,10 +30,17 @@ Sleigh.prototype.magic = Player.getMagicCapacity();
 Sleigh.prototype.magicComsumption = Player.getMagicComsuption();
 //Sleigh.prototype.halfHeight = g_images.sleigh.height/2;
 
+//probability testing, not for actual game
+Sleigh.prototype.hits = 0;
+
 
 Sleigh.prototype.update = function(du){
 	this.rotation = 0;
 	this.lived++;
+	if(util.randRange(1,100) > 99.99){
+		this.hits +=1;
+		console.log(this.lived,this.hits)
+	}
 	spatialManager.unregister(this);
     if( this._isDeadNow ) {
         return entityManager.KILL_ME_NOW;
@@ -146,7 +153,7 @@ Sleigh.prototype.throwSnowball = function(){
 		var damage = strength * 2;
 		entityManager.generateSnowball(
 			this.cx+10, this.cy-14,
-			velX,velY,damage);
+			velX,velY,Player.getStrength()+Player.getPiercing());
 	    this.reloading = this.reloadTime;
     }
 };
@@ -190,7 +197,7 @@ Sleigh.prototype.takeGift = function(gift) {
 };
 
 Sleigh.prototype.getEnemyHit = function(damage){
-	console.log("got damage")
+	this.addMagic(-damage);
 };
 
 Sleigh.prototype.pullGift = function(){

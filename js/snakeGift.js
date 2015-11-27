@@ -4,6 +4,8 @@ function snakeGift(descr) {
 	this.sprite = this.sprite || g_sprites.snakeGift;
 	this.oriScale = this.sprite.scale;
 	this.scale = this.oriScale;
+	this.life = this.oriLife;
+	this.damage = this.oriLife;
 };
 
 snakeGift.prototype = new Entity();
@@ -12,6 +14,7 @@ snakeGift.prototype.vel = 1;
 snakeGift.prototype.damage = this.vel*10;
 snakeGift.prototype.velX = 0;
 snakeGift.prototype.velY = 0;
+snakeGift.prototype.oriLife = 30;
 
 snakeGift.prototype.update = function(du) {
 
@@ -43,18 +46,22 @@ snakeGift.prototype.computeFloatingStep = function(du) {
 };
 
 snakeGift.prototype.getSnowballHit = function(damage){
-	numGifts = entityManager.getGifts(0.8);
-	for(var i = 0; i < numGifts.length; i++){
-		for(var j = 0; j < numGifts[i]; j++)
-		{
-			entityManager.generateGifts({
-				cx 	: this.cx,
-				cy 	: this.cy,
-				gift: i
-			})
+	this.life -= damage
+	if(this.life <= 0){
+		this.life = 0;
+		numGifts = entityManager.getGifts(0.8);
+		for(var i = 0; i < numGifts.length; i++){
+			for(var j = 0; j < numGifts[i]; j++)
+			{
+				entityManager.generateGifts({
+					cx 	: this.cx,
+					cy 	: this.cy,
+					gift: i
+				})
+			}
 		}
+		this.kill();
 	}
-	this.kill();
 }
 
 snakeGift.prototype.createStarDust = function() {
@@ -78,4 +85,6 @@ snakeGift.prototype.render = function(ctx) {
 	ctx, this.cx, this.cy, this.rotation
 	);
 	this.sprite.scale = this.oriScale;
+	ctx.fillRect(this.cx-this.getRadius(),this.cy+this.getRadius(),(this.getRadius()*2)*(this.life/(this.getRadius()*2)),3)
+
 };

@@ -6,12 +6,15 @@ function straightGift(descr) {
 	this.decideDirection();
 	this.oriScale = this.sprite.scale
 	this.scale = this.oriScale;
+	this.life = this.oriLife;
+	this.damage = this.oriLife;
 };
 
 straightGift.prototype = new Entity();
 
 straightGift.prototype.vel = 2;
-straightGift.prototype.damage = this.vel*10;
+straightGift.prototype.oriLife = 20;
+
 
 straightGift.prototype.decideDirection = function() {
 	var endCx = -50;
@@ -46,18 +49,22 @@ if(this.cx < -this.getRadius() || this._isDeadNow) return entityManager.KILL_ME_
 };
 
 straightGift.prototype.getSnowballHit = function(damage){
-	numGifts = entityManager.getGifts(0.5);
-	for(var i = 0; i < numGifts.length; i++){
-		for(var j = 0; j < numGifts[i]; j++)
-		{
-			entityManager.generateGifts({
-				cx 	: this.cx,
-				cy 	: this.cy,
-				gift: i
-			})
+	this.life -= damage;
+	if(this.life <= 0){
+		this.life = 0;
+		numGifts = entityManager.getGifts(0.5);
+		for(var i = 0; i < numGifts.length; i++){
+			for(var j = 0; j < numGifts[i]; j++)
+			{
+				entityManager.generateGifts({
+					cx 	: this.cx,
+					cy 	: this.cy,
+					gift: i
+				})
+			}
 		}
+		this.kill();
 	}
-	this.kill();
 }
 
 straightGift.prototype.getRadius = function() {
@@ -81,5 +88,6 @@ straightGift.prototype.render = function(ctx) {
 	ctx, this.cx, this.cy, this.rotation
 	);
 	this.sprite.scale = this.oriScale;
+	ctx.fillRect(this.cx-this.getRadius(),this.cy+this.getRadius(),(this.getRadius()*2)*(this.life/(this.getRadius()*2))	,3)
 	
 };
