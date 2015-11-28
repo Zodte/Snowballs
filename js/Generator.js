@@ -46,14 +46,11 @@ Generator.prototype.backTree = {
 
 
 Generator.prototype.update = function(du) {
-	this.lived++;
+	this.lived += MAP_SPEED;
 	for(var i = 0; i < this.enemiesArray.length; i++){
 		var enemy = this.enemiesArray[i];
 		if(enemy.next < this.lived ) {
 			enemy.next = this.lived+250;
-		}
-		else if(enemy.next == this.lived) {
-			console.log("yo")
 			enemy.generate();
 		}
 	}

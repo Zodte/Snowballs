@@ -8,9 +8,10 @@ function BombGift(descr) {
 	this.scale = this.oriScale;
 	this.oriLife = util.randRange(16,20);
 	this.life = this.oriLife;
-	this.lifeLength = 400;
+	this.lifeLength = 360;
 	this.damage = this.oriLife;
-	this.blinkRate = (this.lifeLength/2);
+	this.blinkRate = (this.lifeLength/6);
+	this.blinkRateIncrease = [1.23,1.28]
 };
 
 BombGift.prototype = new Entity();
@@ -28,16 +29,18 @@ BombGift.prototype.update = function(du) {
 		this.explode();
 	}
 	
-	if(this.alpha <= 0){
+	this.alpha += ((this.blinkRate/this.lifeLength)/10)*this.alphaUpOrDown;
+	if(this.alpha <= 0.3){
 		this.alphaUpOrDown *= -1;
-		this.blinkRate *= 0.5;
-		this.alpha = 0;
+		this.alpha = 0.3;
 	}
 	if(this.alpha >= 1){
 		this.alphaUpOrDown *= -1;
+		this.blinkRate *= this.blinkRateIncrease[0];
 		this.alpha = 1;
 	}
-	this.alpha += ((1-this.blinkRate/this.lifeLength)/10)*this.alphaUpOrDown;
+	
+	console.log(this.alpha)
 	
 	
 	//handle collision
