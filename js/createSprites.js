@@ -13,6 +13,8 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.straightGift.scale = 0.5;
 	sprites.snakeGift = new Sprite(images.snakeGift);
 	sprites.snakeGift.scale = 0.7;
+	sprites.bombGift = new Sprite(images.bombGift);
+	sprites.bombGift.scale = 0.5;
 	sprites.blueStardust = new Sprite(images.blueStardust);
 	sprites.goldStardust = new Sprite(images.goldStardust);
 	sprites.UI = new Sprite(images.UI);

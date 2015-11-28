@@ -40,7 +40,7 @@ if(this.cx < -this.getRadius() || this._isDeadNow) return entityManager.KILL_ME_
 	if (hitEntity) {
 		var canGetEnemyHit = hitEntity.getEnemyHit;
 		if (canGetEnemyHit) {
-			canGetEnemyHit.call(hitEntity, this.damage); 
+			canGetEnemyHit.call(hitEntity, this.damage);
 			return entityManager.KILL_ME_NOW;
 		}
 	}
