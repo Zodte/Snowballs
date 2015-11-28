@@ -1,6 +1,6 @@
 function Generator(descr) {
 	this.setup(descr);
-	this.enemiesArray = [this.straightGift, this.snakeGift];
+	this.enemiesArray = [this.straightGift, this.snakeGift, this.bombGift];
 };
 
 Generator.prototype = new Entity();
@@ -21,6 +21,12 @@ Generator.prototype.snakeGift = {next: 0,
 								cx : g_canvas.width,
 								cy : util.randRange(100,entityManager.GROUND_HEIGHT-30)
 								});
+							}
+							};
+Generator.prototype.bombGift = {next: 0, 
+							type: "BombGift", 
+							generate: function(){
+								entityManager.generateBombGifts({});
 							}
 							};
 Generator.prototype.frontTree = {next: 0,

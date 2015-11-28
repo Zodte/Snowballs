@@ -229,21 +229,6 @@ playAgain: function(){
 		sprite : g_sprites.sleigh
     }); 
 	
-	this.generateStraightGifts({
-		cx : g_canvas.width,
-		cy : 400
-	});
-	
-	this.generateBombGifts({
-		cx : 800, 
-		cy : 300
-	});
-	
-	this.generatePowerUp({
-		cx : 800,
-		cy : 300
-	});
-	
 	/*for(var i = 1; i < 20; i++) {
 		this.generateTree({
 			cx : 250*i,
