@@ -257,6 +257,9 @@ Sleigh.prototype.renderMagicBar = function(ctx){
 	ctx.rect(5,18,100,6);
 	ctx.strokeStyle = 'white';
 	ctx.stroke();
+	if(this.magic >= 100) {
+		this.magic = 100;
+	}
 	ctx.fillRect(5,18,this.magic,6);
 
 };
