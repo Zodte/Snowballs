@@ -29,7 +29,7 @@ straightGift.prototype.update = function(du) {
 	
 	spatialManager.unregister(this);
 	
-if(this.cx < -this.getRadius() || this._isDeadNow) return entityManager.KILL_ME_NOW;
+	if(this.cx < -this.getRadius() || this._isDeadNow) return entityManager.KILL_ME_NOW;
 	
 	this.cx -= this.velX;
 	this.cy -= this.velY;

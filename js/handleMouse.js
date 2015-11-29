@@ -18,7 +18,7 @@ function handleMouseDown(evt) {
     // If no button is being pressed, then bail
     var button = evt.buttons === undefined ? evt.which : evt.buttons;
 	if(button == 1){
-		entityManager._sleighs[0].throwSnowball();
+		entityManager._sleighs[0].fire();
 	}
 }
 

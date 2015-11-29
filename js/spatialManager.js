@@ -51,8 +51,6 @@ register: function(entity) {
         radius : entity.getRadius(),
         entity : entity
     };
-
-
 },
 
 unregister: function(entity) {

@@ -95,7 +95,7 @@ Ship.prototype._updateWarp = function (du) {
         
         // Reregister me from my old posistion
         // ...so that I can be collided with again
-        spatialManager.register(this);
+        //spatialManager.register(this);
         
     }
 };
@@ -183,7 +183,7 @@ Ship.prototype.update = function (du) {
 			this.usedShield = false;
 			this.powerUps.red -= 1;
 		}
-        spatialManager.register(this);
+        //spatialManager.register(this);
     }
 
 };

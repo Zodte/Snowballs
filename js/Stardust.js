@@ -1,5 +1,7 @@
 function Stardust(descr){
-	this.setup(descr);
+	for (var property in descr) {
+        this[property] = descr[property];
+    }
 	
 	this.sprite = g_sprites.goldStardust;
 	this.scale = this.scale || util.randRange(0.1,0.3);
@@ -7,11 +9,10 @@ function Stardust(descr){
 	this.lifeLength = Math.floor(util.randRange(10,30));
 	this.color = this.color || "rgba(255,255,255,0.1)"
 } 
-Stardust.prototype = new Entity(); 
 
-
-Stardust.prototype.rotation = 0
+Stardust.prototype.rotation = 0;
 Stardust.prototype.difVel = 0;
+Stardust.prototype.lived = 0;
 
 Stardust.prototype.update = function(du){
 	this.lived++;

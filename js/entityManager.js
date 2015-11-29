@@ -240,14 +240,7 @@ playAgain: function(){
 		cx : 600,
 		cy : 300
 	});
-	/*for(var i = 1; i < 20; i++) {
-		this.generateTree({
-			cx : 250*i,
-			cy : this.GROUND_HEIGHT - 29,
-			rotation : 0,
-			delay: 30*i
-		});
-	}*/
+
 	this._generateGenerator();
 },
 //-------------------------------------------------------------------------------------------------------------------

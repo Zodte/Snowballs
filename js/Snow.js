@@ -1,14 +1,16 @@
 function Snow(descr){
-	this.setup(descr);
-	
+	for (var property in descr) {
+        this[property] = descr[property];
+    }
 	this.sprite = g_sprites.snowball;
 	this.scale = util.randRange(0.008,0.05);
 	this.difVel = -this.scale * 10
 	this.cyStart = this.cy;	
 } 
-Snow.prototype = new Entity(); 
+//Snow.prototype = new Entity(); 
 Snow.prototype.rotation = 0;
 Snow.prototype.vel = SNOW_VELOCITY;
+Snow.prototype.lived = 0;
 
 Snow.prototype.update = function(du){
 	this.lived++;

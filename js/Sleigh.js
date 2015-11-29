@@ -14,6 +14,8 @@ Sleigh.prototype.UP = 'W'.charCodeAt(0);
 Sleigh.prototype.DOWN = 'S'.charCodeAt(0);
 Sleigh.prototype.FIRE = ' '.charCodeAt(0);
 
+Sleigh.prototype.bugged = true;
+
 //Properties ==========================
 
 Sleigh.prototype.speed = Player.getSpeed();
@@ -23,6 +25,7 @@ Sleigh.prototype.gifts = [0,0];
 //Shooting
 Sleigh.prototype.reloadTime = 0.2*SECS_TO_NOMINALS;
 Sleigh.prototype.reloading = 0;
+Sleigh.prototype.pressedFire = false;
 
 //Magic
 Sleigh.prototype.magic = Player.getMagicCapacity();
@@ -37,16 +40,20 @@ Sleigh.prototype.velY = 1;
 Sleigh.prototype.update = function(du){
 	this.rotation = 0;
 	this.lived++;
+	spatialManager.unregister(this);
 	if(util.randRange(1,100) > 99.99){
 		this.hits +=1;
-		console.log(this.lived,this.hits)
 	}
-	spatialManager.unregister(this);
+	
     if( this._isDeadNow ) {
         return entityManager.KILL_ME_NOW;
     }
 	//Moving
 	this.movement(du);
+	if(this.pressedFire){
+		this.pressedFire = false;
+		this.throwSnowball();
+	}
 	
 	this.updateVars();
 	//Shooting
@@ -163,6 +170,10 @@ Sleigh.prototype.throwSnowball = function(){
 	    this.reloading = this.reloadTime;
     }
 };
+
+Sleigh.prototype.fire = function(){
+	this.pressedFire = true;
+}
 
 Sleigh.prototype.updateVars = function(){
 	if(this.magic>0){
