@@ -194,10 +194,11 @@ getLoot: function(lvl,pos){
 		amount -= 1;
 	}
 	
-	if(util.randRange(1,100) > 80-Player.getLuck()-lvl){
+	if(util.randRange(1,10) > 8-Player.getLuck()-lvl){
 		this.generatePowerUp({
 			cx : pos.posX,
-			cy : pos.posY
+			cy : pos.posY,
+			scale : 0.6
 		});
 	}
 	this.spawnEnemyGifts(amountArr,pos);

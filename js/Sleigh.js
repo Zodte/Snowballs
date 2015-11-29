@@ -97,7 +97,7 @@ Sleigh.prototype.movement = function(du){
 		this.rotation += 0.05;
 	}
 	
-	if(util.randRange(0,1) > 0.5){
+	if(util.randRange(0,1) > 0.85){
 		var randCx = util.randRange(this.cx-this.getRadius()*2,this.cx-this.getRadius());
 		var randCy = util.randRange(this.cy-this.getRadius(),this.cy+this.getRadius());
 		var scale = util.randRange(0.1,0.3);

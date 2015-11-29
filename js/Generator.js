@@ -80,6 +80,8 @@ Generator.prototype.update = function(du) {
 };
 
 Generator.prototype.render = function(ctx) {
-
+	ctx.fillStyle = 'white';	
+	ctx.font = "24px Arial";
+	ctx.fillText(Math.round(this.lived/100)+"m",g_canvas.width/2 - 20,20);
 };
 
