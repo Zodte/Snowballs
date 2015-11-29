@@ -50,10 +50,7 @@ Sleigh.prototype.update = function(du){
     }
 	//Moving
 	this.movement(du);
-	if(this.pressedFire){
-		this.pressedFire = false;
-		this.throwSnowball();
-	}
+	if(this.pressedFire) this.throwSnowball();
 	
 	this.updateVars();
 	//Shooting
@@ -173,7 +170,11 @@ Sleigh.prototype.throwSnowball = function(){
 
 Sleigh.prototype.fire = function(){
 	this.pressedFire = true;
-}
+};
+
+Sleigh.prototype.unfire = function(){
+	this.pressedFire = false;
+};
 
 Sleigh.prototype.updateVars = function(){
 	if(this.magic>0){
