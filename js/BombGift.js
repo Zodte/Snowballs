@@ -2,7 +2,7 @@ function BombGift(descr) {
 	this.setup(descr);
 	
 	this.sprite = this.sprite || g_sprites.bombGift;
-	this.cy = util.randRange(0, entityManager.GROUND_HEIGHT);
+	this.cy = util.randRange(50, entityManager.GROUND_HEIGHT-50);
 	this.cx = util.randRange(this.getRadius(),entityManager.GROUND_HEIGHT-this.getRadius())
 	this.oriScale = this.sprite.scale
 	this.scale = this.oriScale;

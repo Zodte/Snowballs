@@ -236,10 +236,6 @@ playAgain: function(){
         cy : 200,
 		sprite : g_sprites.sleigh
     }); 
-	this.generateHomingGifts({
-		cx : 600,
-		cy : 300
-	});
 
 	this._generateGenerator();
 },
