@@ -38,10 +38,7 @@ BombGift.prototype.update = function(du) {
 		this.alphaUpOrDown *= -1;
 		this.blinkRate *= this.blinkRateIncrease[0];
 		this.alpha = 1;
-	}
-	
-	console.log(this.alpha)
-	
+	}	
 	
 	//handle collision
 

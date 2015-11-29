@@ -119,6 +119,10 @@ generateBombGifts: function(descr){
 	this._enemies.push(new BombGift(descr));
 },
 
+generateHomingGifts: function(descr){
+	this._enemies.push(new HomingGift(descr));
+},
+
 generatePowerUp : function(descr) {
     this._powerups.push(new PowerUp(descr));
 },
@@ -159,6 +163,10 @@ clearBullets: function() {
     this._snowballs.forEach(function(snowball){
         snowball.kill();
     });
+},
+
+getSleighPos: function(){
+	return this._sleighs[0].getPos();
 },
 
 isPlayerDead: function(){
@@ -228,7 +236,10 @@ playAgain: function(){
         cy : 200,
 		sprite : g_sprites.sleigh
     }); 
-	
+	this.generateHomingGifts({
+		cx : 600,
+		cy : 300
+	});
 	/*for(var i = 1; i < 20; i++) {
 		this.generateTree({
 			cx : 250*i,
