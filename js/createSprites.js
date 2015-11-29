@@ -35,6 +35,7 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.powerUps.push(sprites.cookie);
 	sprites.gifts.push(sprites.straightGift);
 	sprites.gifts.push(sprites.snakeGift);
+	sprites.gifts.push(sprites.bombGift);
 	sprites.trees.push(sprites.xMasTree);
 	sprites.trees.push(sprites.oldTree1);
 	sprites.trees.push(sprites.oldTree2);

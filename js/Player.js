@@ -5,7 +5,7 @@ _Speed: 3.00,
 _magicCapacity: 100,
 _magicComsuption: -0.05,
 _magnetRadius: 300,
-_luck: 0,
+_luck: 10,
 _piercing: 1,
 _mojoBars: 1,
 

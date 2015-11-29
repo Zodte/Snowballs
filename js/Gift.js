@@ -6,7 +6,7 @@ function Gift(descr) {
 	this.sprite = this.giftSprite[this.gift] || g_sprites.straightGift;
 	this.decideDirection();
 	this.oriScale = this.sprite.scale
-	this.scale = this.oriScale*0.7;
+	this.scale = this.oriScale*0.55;
 
 };
 

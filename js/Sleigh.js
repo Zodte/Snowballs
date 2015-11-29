@@ -20,7 +20,7 @@ Sleigh.prototype.bugged = true;
 
 Sleigh.prototype.speed = Player.getSpeed();
 Sleigh.prototype.rotation = 0;
-Sleigh.prototype.gifts = [0,0];
+Sleigh.prototype.gifts = [0,0,0,0];
 
 //Shooting
 Sleigh.prototype.reloadTime = 0.2*SECS_TO_NOMINALS;
