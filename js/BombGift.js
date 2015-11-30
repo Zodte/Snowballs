@@ -2,13 +2,12 @@ function BombGift(descr) {
 	this.setup(descr);
 	
 	this.sprite = this.sprite || g_sprites.bombGift;
-	this.cy = util.randRange(50, entityManager.GROUND_HEIGHT-50);
-	this.cx = util.randRange(this.getRadius(),entityManager.GROUND_HEIGHT-this.getRadius())
+	this.decideC();
 	this.oriScale = this.sprite.scale
 	this.scale = this.oriScale;
 	this.oriLife = util.randRange(16,20);
 	this.life = this.oriLife;
-	this.lifeLength = 360;
+	this.lifeLength = 1360;
 	this.damage = this.oriLife;
 	this.blinkRate = (this.lifeLength/6);
 	this.blinkRateIncrease = [1.23,1.28]
@@ -17,6 +16,27 @@ function BombGift(descr) {
 BombGift.prototype = new Entity();
 BombGift.prototype.alpha = 1;
 BombGift.prototype.alphaUpOrDown = 1;
+
+BombGift.prototype.decideC = function(){
+	var sPos = entityManager.getSleighPos();
+	console.log(sPos.posX)
+	if(util.randRange(this.getRadius(),g_canvas.width-this.getRadius()) < sPos.posX){
+		this.cx = util.randRange(50,sPos.posX-50)
+	}else{
+		
+		this.cx = util.randRange(sPos.posX + 50,g_canvas.width-50)
+	}
+	if(util.randRange(this.getRadius(),entityManager.GROUND_HEIGHT-this.getRadius()) < sPos.posY){
+		this.cy = util.randRange(50, sPos.posY-50);
+	}else{
+		this.cy = util.randRange(sPos.posY + 50, entityManager.GROUND_HEIGHT-50);
+	}
+	
+	if(this.cx < this.getRadius() || this.cx > g_canvas.width-this.getRadius()
+		|| this.cy < this.getRadius() || this.cy > entityManager.GROUND_HEIGHT-this.getRadius()){
+			this.decideC();
+		}
+};
 
 BombGift.prototype.update = function(du) {
 	

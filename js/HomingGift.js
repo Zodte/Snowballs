@@ -73,7 +73,7 @@ HomingGift.prototype.createStarDust = function(){
 	entityManager.generateStardust({
 		cx 	: this.cx,
 		cy 	: util.randRange(this.cy - this.getRadius(), this.cy+this.getRadius()),
-		velX: this.velX,
+		velX: -this.velX,
 		velY: this.velY,
 		color: "rgba(255,0,0,0.2)"
 	})
