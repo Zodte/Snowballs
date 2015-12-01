@@ -7,7 +7,7 @@ function BombGift(descr) {
 	this.scale = this.oriScale;
 	this.oriLife = util.randRange(16,20);
 	this.life = this.oriLife;
-	this.lifeLength = 1360;
+	this.lifeLength = 360;
 	this.damage = this.oriLife;
 	this.blinkRate = (this.lifeLength/6);
 	this.blinkRateIncrease = [1.23,1.28]
@@ -76,6 +76,12 @@ BombGift.prototype.update = function(du) {
 
 BombGift.prototype.explode = function(){
 	this.kill();
+	entityManager.createExplosion({
+		cx : this.cx, 
+		cy : this.cy,
+		scale : this.scale*4,
+		sprites : g_sprites.snowBlastExplosion
+	});
 };
 
 BombGift.prototype.getSnowballHit = function(damage){

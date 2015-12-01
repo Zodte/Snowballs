@@ -30,6 +30,7 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.gifts = [];
 	sprites.scoreGift = [];
 	sprites.homingGift = [];
+	sprites.snowBlastExplosion = [];
 	
 	//Images for Animated Sprites
 	sprites.powerUps.push(sprites.milk);
@@ -71,9 +72,16 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.scoreGift.push(new Sprite(images.scoreGift, 11, 0, 64, 57));
 	sprites.scoreGift.push(new Sprite(images.scoreGift, 100, 0, 64, 57));
 	
+	sprites.snowBlastExplosion.push(new Sprite(images.snowBlast, 6, 6, 16, 13));
+	sprites.snowBlastExplosion.push(new Sprite(images.snowBlast, 33, 1, 28, 25));
+	sprites.snowBlastExplosion.push(new Sprite(images.snowBlast, 63, 0, 32, 31));
+	sprites.snowBlastExplosion.push(new Sprite(images.snowBlast, 95, 0, 32, 31));
+	
 	for(var i = 0; i <8; i++){
 		sprites.homingGift.push(new Sprite(images.homingGift, 0+i*60,0,60,70));
 	}
+	
+	
 	//Animation Only Sprites
 
     // When ship is moving up and down

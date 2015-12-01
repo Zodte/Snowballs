@@ -152,6 +152,11 @@ generateStardust : function(descr){
 generateTree : function(descr) {
 	this._trees.push(new Tree(descr));
 },
+
+createExplosion : function(descr) {
+	this._animations.push(new Explosion(descr));
+},
+
 /*
 createGreaterExplosion : function(descr) {
 	this._animations.push(new GreaterExplosion(descr));

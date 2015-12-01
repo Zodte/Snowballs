@@ -31,9 +31,10 @@ Animation.prototype.render = function(ctx) {
 
 function Explosion(descr) {
 	this.setup(descr);
+	
 };
 Explosion.prototype = new Animation();
-Explosion.prototype.delay = 100 / NOMINAL_UPDATE_INTERVAL; //Overwrite the delay
+Explosion.prototype.delay = 150 / NOMINAL_UPDATE_INTERVAL; //Overwrite the delay
 
 function BigExplosion(descr) {
 	this.setup(descr);
