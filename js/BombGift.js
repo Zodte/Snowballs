@@ -79,7 +79,7 @@ BombGift.prototype.explode = function(){
 	entityManager.createExplosion({
 		cx : this.cx, 
 		cy : this.cy,
-		scale : this.scale*4,
+		scale : this.scale*2.5,
 		sprites : g_sprites.snowBlastExplosion
 	});
 };
