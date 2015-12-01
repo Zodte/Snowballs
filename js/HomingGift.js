@@ -1,7 +1,9 @@
 function HomingGift(descr) {
 	this.setup(descr);
 	
-	this.sprite = this.sprite || g_sprites.snakeGift;
+	this.sprites = g_sprites.homingGift;
+	this.spriteIndex = 0;
+	this.sprite = this.sprites[this.spriteIndex];
 	this.vel = 2.4;
 	this.follow = 140;
 	this.pause = 100

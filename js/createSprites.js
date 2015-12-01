@@ -29,6 +29,7 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.trees = [];
 	sprites.gifts = [];
 	sprites.scoreGift = [];
+	sprites.homingGift = [];
 	
 	//Images for Animated Sprites
 	sprites.powerUps.push(sprites.milk);
@@ -69,6 +70,10 @@ function createSprites(images, sprites, animatedSprites) {
 	
 	sprites.scoreGift.push(new Sprite(images.scoreGift, 11, 0, 64, 57));
 	sprites.scoreGift.push(new Sprite(images.scoreGift, 100, 0, 64, 57));
+	
+	for(var i = 0; i <8; i++){
+		sprites.homingGift.push(new Sprite(images.homingGift, 0+i*60,0,60,70));
+	}
 	//Animation Only Sprites
 
     // When ship is moving up and down
