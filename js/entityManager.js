@@ -306,7 +306,7 @@ renderGameWon: function(ctx){
 },
 
 render: function(ctx) {
-	
+
     var debugX = 10, debugY = 100;
 
     for (var c = 0; c < this._categories.length; ++c) {
@@ -325,7 +325,7 @@ render: function(ctx) {
         }
         debugY += 10;
     }
-	
+	test.render(ctx);
 	if(entityManager.isPlayerDead() && entityManager.gameHasStarted){
         entityManager.gameIsWon = false;
 		this.renderGameLost(ctx);	
