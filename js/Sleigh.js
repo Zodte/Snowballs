@@ -254,13 +254,10 @@ Sleigh.prototype.renderMagicBar = function(ctx){
 	ctx.font = "10px Arial";
 	ctx.fillText("Magic",5,12);
 	//ctx.restore();
-	ctx.rect(5,18,100,6);
-	ctx.strokeStyle = 'white';
-	ctx.stroke();
-	if(this.magic >= 100) {
-		this.magic = 100;
+	if(this.magic >= 200) {
+		this.magic = 200;
 	}
-	ctx.fillRect(5,18,this.magic,6);
+	ctx.fillRect(81,524,this.magic,9);
 
 };
 
