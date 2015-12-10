@@ -6,8 +6,11 @@ _magicCapacity: 200,
 _magicComsuption: -0.1, //0.05
 _magnetRadius: 300,
 _luck: 10,
-_piercing: 1,
+_piercing: 4,
 _mojoBars: 1,
+_snowBallCraft: 45,
+_snowBallsCapacity: 100,
+_snowBallMagicRadius: 100,
 
 
 
@@ -44,6 +47,18 @@ getPiercing: function(){
 
 getMojoBars: function(){
 	return this._mojoBars;
+},
+
+getSnowBallCraftSpeed: function(){
+	return this._snowBallCraft;
+},
+
+getSnowBallCapacity: function(){
+	return this._snowBallsCapacity;
+},
+
+getSnowBallMagicRadius: function(){
+	return this._snowBallMagicRadius;
 }
 
 

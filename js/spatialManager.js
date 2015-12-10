@@ -74,6 +74,21 @@ findEntityInRange: function(posX, posY, radius) {
     }
 },
 
+findAllEntityInRange: function(posX, posY, radius) {
+
+    // TODO: YOUR STUFF HERE!
+	var entities = [];
+    for (var ID in this._entities) {
+        var e = this._entities[ID];
+        var distSq = util.distSq(posX, posY, e.posX, e.posY);
+        var limitSq = Math.pow(radius + e.radius,2);
+        if(distSq < limitSq) {
+            entities.push(e.entity);
+        }
+    }
+	return entities;
+},
+
 render: function(ctx) {
     var oldStyle = ctx.strokeStyle;
     ctx.strokeStyle = "red";

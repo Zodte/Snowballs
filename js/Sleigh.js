@@ -23,9 +23,14 @@ Sleigh.prototype.rotation = 0;
 Sleigh.prototype.gifts = [0,0,0,0];
 
 //Shooting
-Sleigh.prototype.reloadTime = 0.2*SECS_TO_NOMINALS;
+Sleigh.prototype.reloadTime = 0.36*SECS_TO_NOMINALS;
 Sleigh.prototype.reloading = 0;
 Sleigh.prototype.pressedFire = false;
+
+//Reloading
+Sleigh.prototype.craftedBalls = 0;
+Sleigh.prototype.craftSpeed = Player.getSnowBallCraftSpeed();
+Sleigh.prototype.snowBallsCapacity = Player.getSnowBallCapacity();
 
 //Magic
 Sleigh.prototype.magic = Player.getMagicCapacity();
@@ -48,15 +53,20 @@ Sleigh.prototype.update = function(du){
     if( this._isDeadNow ) {
         return entityManager.KILL_ME_NOW;
     }
+	
+	//Craft snowballs
+	if(this.lived % this.craftSpeed == 0 && this.craftedBalls < this.snowBallsCapacity) this.craftedBalls++;
+	
 	//Moving
 	this.movement(du);
-	if(this.pressedFire) this.throwSnowball();
+	
 	
 	this.updateVars();
 	//Shooting
-	
+	if(this.pressedFire){this.throwSnowball();}
 	if(this.reloading > 0){this.reloading -= Player.getStrength()/5;}
 	if(this.reloading < 0){this.reloading = 0;}
+	
 	spatialManager.register(this);
 }
 
@@ -152,7 +162,7 @@ Sleigh.prototype.movement = function(du){
 }
 
 Sleigh.prototype.throwSnowball = function(){
-	if (this.reloading == 0) {
+	if (this.reloading == 0 && this.craftedBalls > 0) {
 		var dx = g_mouseX - this.cx;
 		var dy = g_mouseY - this.cy;
 		var mag = Math.sqrt(dx * dx + dy * dy);
@@ -163,8 +173,9 @@ Sleigh.prototype.throwSnowball = function(){
 		var damage = strength * 2;
 		entityManager.generateSnowball(
 			this.cx+10, this.cy-14,
-			velX,velY,Player.getStrength()+Player.getPiercing());
+			velX,velY,Player.getStrength());
 	    this.reloading = this.reloadTime;
+		this.craftedBalls--;
     }
 };
 
@@ -252,7 +263,7 @@ Sleigh.prototype.renderMagicBar = function(ctx){
 	ctx.fillStyle = 'white';	
 	//ctx.save();
 	ctx.font = "10px Arial";
-	ctx.fillText("Magic",5,12);
+	//ctx.fillText("Magic",5,12);
 	//ctx.restore();
 	if(this.magic >= 200) {
 		this.magic = 200;
@@ -261,10 +272,17 @@ Sleigh.prototype.renderMagicBar = function(ctx){
 
 };
 
+Sleigh.prototype.displayCraftedSnowBalls = function(ctx){
+	for(var i = 0; i < this.craftedBalls; i++){
+		g_sprites.snowball.drawCentredAt(ctx,10+i*4,10)
+	}
+};
+
 Sleigh.prototype.render = function(ctx){
 	this.renderMagicBar(ctx);
 	this.renderGifts(ctx);
 	this.displayAmountGifts(ctx);
+	this.displayCraftedSnowBalls(ctx);
 	this.sprite.drawCentredAt(
 	ctx, this.cx, this.cy, Math.PI*this.rotation
     );

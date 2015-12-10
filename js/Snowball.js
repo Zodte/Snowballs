@@ -18,6 +18,8 @@ function Snowball(descr) {
     // Common inherited setup logic from Entity
     this.setup(descr);
 	this.sprite = this.sprite || g_sprites.snowball
+	this.piercing = Player.getPiercing();
+	this.magicRadius = Player.getSnowBallMagicRadius();
     // Make a noise when I am created (i.e. fired)
     //if(!MUTE) this.fireSound.play();
 }
@@ -64,12 +66,30 @@ Snowball.prototype.update = function (du) {
     this.rotation += 0.2 * du;
 	
     // Handle collisions
+	//MainHit
     var hitEntity = this.findHitEntity();
     if (hitEntity) {
         var canTakeHit = hitEntity.getSnowballHit;
         if (canTakeHit) {
 			canTakeHit.call(hitEntity, this.damage); 
-			return entityManager.KILL_ME_NOW;
+			if(this.piercing < 2){
+				return entityManager.KILL_ME_NOW;
+			}else{
+				this.piercing--;
+			}
+		}
+    }
+	//MagicHit
+	var pos = this.getPos();
+    var hitEntity = spatialManager.findAllEntityInRange(
+        pos.posX, pos.posY, this.magicRadius
+    );
+    if (hitEntity[0]) {
+		for(var i = 0; i < hitEntity.length; i++){
+			var canTakeHit = hitEntity[i].getSnowballHit;
+			if (canTakeHit) {
+				canTakeHit.call(hitEntity[i], this.damage * 0.01); 
+			}
 		}
     }
     
@@ -86,6 +106,9 @@ Snowball.prototype.getRadius = function () {
 
 Snowball.prototype.render = function (ctx) {
 	
+	ctx.beginPath();
+	ctx.arc(this.cx,this.cy,this.magicRadius,0,2*Math.PI);
+	ctx.stroke();
     this.sprite.drawCentredAt(
         ctx, this.cx, this.cy, this.rotation
     );
