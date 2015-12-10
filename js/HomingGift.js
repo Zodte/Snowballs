@@ -54,11 +54,11 @@ HomingGift.prototype.update = function(du) {
 		if((this.lived-6) % Math.floor((this.follow-this.pause)/7) == 0){
 			if(this.spriteIndex < 7){
 				this.spriteIndex++;
+				if(this.spriteIndex == 4) this.fire();
 			}else{
 				this.spriteIndex = 0;
 			}
 		}
-		//console.log(this.lived % Math.floor((this.follow-this.pause)/7),this.spriteIndex)
 	}
 	
 	this.cx += this.velX;
@@ -76,6 +76,22 @@ HomingGift.prototype.update = function(du) {
 	}
 
 	spatialManager.register(this);
+};
+
+HomingGift.prototype.fire = function (){
+	var pos = entityManager.getSleighPos();
+	var dx = pos.posX - this.cx;
+	var dy = pos.posY-(Math.abs(dx)/4) - this.cy;
+	var mag = Math.sqrt(dx * dx + dy * dy);
+	var strength = this.oriLife/3;
+	var velX = (dx / mag) * strength;
+	var velY = (dy / mag) * strength;
+	
+	var damage = strength * 2;
+	entityManager.generateEnemySnowball(
+		this.cx+10, this.cy-14,
+		velX,velY,Player.getStrength()+Player.getPiercing()
+	);
 };
 
 HomingGift.prototype.getSnowballHit = function(damage){
