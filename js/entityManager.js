@@ -145,6 +145,16 @@ generateSnowball : function(cx,cy,velX,velY,damage){
 	}));
 },
 
+generateEnemySnowball : function(cx,cy,velX,velY,damage){
+	this._snowballs.push(new EnemySnowball({
+		cx		: 	cx,
+		cy		: 	cy,
+		velX	: 	velX,
+		velY	:	velY,
+		damage	:	damage
+	}));
+},
+
 generateStardust : function(descr){
 	this._stardust.push(new Stardust(descr));
 },
