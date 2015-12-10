@@ -1,7 +1,9 @@
 function HomingGift(descr) {
 	this.setup(descr);
 	
-	this.sprites = g_sprites.homingGift;
+	this.spritesFowards = g_sprites.homingGift;
+	this.spritesBackwards = g_sprites.homingGiftBackward;
+	this.sprites = this.spritesFowards;
 	this.spriteIndex = 0;
 	this.sprite = this.sprites[this.spriteIndex];
 	this.vel = 2.4;
@@ -19,15 +21,22 @@ HomingGift.prototype = new Entity();
 
 HomingGift.prototype.velX = 0;
 HomingGift.prototype.velY = 0;
-HomingGift.prototype.changeStart = 0;
+
 HomingGift.prototype.update = function(du) {
 	this.lived++;
 	spatialManager.unregister(this);
 	if(this._isDeadNow) return entityManager.KILL_ME_NOW;
+	
+	var sPos = entityManager.getSleighPos();
+	var dx = sPos.posX - this.cx;
+	
+	if(dx <= 0){
+		this.sprites = this.spritesFowards;
+	}else{
+		this.sprites = this.spritesBackwards;
+	}
 	if(this.lived % this.follow < this.pause){
-		var sPos = entityManager.getSleighPos();
 		
-		var dx = sPos.posX - this.cx;
 		var dy = sPos.posY - this.cy;
 		var mag = Math.sqrt(dx * dx + dy * dy);
 		this.velX = (dx / (mag + util.randRange(-20,20))) * this.vel;
@@ -41,8 +50,7 @@ HomingGift.prototype.update = function(du) {
 		if(this.velX < 0) this.velX += this.vel;
 		if(this.velY > 0) this.velY -= this.vel;
 		if(this.velY < 0) this.velY += this.vel;
-	
-		if(this.spriteIndex == 0){this.changeStart = 0}
+
 		if((this.lived-6) % Math.floor((this.follow-this.pause)/7) == 0){
 			if(this.spriteIndex < 7){
 				this.spriteIndex++;
@@ -50,7 +58,7 @@ HomingGift.prototype.update = function(du) {
 				this.spriteIndex = 0;
 			}
 		}
-		console.log(this.lived % Math.floor((this.follow-this.pause)/7),this.spriteIndex)
+		//console.log(this.lived % Math.floor((this.follow-this.pause)/7),this.spriteIndex)
 	}
 	
 	this.cx += this.velX;
@@ -80,7 +88,7 @@ HomingGift.prototype.getSnowballHit = function(damage){
 };
 
 HomingGift.prototype.getRadius = function() {
-	return this.sprite.scale * (this.sprite.width/2);
+	return this.sprite.scale * (this.sprite.width/2) * 0.7;
 };
 
 HomingGift.prototype.createStarDust = function(){

@@ -30,6 +30,7 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.gifts = [];
 	sprites.scoreGift = [];
 	sprites.homingGift = [];
+	sprites.homingGiftBackward = [];
 	sprites.snowBlastExplosion = [];
 	
 	//Images for Animated Sprites
@@ -78,7 +79,10 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.snowBlastExplosion.push(new Sprite(images.snowBlast, 149, 2, 50, 44));
 	
 	for(var i = 0; i <8; i++){
-		sprites.homingGift.push(new Sprite(images.homingGift, 0+i*60,0,60,70));
+		sprites.homingGift.push(new Sprite(images.homingGift, 20*i+15+i*60,5,55,67));
+	}
+	for(i = 8; i<16; i++){
+		sprites.homingGiftBackward.push(new Sprite(images.homingGift, 20*i+15+i*60,5,55,67));	
 	}
 	
 	
