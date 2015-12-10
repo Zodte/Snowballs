@@ -244,14 +244,14 @@ Sleigh.prototype.displayAmountGifts = function(ctx) {
 	}
 	ctx.font = '30px sans-serif';
 	ctx.fillStyle = 'white';
-	ctx.fillText(numGifts, 615, g_canvas.height - ((g_canvas.height - entityManager.GROUND_HEIGHT)/2)+12);
+	ctx.fillText(numGifts, 630, g_canvas.height - ((g_canvas.height - entityManager.GROUND_HEIGHT)/2)+20);
 };
 
 Sleigh.prototype.delay = 6;
 Sleigh.prototype.scoreGiftIndex = 0;
 Sleigh.prototype.renderGifts = function(ctx) {
 	this.scoreGiftSprite[this.scoreGiftIndex].scale = 0.8;
-	this.scoreGiftSprite[this.scoreGiftIndex].drawCentredAt(ctx, 580, g_canvas.height - (g_canvas.height - entityManager.GROUND_HEIGHT)/2, 0);
+	this.scoreGiftSprite[this.scoreGiftIndex].drawCentredAt(ctx, g_canvas.width-202, (g_canvas.height - (g_canvas.height - entityManager.GROUND_HEIGHT)/2)+10, 0);
 	if(this.delay == 0) {
 		this.scoreGiftIndex = 0;
 	} else {
