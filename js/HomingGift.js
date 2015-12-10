@@ -6,10 +6,10 @@ function HomingGift(descr) {
 	this.sprite = this.sprites[this.spriteIndex];
 	this.vel = 2.4;
 	this.follow = 140;
-	this.pause = 100
+	this.pause = 70
 	
 	this.oriScale = this.sprite.scale
-	this.scale = this.oriScale;
+	this.scale = this.oriScale/2;
 	this.oriLife = util.randRange(20,24);
 	this.life = this.oriLife;
 	this.damage = this.oriLife;
@@ -19,7 +19,7 @@ HomingGift.prototype = new Entity();
 
 HomingGift.prototype.velX = 0;
 HomingGift.prototype.velY = 0;
-
+HomingGift.prototype.changeStart = 0;
 HomingGift.prototype.update = function(du) {
 	this.lived++;
 	spatialManager.unregister(this);
@@ -32,6 +32,8 @@ HomingGift.prototype.update = function(du) {
 		var mag = Math.sqrt(dx * dx + dy * dy);
 		this.velX = (dx / (mag + util.randRange(-20,20))) * this.vel;
 		this.velY = (dy / (mag + util.randRange(-20,20))) * this.vel;
+		
+		this.spriteIndex = 0;
 	}else{
 		if(Math.abs(this.velX) < this.vel) this.velX = 0;
 		if(Math.abs(this.velY) < this.vel) this.velY = 0;
@@ -39,6 +41,16 @@ HomingGift.prototype.update = function(du) {
 		if(this.velX < 0) this.velX += this.vel;
 		if(this.velY > 0) this.velY -= this.vel;
 		if(this.velY < 0) this.velY += this.vel;
+	
+		if(this.spriteIndex == 0){this.changeStart = 0}
+		if((this.lived-6) % Math.floor((this.follow-this.pause)/7) == 0){
+			if(this.spriteIndex < 7){
+				this.spriteIndex++;
+			}else{
+				this.spriteIndex = 0;
+			}
+		}
+		console.log(this.lived % Math.floor((this.follow-this.pause)/7),this.spriteIndex)
 	}
 	
 	this.cx += this.velX;
@@ -83,6 +95,7 @@ HomingGift.prototype.createStarDust = function(){
 
 HomingGift.prototype.render = function(ctx) {
 	if(util.randRange(0,1) > 0.7)	this.createStarDust();
+	this.sprite = this.sprites[this.spriteIndex];
 	this.sprite.scale = this.scale;
 	this.sprite.drawCentredAt(
 	ctx, this.cx, this.cy, this.rotation
