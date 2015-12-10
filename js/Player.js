@@ -6,7 +6,7 @@ _magicCapacity: 200,
 _magicComsuption: -0.1, //0.05
 _magnetRadius: 300,
 _luck: 10,
-_piercing: 4,
+_piercing: 1,
 _mojoBars: 1,
 _snowBallCraft: 45,
 _snowBallsCapacity: 100,

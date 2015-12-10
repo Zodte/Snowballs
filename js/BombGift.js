@@ -19,7 +19,6 @@ BombGift.prototype.alphaUpOrDown = 1;
 
 BombGift.prototype.decideC = function(){
 	var sPos = entityManager.getSleighPos();
-	console.log(sPos.posX)
 	if(util.randRange(this.getRadius(),g_canvas.width-this.getRadius()) < sPos.posX){
 		this.cx = util.randRange(50,sPos.posX-50)
 	}else{

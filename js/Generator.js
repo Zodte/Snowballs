@@ -5,35 +5,39 @@ function Generator(descr) {
 
 Generator.prototype = new Entity();
 
-Generator.prototype.straightGift = {next: 0, 
+Generator.prototype.curFase = 0;
+Generator.prototype.changeFase = [5000,10000]
+Generator.prototype.straightGift = {next: 200, 
+									frequency: [[200,260],[180,240],[180,240]],
 									generate: function(){
 										entityManager.generateStraightGifts({
+											cx : g_canvas.width,
+											cy : util.randRange(30,entityManager.GROUND_HEIGHT-30)
+										});
+									}};
+Generator.prototype.snakeGift = {next: 500, 
+								frequency: [[500,800],[500,800],[500,800]],
+								generate: function(){
+									entityManager.generateSnakeGifts({
+										cx : g_canvas.width,
+										cy : util.randRange(100,entityManager.GROUND_HEIGHT-30)
+									});
+								}};
+Generator.prototype.bombGift = {next: 5000, 
+								frequency: [[-1],[4000,5000],[2000,3000]],
+								generate: function(){
+									entityManager.generateBombGifts({});
+								}};
+Generator.prototype.homingGift = {next: 6000, 
+								frequency: [[-1],[6000,10000],[4000,6000]],
+								generate: function(){
+									entityManager.generateHomingGifts({
 										cx : g_canvas.width,
 										cy : util.randRange(30,entityManager.GROUND_HEIGHT-30)
-										});
-									}
-									};
-Generator.prototype.snakeGift = {next: 0, 
-							generate: function(){
-								entityManager.generateSnakeGifts({
-								cx : g_canvas.width,
-								cy : util.randRange(100,entityManager.GROUND_HEIGHT-30)
-								});
-							}
-							};
-Generator.prototype.bombGift = {next: 0, 
-							generate: function(){
-								entityManager.generateBombGifts({});
-							}
-							};
-Generator.prototype.homingGift = {next: 0, 
-							generate: function(){
-								entityManager.generateHomingGifts({
-									cx : g_canvas.width,
-									cy : util.randRange(30,entityManager.GROUND_HEIGHT-30)
-								});
-							}
-							};
+									});
+								}};
+							
+							
 Generator.prototype.frontTree = {next: 0,
 								generate: function() {
 									entityManager.generateTree({
@@ -44,24 +48,26 @@ Generator.prototype.frontTree = {next: 0,
 								}
 								};
 
-Generator.prototype.backTree = {
-	next: 0,
-	generate: function() {
-		entityManager.generateTree({
-			rotation : 0,
-			delay : 0,
-			scale : util.randRange(0.4,1)
-		});
-	}
+Generator.prototype.backTree = {next: 0,
+								generate: function() {
+									entityManager.generateTree({
+										rotation : 0,
+										delay : 0,
+										scale : util.randRange(0.4,1)
+									});
+								}
 };
 
 
 Generator.prototype.update = function(du) {
 	this.lived += MAP_SPEED;
+	
+	if(this.changeFase[this.curFase] >= this.lived) this.curFase++;
+		
 	for(var i = 0; i < this.enemiesArray.length; i++){
 		var enemy = this.enemiesArray[i];
-		if(enemy.next < this.lived ) {
-			enemy.next = this.lived+250;
+		if(enemy.next < this.lived && enemy.frequency[this.curFase] != -1) {
+			enemy.next = this.lived + util.randRange(enemy.frequency[this.curFase][0],enemy.frequency[this.curFase][1]);
 			enemy.generate();
 		}
 	}
