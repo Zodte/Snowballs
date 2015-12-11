@@ -163,8 +163,8 @@ Sleigh.prototype.movement = function(du){
 
 Sleigh.prototype.throwSnowball = function(){
 	if (this.reloading == 0 && this.craftedBalls > 0) {
-		var dx = g_mouseX - this.cx;
-		var dy = g_mouseY - this.cy;
+		var dx = g_mouseX - this.cx+10;
+		var dy = g_mouseY - this.cy-14;
 		var mag = Math.sqrt(dx * dx + dy * dy);
 		var strength = Player.getStrength();
 		var velX = (dx / mag) * strength;

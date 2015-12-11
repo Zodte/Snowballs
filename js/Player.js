@@ -1,15 +1,15 @@
 var Player = {
 //Private Data
-_Strength: 10.00,
+_Strength: 4.00,
 _Speed: 3.00,
-_magicCapacity: 200,
+_magicCapacity: 100,
 _magicComsuption: -0.1, //0.05
-_magnetRadius: 300,
-_luck: 10,
+_magnetRadius: 50,
+_luck: 1,
 _piercing: 1,
 _mojoBars: 1,
 _snowBallCraft: 45,
-_snowBallsCapacity: 100,
+_snowBallsCapacity: 10,
 _snowBallMagicRadius: 100,
 
 
