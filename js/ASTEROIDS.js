@@ -183,7 +183,7 @@ var g_images = {};
 function requestPreloads() {
 
     var requiredImages = {
-        sleigh  	: "./images/sleigh.png",
+        sleigh  	: "./images/sleigh.gif",
 		snowball	: "./images/snowball.png",
 		foreGround  : "./images/foreGround.png",
 		milk		: "./images/milk.gif",
