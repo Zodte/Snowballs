@@ -2,9 +2,9 @@ var Player = {
 //Private Data
 _Strength: 4.00,
 _Speed: 3.00,
-_magicCapacity: 100,
-_magicComsuption: -0.1, //0.05
-_magnetRadius: 50,
+_magicCapacity: 1000,
+_magicComsuption: -0.1, 
+_magnetRadius: 40,
 _luck: 1,
 _piercing: 1,
 _mojoBars: 1,
@@ -16,9 +16,13 @@ _snowBallMagicRadius: 100,
 
 
 
-//Function
-getStrength: function(){
+//Functions
+getDamage: function(){
 	return this._Strength;
+},
+
+getSnowBallVelovity(){
+	return this._Strength/4 + 8;
 },
 
 getSpeed: function(){

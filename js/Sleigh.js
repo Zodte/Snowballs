@@ -33,6 +33,7 @@ Sleigh.prototype.craftSpeed = Player.getSnowBallCraftSpeed();
 Sleigh.prototype.snowBallsCapacity = Player.getSnowBallCapacity();
 
 //Magic
+Sleigh.prototype.iniMagic = Player.getMagicCapacity();
 Sleigh.prototype.magic = Player.getMagicCapacity();
 Sleigh.prototype.magicComsumption = Player.getMagicComsuption();
 //Sleigh.prototype.halfHeight = g_images.sleigh.height/2;
@@ -64,7 +65,7 @@ Sleigh.prototype.update = function(du){
 	this.updateVars();
 	//Shooting
 	if(this.pressedFire){this.throwSnowball();}
-	if(this.reloading > 0){this.reloading -= Player.getStrength()/5;}
+	if(this.reloading > 0){this.reloading -= Player.getDamage()/5;}
 	if(this.reloading < 0){this.reloading = 0;}
 	
 	spatialManager.register(this);
@@ -166,14 +167,14 @@ Sleigh.prototype.throwSnowball = function(){
 		var dx = g_mouseX - this.cx+10;
 		var dy = g_mouseY - this.cy-14;
 		var mag = Math.sqrt(dx * dx + dy * dy);
-		var strength = Player.getStrength();
+		var strength = Player.getSnowBallVelovity();
 		var velX = (dx / mag) * strength;
 		var velY = (dy / mag) * strength;
 		
-		var damage = strength * 2;
+		var damage = Player.getDamage();
 		entityManager.generateSnowball(
 			this.cx+10, this.cy-14,
-			velX,velY,Player.getStrength());
+			velX,velY,damage);
 	    this.reloading = this.reloadTime;
 		this.craftedBalls--;
     }
@@ -210,6 +211,7 @@ Sleigh.prototype.getPos = function(){
 Sleigh.prototype.addMagic = function(x){
 	this.magic += x;
 	if(this.magic < 0) this.magic = 0;
+	if(this.magic > this.iniMagic) this.magic = this.iniMagic;
 };
 
 Sleigh.prototype.addGifts = function(x) {
@@ -265,10 +267,7 @@ Sleigh.prototype.renderMagicBar = function(ctx){
 	ctx.font = "10px Arial";
 	//ctx.fillText("Magic",5,12);
 	//ctx.restore();
-	if(this.magic >= 200) {
-		this.magic = 200;
-	}
-	ctx.fillRect(81,524,this.magic,9);
+	ctx.fillRect(81,524,(this.magic/this.iniMagic)*200,9);
 
 };
 
