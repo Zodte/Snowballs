@@ -82,7 +82,7 @@ Snowball.prototype.update = function (du) {
 	//MagicHit
 	var pos = this.getPos();
     var hitEntity = spatialManager.findAllEntityInRange(
-        pos.posX, pos.posY, this.magicRadius
+        pos.posX-this.magicRadius, pos.posY, this.magicRadius
     );
     if (hitEntity[0]) {
 		for(var i = 0; i < hitEntity.length; i++){
@@ -107,7 +107,7 @@ Snowball.prototype.getRadius = function () {
 Snowball.prototype.render = function (ctx) {
 	
 	ctx.beginPath();
-	ctx.arc(this.cx,this.cy,this.magicRadius,0,2*Math.PI);
+	ctx.arc(this.cx-this.magicRadius,this.cy,this.magicRadius,0,2*Math.PI);
 	ctx.stroke();
     this.sprite.drawCentredAt(
         ctx, this.cx, this.cy, this.rotation

@@ -90,7 +90,7 @@ HomingGift.prototype.fire = function (){
 	var damage = strength * 2;
 	entityManager.generateEnemySnowball(
 		this.cx+10, this.cy-14,
-		velX,velY,Player.getStrength()+Player.getPiercing()
+		velX,velY,this.damage
 	);
 };
 

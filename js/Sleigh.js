@@ -65,7 +65,7 @@ Sleigh.prototype.update = function(du){
 	this.updateVars();
 	//Shooting
 	if(this.pressedFire){this.throwSnowball();}
-	if(this.reloading > 0){this.reloading -= Player.getDamage()/5;}
+	if(this.reloading > 0){this.reloading -= 1 + Player.getDamage() * 0.01;}
 	if(this.reloading < 0){this.reloading = 0;}
 	
 	spatialManager.register(this);

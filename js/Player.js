@@ -1,6 +1,6 @@
 var Player = {
 //Private Data
-_Strength: 4.00,
+_Strength: 5.00,
 _Speed: 3.00,
 _magicCapacity: 1000,
 _magicComsuption: -0.1, 
@@ -22,7 +22,7 @@ getDamage: function(){
 },
 
 getSnowBallVelovity(){
-	return this._Strength/4 + 8;
+	return this._Strength/10 + 8;
 },
 
 getSpeed: function(){
