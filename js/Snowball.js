@@ -46,6 +46,7 @@ Snowball.prototype.update = function (du) {
 
     // TODO: YOUR STUFF HERE! --- Unregister and check for death
     spatialManager.unregister(this);
+	this.lived++;
     if( this._isDeadNow ) {
         return entityManager.KILL_ME_NOW;
     }
@@ -103,12 +104,24 @@ Snowball.prototype.getRadius = function () {
     return 4;
 };
 
+Snowball.prototype.drawMagicRadiues = function(){
+	ctx.globalAlpha = 0.2
+	ctx.strokeStyle = "#97FFFF"
+	var radiuses = this.magicRadius/5;
+	var radSize = this.magicRadius/radiuses;
+	for(var i = 0; i<radiuses; i++){
+		ctx.beginPath()
+		ctx.arc(this.cx,this.cy,i*radSize + (this.lived%20)/5,0,2*Math.PI);
+		ctx.stroke();
+	}
+	ctx.globalAlpha = 1;
+};
 
 Snowball.prototype.render = function (ctx) {
 	
 	ctx.beginPath();
-	ctx.arc(this.cx-this.magicRadius,this.cy,this.magicRadius,0,2*Math.PI);
-	ctx.stroke();
+	this.drawMagicRadiues(ctx);
+	
     this.sprite.drawCentredAt(
         ctx, this.cx, this.cy, this.rotation
     );

@@ -10,7 +10,7 @@ _piercing: 1,
 _mojoBars: 1,
 _snowBallCraft: 45,
 _snowBallsCapacity: 10,
-_snowBallMagicRadius: 100,
+_snowBallMagicRadius: 50,
 
 
 
