@@ -2,7 +2,7 @@ var Player = {
 //Private Data
 _Strength: 5.00,
 _Speed: 3.00,
-_magicCapacity: 1000,
+_magicCapacity: 100,
 _magicComsuption: -0.1, 
 _magnetRadius: 40,
 _luck: 1,
@@ -11,6 +11,7 @@ _mojoBars: 1,
 _snowBallCraft: 45,
 _snowBallsCapacity: 10,
 _snowBallMagicRadius: 50,
+_totalGifts: 30,
 
 
 
@@ -63,6 +64,10 @@ getSnowBallCapacity: function(){
 
 getSnowBallMagicRadius: function(){
 	return this._snowBallMagicRadius;
+},
+
+getTotalGifts: function(){
+	return this._totalGifts;
 }
 
 

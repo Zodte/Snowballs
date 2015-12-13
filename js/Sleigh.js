@@ -1,8 +1,10 @@
 function Sleigh(descr){
 	this.setup(descr);
 	
-	this.sprite = this.sprite || g_sprites.sleigh;
+	this.sprites = g_sprites.sleigh;
+	this.sprite = this.sprites[0];
 	this.scoreGiftSprite = g_sprites.scoreGift;
+	this.scale = 0.45;
 }
 
 Sleigh.prototype = new Entity();
@@ -47,6 +49,8 @@ Sleigh.prototype.update = function(du){
 	this.rotation = 0;
 	this.lived++;
 	spatialManager.unregister(this);
+	
+	if(this.magic == 0 && this.cy+this.getRadius() > entityManager.GROUND_HEIGHT && this.lived%40 == 0) return entityManager.KILL_ME_NOW;
 	if(util.randRange(1,100) > 99.99){
 		this.hits +=1;
 	}
@@ -61,6 +65,7 @@ Sleigh.prototype.update = function(du){
 	//Moving
 	this.movement(du);
 	
+	this.sprite = this.sprites[0];
 	
 	this.updateVars();
 	//Shooting
@@ -97,12 +102,12 @@ Sleigh.prototype.movement = function(du){
 		}
 		else if(keys[this.DOWN]){
 			this.rotation += 0.02;
-			if(this.cy < entityManager.GROUND_HEIGHT){
+			if(this.cy < entityManager.GROUND_HEIGHT - this.getRadius()/2){
 				this.cy += this.speed * du;
 				dustVelY = -this.dustVel;
-			}else {this.cy = entityManager.GROUND_HEIGHT;}
+			}else {this.cy = entityManager.GROUND_HEIGHT - this.getRadius()/2;}
 		}
-	}else if(this.magic <= 0 && this.cy < entityManager.GROUND_HEIGHT){
+	}else if(this.magic <= 0 && this.cy < entityManager.GROUND_HEIGHT - this.getRadius()/2){
 		this.velY += GRAVITY;
 		this.cy += this.velY;
 		this.rotation += 0.05;
@@ -152,7 +157,7 @@ Sleigh.prototype.movement = function(du){
 		}
 	}
 	//Shake
-	if(this.cy+this.getRadius() < entityManager.GROUND_HEIGHT+15
+	if(this.cy+this.getRadius() < entityManager.GROUND_HEIGHT
 		&& this.cy-this.getRadius() > 1){
 		if(this.lived % 40 < 20){
 			this.cy+= 0.1;
@@ -163,20 +168,24 @@ Sleigh.prototype.movement = function(du){
 }
 
 Sleigh.prototype.throwSnowball = function(){
-	if (this.reloading == 0 && this.craftedBalls > 0) {
+	
+	if (this.reloading == 0 && this.craftedBalls > 0 && this.magic > 0) {
+		this.sprite = this.sprites[1];
 		var dx = g_mouseX - this.cx+10;
-		var dy = g_mouseY - this.cy-14;
-		var mag = Math.sqrt(dx * dx + dy * dy);
-		var strength = Player.getSnowBallVelovity();
-		var velX = (dx / mag) * strength;
-		var velY = (dy / mag) * strength;
-		
-		var damage = Player.getDamage();
-		entityManager.generateSnowball(
-			this.cx+10, this.cy-14,
-			velX,velY,damage);
-	    this.reloading = this.reloadTime;
-		this.craftedBalls--;
+		if(dx >= 0){
+			var dy = g_mouseY - this.cy-14;
+			var mag = Math.sqrt(dx * dx + dy * dy);
+			var strength = Player.getSnowBallVelovity();
+			var velX = (dx / mag) * strength;
+			var velY = (dy / mag) * strength;
+			
+			var damage = Player.getDamage();
+			entityManager.generateSnowball(
+				this.cx+10, this.cy-14,
+				velX,velY,damage);
+			this.reloading = this.reloadTime;
+			this.craftedBalls--;
+		}
     }
 };
 
@@ -282,6 +291,7 @@ Sleigh.prototype.render = function(ctx){
 	this.renderGifts(ctx);
 	this.displayAmountGifts(ctx);
 	this.displayCraftedSnowBalls(ctx);
+	this.sprite.scale = this.scale;
 	this.sprite.drawCentredAt(
 	ctx, this.cx, this.cy, Math.PI*this.rotation
     );

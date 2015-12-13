@@ -23,6 +23,7 @@ var spatialManager = {
 _nextSpatialID : 1, // make all valid IDs non-falsey (i.e. don't start at 0)
 
 _entities : [],
+_buttons : [],
 
 // "PRIVATE" METHODS
 //
@@ -88,6 +89,41 @@ findAllEntityInRange: function(posX, posY, radius) {
     }
 	return entities;
 },
+
+registerBtn: function(btn){
+	var pos = btn.getPos();
+	var spatialID = btn.getSpatialID();
+	this._buttons[spatialID] = {
+		posX : pos.posX,
+		posY : pos.posY,
+		width  : pos.width,
+		height : pos.height,
+        btn : btn
+	} ;
+},
+
+unregisterBtn: function(btn) {
+    var spatialID = btn.getSpatialID();
+
+    // TODO: YOUR STUFF HERE!
+    delete(this._buttons[spatialID]);
+
+},
+
+findBtnInRange: function(posX, posY) {
+
+    // TODO: YOUR STUFF HERE!
+    for (var ID in this._buttons) {
+        var b = this._buttons[ID];
+		if(b.posX < posX && b.posX+b.width > posX
+		&& b.posY < posY && b.posY+b.height > posY){
+				return b.btn;   
+		   }
+        
+    }
+},
+
+
 
 render: function(ctx) {
     var oldStyle = ctx.strokeStyle;

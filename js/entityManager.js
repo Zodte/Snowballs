@@ -39,9 +39,8 @@ _powerups	: [],
 _animations : [],
 _stardust   : [],
 _snow		: [],
-
 _foreGround : [],
-
+_buttons	: [],
 
 _bShowRocks : true,
 
@@ -80,7 +79,7 @@ gameIsWon: false,
 deferredSetup : function () {
     this._categories = [this._bg, this._generator, this._trees, this._sleighs, this._snowballs, this._enemies, 
 						this._gifts, this._snakeGifts, this._powerups, this._animations, 
-						this._stardust, this._snow, this._foreGround];
+						this._stardust, this._snow, this._foreGround, this._buttons];
 },
 
 init: function() {	
@@ -91,6 +90,10 @@ init: function() {
 
 
 //Generating---------------------------------------------------------------------------------------------------------
+generateAddButton : function(descr){
+		this._buttons.push(new Button(descr));
+},
+
 generateBg : function(descr) {
 	this._bg.push(new backGround(descr));
 },
@@ -342,6 +345,7 @@ render: function(ctx) {
 	}
 
     if(!entityManager.gameHasStarted){
+		this.generateAddButton({cx: 200, cy: 200});
         this.renderStartGame(ctx);
     }
 

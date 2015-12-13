@@ -1,8 +1,7 @@
 function createSprites(images, sprites, animatedSprites) {
 
 	//Sprites
-	sprites.sleigh = new Sprite(images.sleigh);
-	sprites.sleigh.scale = 0.45;
+	
 	sprites.snowball = new Sprite(images.snowball);
 	sprites.snowball.scale = 0.15;
 	sprites.foreGround = new Sprite(images.foreGround);
@@ -20,6 +19,7 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.UI = new Sprite(images.UI);
 	
 	//Animated Sprites
+	sprites.sleigh = [];
 	sprites.milk = [];
 	sprites.cookie = [];
 	sprites.powerUps = [];
@@ -32,8 +32,16 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.homingGift = [];
 	sprites.homingGiftBackward = [];
 	sprites.snowBlastExplosion = [];
+	sprites.addButton = [];
 	
 	//Images for Animated Sprites
+	sprites.sleigh.push(new Sprite(images.sleigh,0,12,99,86));
+	sprites.sleigh.push(new Sprite(images.sleigh,100,12,99,86));
+	
+	sprites.addButton.push(new Sprite(images.button,1,1,17,17));
+	sprites.addButton.push(new Sprite(images.button,21,1,17,17));
+	sprites.addButton.push(new Sprite(images.button,41,1,17,17));
+	
 	sprites.powerUps.push(sprites.milk);
 	sprites.powerUps.push(sprites.cookie);
 	sprites.gifts.push(sprites.straightGift);
