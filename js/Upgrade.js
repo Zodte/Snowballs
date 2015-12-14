@@ -2,14 +2,15 @@ function Upgrade(descr){
 	for (var property in descr) {
         this[property] = descr[property];
     }
+	this.init();
 } 
-Upgrade.prototype = new Entity(); 
+Upgrade.prototype = new Entity();
 
-Upgrade.prototype.buttons = [0,0,0,0,0,0,0]
+Upgrade.prototype.buttons = [{upgrade : "upgradeStrength", canUp : "canUpStrength"}]; 
 
 Upgrade.prototype.init = function(){
 	for(var i = 0; i < this.buttons.length; i++){
-		this.generateAddButton({cx: 200, cy: 200});
+		entityManager.generateAddButton({cx: 200, cy: 200+i*30, upCall : this.buttons[i]});
 	}
 }
 

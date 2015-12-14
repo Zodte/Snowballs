@@ -1,45 +1,85 @@
+"use strict";
+
 var Player = {
 //Private Data
-_Strength: 5.00,
-_Speed: 3.00,
-_magicCapacity: 100,
-_magicComsuption: -0.5, 
-_magnetRadius: 40,
+_strength: {base 	: 5,
+			level 	: 0,
+			levels	: [1,2,4,8,16,32],
+			cost	: [10,50,100,200,400,99999]
+			},
+_speed:    {base	: 3.00,
+			level 	: 0,
+			levels	: [1,1.2,1.4,1.6]
+			},
+_magicCapacity: {base	: 10,
+				 level	: 0,
+				 levels	: [1,1.2,1.4,1.6,1.8,2]
+				},
+_magicComsuption: {base 	: -0.0,
+				   level 	: 0,
+				   levels	: [1,0.9,0.8,0.7]
+				   }, 
+_magnetRadius: {base	: 30,
+				level	: 0,
+				levels	: [1,3,5,7,10]
+				},
 _luck: 1,
 _piercing: 1,
 _mojoBars: 1,
 _snowBallCraft: 45,
 _snowBallsCapacity: 10,
-_snowBallMagicRadius: 50,
+_snowBallMagicRadius: 	{base	:50,
+						 level	: 0,
+						 levels : [1,2,3,4,5,6]
+						},
 _totalGifts: 300,
 
 
+buyFor: function(x){
+	this._totalGifts -= x;
+},
+//Upgrades-----------------------------
+
+upgradeStrength: function(){
+	this.buyFor(this._strength.cost[this._strength.level]);
+	this._strength.level++;	
+	console.log(this._totalGifts)
+},
 
 
+//CanUps-------------------------------
+canUpStrength: function(){
+	if(this._strength.cost[this._strength.level] <= this._totalGifts && this._strength.level < this._strength.levels.length-1){
+		return true;
+	}else{
+		return false;
+	}
+},
 
-//Functions
+//Getters------------------------------
+
 getDamage: function(){
-	return this._Strength;
+	return this._strength.base * this._strength.levels[this._strength.level];
 },
 
 getSnowBallVelovity(){
-	return this._Strength/10 + 8;
+	return (this._strength.base * this._strength.levels[this._strength.level])/10 + 8;
 },
 
 getSpeed: function(){
-	return this._Speed;
+	return this._speed.base * this._speed.levels[this._speed.level];
 },
 
 getMagicCapacity: function(){
-	return this._magicCapacity;
+	return this._magicCapacity.base * this._magicCapacity.levels[this._magicCapacity.level];
 },
 
 getMagicComsuption: function(){
-	return this._magicComsuption;
+	return this._magicComsuption.base * this._magicComsuption.levels[this._magicComsuption.level];
 },
 
 getMagnetRadius: function(){
-	return this._magnetRadius;
+	return this._magnetRadius.base * this._magnetRadius.levels[this._magnetRadius.level];
 },
 
 getLuck: function(){
@@ -63,7 +103,7 @@ getSnowBallCapacity: function(){
 },
 
 getSnowBallMagicRadius: function(){
-	return this._snowBallMagicRadius;
+	return this._snowBallMagicRadius.base * this._snowBallMagicRadius.levels[this._snowBallMagicRadius.level];
 },
 
 getTotalGifts: function(){
