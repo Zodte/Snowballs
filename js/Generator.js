@@ -60,6 +60,9 @@ Generator.prototype.backTree = {next: 0,
 
 
 Generator.prototype.update = function(du) {
+	
+	if(this._isDeadNow) return entityManager.KILL_ME_NOW;
+	
 	this.lived += MAP_SPEED;
 	
 	if(this.changeFase[this.curFase] >= this.lived) this.curFase++;

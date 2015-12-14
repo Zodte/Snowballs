@@ -21,9 +21,10 @@ Tree.prototype.chooseTree = function() {
 };
 
 Tree.prototype.update = function(du) {
+	
 	this.lived++;
 	
-	if(this.cx + this.sprites[this.tree].width < 0) return entityManager.KILL_ME_NOW;
+	if(this.cx + this.sprites[this.tree].width < 0 || this._isDeadNow) return entityManager.KILL_ME_NOW;
 	this.cx -= FOREGROUND_SPEED * this.speed * du;
 
 };

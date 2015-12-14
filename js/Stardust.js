@@ -13,10 +13,11 @@ function Stardust(descr){
 Stardust.prototype.rotation = 0;
 Stardust.prototype.difVel = 0;
 Stardust.prototype.lived = 0;
+Stardust.prototype._isDeadNow = false;
 
 Stardust.prototype.update = function(du){
 	this.lived++;
-	if(this.lifeLength < this.lived || this.cy > entityManager.GROUND_HEIGHT+10) return entityManager.KILL_ME_NOW;
+	if(this.lifeLength < this.lived || this.cy > entityManager.GROUND_HEIGHT+10 || this._isDeadNow) return entityManager.KILL_ME_NOW;
 	
 	this.rotation += this.rotationSpeed;
 	if(this.lived % 5 == 0){
@@ -29,6 +30,10 @@ Stardust.prototype.update = function(du){
 Stardust.prototype.getRadius = function(){
 	return this.sprite.scale * this.sprite.width/2;
 };
+
+Stardust.prototype.kill = function(){
+	this._isDeadNow = true;
+}
 
 Stardust.prototype.render = function(ctx){
 	ctx.save();

@@ -40,7 +40,10 @@ _animations : [],
 _stardust   : [],
 _snow		: [],
 _foreGround : [],
+
+_upgrade	: [],
 _buttons	: [],
+
 
 _bShowRocks : true,
 
@@ -79,7 +82,7 @@ gameIsWon: false,
 deferredSetup : function () {
     this._categories = [this._bg, this._generator, this._trees, this._sleighs, this._snowballs, this._enemies, 
 						this._gifts, this._snakeGifts, this._powerups, this._animations, 
-						this._stardust, this._snow, this._foreGround, this._buttons];
+						this._stardust, this._snow, this._foreGround, this._upgrade, this._buttons];
 },
 
 init: function() {	
@@ -146,6 +149,10 @@ generateSnowball : function(cx,cy,velX,velY,damage){
 		velY	:	velY,
 		damage	:	damage
 	}));
+},
+
+generateUpgrade : function(descr){
+	this._upgrade.push(new Upgrade())
 },
 
 generateEnemySnowball : function(cx,cy,velX,velY,damage){
@@ -237,19 +244,8 @@ spawnEnemyGifts: function(numGifts,pos){
 },
 
 playAgain: function(){
-/*	this.clearBullets();
-	this._enemies.forEach(function(enemy){
-        enemy.kill();
-    });
-	this._ships.forEach(function(ship){
-			ship.kill();
-		});
-	this._powerups.forEach(function(powerUp){
-		powerUp.kill();
-	});
-	this._bg[0].reset();
-	this._tiles[0].reset();
-	Score.score = 0;*/
+	this.isGameLost = false;
+	if(this._upgrade[0]) this._upgrade[0].kill();
 	this.generateSleigh({
         cx : 200,
         cy : 200,
@@ -257,6 +253,44 @@ playAgain: function(){
     }); 
 
 	this._generateGenerator();
+},
+
+resetAll: function(){
+	this._generator.forEach(function(enemy){
+        enemy.kill();
+    });
+	this._enemies.forEach(function(enemy){
+        enemy.kill();
+    });
+	this._trees.forEach(function(enemy){
+        enemy.kill();
+    });
+	this._snowballs.forEach(function(enemy){
+        enemy.kill();
+    });
+	this._gifts.forEach(function(enemy){
+        enemy.kill();
+    });
+	this._bg.forEach(function(enemy){
+        enemy.kill();
+    });
+	this._stardust.forEach(function(enemy){
+        enemy.kill();
+    });
+	this._snow.forEach(function(enemy){
+        enemy.kill();
+    });
+	this._foreGround.forEach(function(enemy){
+        enemy.kill();
+    });
+},
+
+isGameLost: false,
+gameLost: function(){
+	entityManager.gameIsWon = false;
+	this.isGameLost = true;
+	this.resetAll();
+	this.generateUpgrade();
 },
 //-------------------------------------------------------------------------------------------------------------------
 
@@ -272,7 +306,6 @@ haltShips: function() {
 */
 
 update: function(du) {
-
     for (var c = 0; c < this._categories.length; ++c) {
 
         var aCategory = this._categories[c];
@@ -339,13 +372,11 @@ render: function(ctx) {
         debugY += 10;
     }
 	
-	if(entityManager.isPlayerDead() && entityManager.gameHasStarted){
-        entityManager.gameIsWon = false;
+	if(this.isGameLost){
 		this.renderGameLost(ctx);	
 	}
 
     if(!entityManager.gameHasStarted){
-		this.generateAddButton({cx: 200, cy: 200});
         this.renderStartGame(ctx);
     }
 

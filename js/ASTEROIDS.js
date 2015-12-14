@@ -47,12 +47,6 @@ var g_ctx = g_canvas.getContext("2d");
 // ====================
 
 function createInitialShips() {
-
-    entityManager.generateSleigh({
-        cx : 200,
-        cy : 200,
-		sprite : g_sprites.sleigh
-    });  
 	
 }
 

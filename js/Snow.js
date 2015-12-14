@@ -11,10 +11,11 @@ function Snow(descr){
 Snow.prototype.rotation = 0;
 Snow.prototype.vel = SNOW_VELOCITY;
 Snow.prototype.lived = 0;
+Snow.prototype._isDeadNow = false;
 
 Snow.prototype.update = function(du){
 	this.lived++;
-	if(this.cx < -10 || this.cy > entityManager.GROUND_HEIGHT+10) return entityManager.KILL_ME_NOW;
+	if(this.cx < -10 || this.cy > entityManager.GROUND_HEIGHT+10 || this._isDeadNow) return entityManager.KILL_ME_NOW;
 	
 	var velDif = this.vel - SNOW_VELOCITY
 	if(Math.abs(velDif) > 0.3){
@@ -36,6 +37,10 @@ Snow.prototype.update = function(du){
 	this.cyStart += GRAVITY*20;
 	
 	
+};
+
+Snow.prototype.kill = function(){
+	this._isDeadNow = true;
 };
 
 Snow.prototype.render = function(ctx){

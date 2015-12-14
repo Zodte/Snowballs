@@ -15,6 +15,7 @@ backGround.prototype.snowVel = 2;
 backGround.prototype.update = function(du) {
 	
 	this.cx -= MAP_SPEED/20;
+	if(this._isDeadNow) return entityManager.KILL_ME_NOW;
 	if(this.lived % 1000 == 999) SNOW_VELOCITY = util.randRange(0,8) + FOREGROUND_SPEED;
 	for(var i = 0; i < Math.floor(util.randRange(0,10)); i++){
 		entityManager.generateSnow({

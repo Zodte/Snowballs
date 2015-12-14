@@ -5,10 +5,19 @@ function Upgrade(descr){
 } 
 Upgrade.prototype = new Entity(); 
 
+Upgrade.prototype.buttons = [0,0,0,0,0,0,0]
+
+Upgrade.prototype.init = function(){
+	for(var i = 0; i < this.buttons.length; i++){
+		this.generateAddButton({cx: 200, cy: 200});
+	}
+}
+
 Upgrade.prototype.update = function(du){
-		
+	if(this._isDeadNow) return entityManager.KILL_ME_NOW;
 };
 
 Upgrade.prototype.render = function(ctx){
-
+	ctx.fillStyle = "Brown";
+	ctx.fillRect(0,0,g_canvas.width,g_canvas.height);
 }

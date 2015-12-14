@@ -113,12 +113,12 @@ unregisterBtn: function(btn) {
 findBtnInRange: function(posX, posY) {
 
     // TODO: YOUR STUFF HERE!
-    for (var ID in this._buttons) {
+	for (var ID in this._buttons) {
         var b = this._buttons[ID];
-		if(b.posX < posX && b.posX+b.width > posX
-		&& b.posY < posY && b.posY+b.height > posY){
-				return b.btn;   
-		   }
+		if(b.posX-b.width/2 < posX && b.posX-b.width/2+b.width > posX
+		&& b.posY-b.height/2 < posY && b.posY-b.height/2+b.height > posY){
+			return b.btn;   
+		}
         
     }
 },

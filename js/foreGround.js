@@ -12,6 +12,9 @@ foreGround.prototype.cy = g_canvas.height - 103;
 foreGround.prototype.rotation = 0;
 
 foreGround.prototype.update = function(du) {
+	if( this._isDeadNow ) {
+        return entityManager.KILL_ME_NOW;
+    }
 	this.cx -= FOREGROUND_SPEED * du;
 	if(this.cx < 0) {
 		this.cx = g_canvas.width;

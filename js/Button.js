@@ -5,10 +5,12 @@ function Button(descr){
 	this.sprites = g_sprites.addButton;
 	this.price = 20;
 	this.decideSprites();
+	this.width = this.sprite.width;
+	this.height = this.sprite.height;
+	this.init();
 	
 }
 Button.prototype = new Entity();
-Button.prototype.mouseOver = false;
 
 Button.prototype.decideSprites = function(){
 	if(this.price <= Player.getTotalGifts()){
@@ -18,26 +20,63 @@ Button.prototype.decideSprites = function(){
 	}
 };
 
+Button.prototype.init = function(){
+	spatialManager.registerBtn(this);
+};
+
+Button.prototype.clickedAnimLength = 10;
+Button.prototype.clickedCounter = 1;
 Button.prototype.update = function(du){
-	spatialManager.unregisterBtn(this);
-	
+	if(this.clickedCounter > 1) this.clickedCounter--;
 	if(this.sprite != this.sprites[1])
 	{
-		if(this.mouseOver){
+		if(this.mouseIsOver()){
 			this.sprite = this.sprites[0];
 		}else{
 			this.sprite = this.sprites[2];
 		}
 	}
 	
-	spatialManager.registerBtn(this);
 };
 
 Button.prototype.mouseIsOver = function(){
-	this.mouseOver = true;
+	var mX = g_mouseX;
+	var mY = g_mouseY;
+	if(this.cx-this.width/2 < mX && this.cx-this.width/2 + this.width > mX 
+	&& this.cy-this.height/2 < mY && this.cy-this.height/2 + this.height > mY){
+		return true;
+	}else{
+		return false;
+	}
 }
+
+Button.prototype.clicked = function(){
+	console.log("yolo")
+	this.clickedCounter = this.clickedAnimLength;
+};
 
 
 Button.prototype.render = function(ctx){
+	this.sprite.scale = 1 - this.clickedCounter/this.clickedAnimLength;
 	this.sprite.drawCentredAt(ctx,this.cx,this.cy,0);
+	
+	ctx.save();
+	ctx.globalAlpha = this.clickedCounter/this.clickedAnimLength;
+	ctx.arc(this.cx,this.cy,this.width/2,0,2*Math.PI);
+	ctx.fillStyle = "white";
+	ctx.fill();
+	ctx.globalAlpha = 1;
+	ctx.restore();
 };
+
+
+
+
+
+
+
+
+
+
+
+

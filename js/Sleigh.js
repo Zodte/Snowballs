@@ -50,7 +50,10 @@ Sleigh.prototype.update = function(du){
 	this.lived++;
 	spatialManager.unregister(this);
 	
-	if(this.magic == 0 && this.cy+this.getRadius() > entityManager.GROUND_HEIGHT && this.lived%40 == 0) return entityManager.KILL_ME_NOW;
+	if(this.magic == 0 && this.cy+this.getRadius() > entityManager.GROUND_HEIGHT && this.lived%40 == 0) {
+		entityManager.gameLost();
+		return entityManager.KILL_ME_NOW;
+	}
 	if(util.randRange(1,100) > 99.99){
 		this.hits +=1;
 	}

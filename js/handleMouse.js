@@ -27,15 +27,16 @@ function handleMouseDown(evt) {
 function handleMouseMove(evt){
 	g_mouseX = evt.clientX - g_canvas.offsetLeft;
     g_mouseY = evt.clientY - g_canvas.offsetTop;
-	var btn = spatialManager.findBtnInRange(g_mouseX,g_mouseY);
-	if(btn){
-		btn.mouseIsOver();
-	}
 }
 
 function handleMouseUp(evt){
 	if(entityManager._sleighs.length > 0){
 		entityManager._sleighs[0].unfire();
+	}else{
+		var btn = spatialManager.findBtnInRange(g_mouseX,g_mouseY);
+		if(btn){
+			btn.clicked();
+		}
 	}
 }
 
