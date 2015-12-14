@@ -15,6 +15,7 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.bombGift = new Sprite(images.bombGift);
 	sprites.bombGift.scale = 0.5;
 	sprites.snowManBody = new Sprite(images.snowManBody);
+	//sprites.snowManBody.scale = 0.5;
 	sprites.blueStardust = new Sprite(images.blueStardust);
 	sprites.goldStardust = new Sprite(images.goldStardust);
 	sprites.UI = new Sprite(images.UI);
