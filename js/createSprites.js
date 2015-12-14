@@ -14,6 +14,7 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.snakeGift.scale = 0.7;
 	sprites.bombGift = new Sprite(images.bombGift);
 	sprites.bombGift.scale = 0.5;
+	sprites.snowManBody = new Sprite(images.snowManBody);
 	sprites.blueStardust = new Sprite(images.blueStardust);
 	sprites.goldStardust = new Sprite(images.goldStardust);
 	sprites.UI = new Sprite(images.UI);
@@ -31,6 +32,7 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.scoreGift = [];
 	sprites.homingGift = [];
 	sprites.homingGiftBackward = [];
+	sprites.snowManHead = [];
 	sprites.snowBlastExplosion = [];
 	sprites.addButton = [];
 	
@@ -81,6 +83,10 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.scoreGift.push(new Sprite(images.scoreGift, 11, 0, 64, 57));
 	sprites.scoreGift.push(new Sprite(images.scoreGift, 100, 0, 64, 57));
 	
+	sprites.snowManHead.push(new Sprite(images.snowManHead, 0, 0, 39, 29));
+	sprites.snowManHead.push(new Sprite(images.snowManHead, 40, 0, 39, 29));
+	sprites.snowManHead.push(new Sprite(images.snowManHead, 80, 0, 39, 29));
+	
 	sprites.snowBlastExplosion.push(new Sprite(images.snowBlast, 16, 15, 17, 14));
 	sprites.snowBlastExplosion.push(new Sprite(images.snowBlast, 59, 10, 30, 26));
 	sprites.snowBlastExplosion.push(new Sprite(images.snowBlast, 102, 2, 46, 44));
@@ -92,6 +98,8 @@ function createSprites(images, sprites, animatedSprites) {
 	for(i = 8; i<16; i++){
 		sprites.homingGiftBackward.push(new Sprite(images.homingGift, 20*i+15+i*60,5,55,67));	
 	}
+	
+	
 	
 	
 	//Animation Only Sprites

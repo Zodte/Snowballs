@@ -195,6 +195,8 @@ function requestPreloads() {
 		goldStardust: "./images/stardust2.png",
 		UI			: "./images/UI.png",
 		homingGift  : "./images/homingGift.png",
+		snowManHead : ".images/snowManHead.gif",
+		snowManBody : ".images/snowManBody.png",
 		snowBlast 	: "./images/snowBlast.gif",
 		button		: "./images/addButton.gif"
     };

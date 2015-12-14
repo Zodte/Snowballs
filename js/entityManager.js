@@ -129,6 +129,10 @@ generateHomingGifts: function(descr){
 	this._enemies.push(new HomingGift(descr));
 },
 
+generateSnowMan: function(descr) {
+	this._enemies.push(new EnemySnowman(descr));
+},
+
 generatePowerUp : function(descr) {
     this._powerups.push(new PowerUp(descr));
 },
