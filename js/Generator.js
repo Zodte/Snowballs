@@ -1,6 +1,6 @@
 function Generator(descr) {
 	this.setup(descr);
-	this.enemiesArray = [this.straightGift, this.snakeGift, this.bombGift, this.homingGift];
+	this.enemiesArray = [this.straightGift, this.snakeGift, this.bombGift, this.homingGift, this.enemySnowMan];
 };
 
 Generator.prototype = new Entity();
@@ -36,12 +36,12 @@ Generator.prototype.homingGift = {next: 6000,
 										cy : util.randRange(30,entityManager.GROUND_HEIGHT-30)
 									});
 								}};
-Generator.prototype.enemySnowMan = {next: 0,
+Generator.prototype.enemySnowMan = {next: 200,
 								frequency: [[200,260],[200,250],[180,240]],
 								generate: function() {
 									entityManager.generateSnowMan({
-										cx : 300,
-										cy : 550,
+										cx : g_canvas.width,
+										cy : 400,
 										rotation : 0
 									});
 								}};

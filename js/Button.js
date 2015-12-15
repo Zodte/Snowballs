@@ -13,7 +13,7 @@ function Button(descr){
 Button.prototype = new Entity();
 
 Button.prototype.decideSprites = function(){
-	if(this.price <= Player.getTotalGifts()){
+	if(Player[this.upCall.canUp]()){
 		this.sprite = this.sprites[2];
 	}else{
 		this.sprite = this.sprites[1];
@@ -51,8 +51,11 @@ Button.prototype.mouseIsOver = function(){
 }
 
 Button.prototype.clicked = function(){
-	console.log("yolo")
 	this.clickedCounter = this.clickedAnimLength;
+	if(Player[this.upCall.canUp]()){
+		Player[this.upCall.upgrade]();
+	}
+	this.decideSprites();
 };
 
 
@@ -61,6 +64,7 @@ Button.prototype.render = function(ctx){
 	this.sprite.drawCentredAt(ctx,this.cx,this.cy,0);
 	
 	ctx.save();
+	ctx.beginPath();
 	ctx.globalAlpha = this.clickedCounter/this.clickedAnimLength;
 	ctx.arc(this.cx,this.cy,this.width/2,0,2*Math.PI);
 	ctx.fillStyle = "white";
