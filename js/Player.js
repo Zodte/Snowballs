@@ -9,7 +9,7 @@ _strength: {base 	: 5,
 			},
 _speed:    {base	: 3.00,
 			level 	: 0,
-			levels	: [1,1.2,1.4,1.6],
+			levels	: [1,1.233,1.366,1.5],
 			cost	: [30,300,900,99999]
 			},
 _magicCapacity: {base	: 10,
@@ -50,7 +50,7 @@ upgradeStrength: function(){
 upgradeSpeed: function(){
 	this.buyFor(this._speed.cost[this._speed.level]);
 	this._speed.level++;
-	console.log("Speed++")
+	console.log(this._speed.level)
 },
 
 

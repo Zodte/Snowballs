@@ -1,13 +1,21 @@
 function Generator(descr) {
 	this.setup(descr);
 	this.enemiesArray = [this.straightGift, this.snakeGift, this.bombGift, this.homingGift, this.enemySnowMan];
+	this.setFirstEnemy();
 };
 
 Generator.prototype = new Entity();
 
+Generator.prototype.setFirstEnemy = function(){
+	var list = [0,500,5000,6000,200];
+	for(var i = 0; i < this.enemiesArray.length; i++){
+		this.enemiesArray[i].next = list[i];
+	}
+}
+
 Generator.prototype.curFase = 0;
 Generator.prototype.changeFase = [5000,10000]
-Generator.prototype.straightGift = {next: 200, 
+Generator.prototype.straightGift = {next: 0, 
 									frequency: [[200,260],[180,240],[180,240]],
 									generate: function(){
 										entityManager.generateStraightGifts({

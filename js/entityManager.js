@@ -249,7 +249,12 @@ spawnEnemyGifts: function(numGifts,pos){
 
 playAgain: function(){
 	this.isGameLost = false;
-	if(this._upgrade[0]) this._upgrade[0].kill();
+	if(this._upgrade[0]) {
+		this._upgrade[0].kill();
+		this._buttons.forEach(function(enemy){
+        enemy.kill();
+		});
+	}
 	this.generateSleigh({
         cx : 200,
         cy : 200,
@@ -257,6 +262,8 @@ playAgain: function(){
     }); 
 
 	this._generateGenerator();
+	this._generateForeGrounds();
+	this._generateBgs();
 },
 
 resetAll: function(){

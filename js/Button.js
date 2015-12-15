@@ -27,6 +27,7 @@ Button.prototype.init = function(){
 Button.prototype.clickedAnimLength = 10;
 Button.prototype.clickedCounter = 1;
 Button.prototype.update = function(du){
+	if(this._isDeadNow) return entityManager.KILL_ME_NOW;
 	if(this.clickedCounter > 1) this.clickedCounter--;
 	if(this.sprite != this.sprites[1])
 	{

@@ -5,6 +5,7 @@ function Sleigh(descr){
 	this.sprite = this.sprites[0];
 	this.scoreGiftSprite = g_sprites.scoreGift;
 	this.scale = 0.45;
+	this.speed = Player.getSpeed();
 }
 
 Sleigh.prototype = new Entity();
@@ -20,7 +21,7 @@ Sleigh.prototype.bugged = true;
 
 //Properties ==========================
 
-Sleigh.prototype.speed = Player.getSpeed();
+
 Sleigh.prototype.rotation = 0;
 Sleigh.prototype.gifts = [0,0,0,0];
 
