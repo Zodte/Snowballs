@@ -41,7 +41,6 @@ Generator.prototype.enemySnowMan = {next: 200,
 								generate: function() {
 									entityManager.generateSnowMan({
 										cx : g_canvas.width,
-										cy : 400,
 										rotation : 0
 									});
 								}};
