@@ -93,6 +93,7 @@ findAllEntityInRange: function(posX, posY, radius) {
 registerBtn: function(btn){
 	var pos = btn.getPos();
 	var spatialID = btn.getSpatialID();
+	console.log("Registered button! pos: ", pos, "id: ", spatialID )
 	this._buttons[spatialID] = {
 		posX : pos.posX,
 		posY : pos.posY,

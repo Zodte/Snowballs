@@ -6,7 +6,7 @@ function Upgrade(descr){
 } 
 Upgrade.prototype = new Entity();
 
-Upgrade.prototype.buttons = [{upgrade : "upgradeStrength", canUp : "canUpStrength"}]; 
+Upgrade.prototype.buttons = [{upgrade : "upgradeStrength", canUp : "canUpStrength"},{upgrade : "upgradeSpeed", canUp : "canUpSpeed"}]; 
 
 Upgrade.prototype.init = function(){
 	for(var i = 0; i < this.buttons.length; i++){

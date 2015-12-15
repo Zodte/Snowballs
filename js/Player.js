@@ -9,7 +9,8 @@ _strength: {base 	: 5,
 			},
 _speed:    {base	: 3.00,
 			level 	: 0,
-			levels	: [1,1.2,1.4,1.6]
+			levels	: [1,1.2,1.4,1.6],
+			cost	: [30,300,900,99999]
 			},
 _magicCapacity: {base	: 10,
 				 level	: 0,
@@ -32,7 +33,7 @@ _snowBallMagicRadius: 	{base	:50,
 						 level	: 0,
 						 levels : [1,2,3,4,5,6]
 						},
-_totalGifts: 300,
+_totalGifts: 3000,
 
 
 buyFor: function(x){
@@ -43,13 +44,27 @@ buyFor: function(x){
 upgradeStrength: function(){
 	this.buyFor(this._strength.cost[this._strength.level]);
 	this._strength.level++;	
-	console.log(this._totalGifts)
+	console.log("Strength++")
+},
+
+upgradeSpeed: function(){
+	this.buyFor(this._speed.cost[this._speed.level]);
+	this._speed.level++;
+	console.log("Speed++")
 },
 
 
 //CanUps-------------------------------
 canUpStrength: function(){
 	if(this._strength.cost[this._strength.level] <= this._totalGifts && this._strength.level < this._strength.levels.length-1){
+		return true;
+	}else{
+		return false;
+	}
+},
+
+canUpSpeed: function(){
+	if(this._speed.cost[this._speed.level] <= this._totalGifts && this._speed.level < this._speed.levels.length-1){
 		return true;
 	}else{
 		return false;

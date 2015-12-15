@@ -175,20 +175,18 @@ Sleigh.prototype.throwSnowball = function(){
 	if (this.reloading == 0 && this.craftedBalls > 0 && this.magic > 0) {
 		this.sprite = this.sprites[1];
 		var dx = g_mouseX - this.cx+10;
-		if(dx >= 0){
-			var dy = g_mouseY - this.cy-14;
-			var mag = Math.sqrt(dx * dx + dy * dy);
-			var strength = Player.getSnowBallVelovity();
-			var velX = (dx / mag) * strength;
-			var velY = (dy / mag) * strength;
-			
-			var damage = Player.getDamage();
-			entityManager.generateSnowball(
-				this.cx+10, this.cy-14,
-				velX,velY,damage);
-			this.reloading = this.reloadTime;
-			this.craftedBalls--;
-		}
+		var dy = g_mouseY - this.cy-14;
+		var mag = Math.sqrt(dx * dx + dy * dy);
+		var strength = Player.getSnowBallVelovity();
+		var velX = (dx / mag) * strength;
+		var velY = (dy / mag) * strength;
+		
+		var damage = Player.getDamage();
+		entityManager.generateSnowball(
+			this.cx+10, this.cy-14,
+			velX,velY,damage);
+		this.reloading = this.reloadTime;
+		this.craftedBalls--;
     }
 };
 
