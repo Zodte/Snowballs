@@ -7,8 +7,8 @@ function Button(descr){
 	this.decideSprites();
 	this.width = this.sprite.width;
 	this.height = this.sprite.height;
+	this._spatialID = spatialManager.getNewSpatialID();
 	this.init();
-	
 }
 Button.prototype = new Entity();
 
