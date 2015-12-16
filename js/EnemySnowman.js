@@ -72,9 +72,10 @@ EnemySnowman.prototype.fire = function (){
 };
 
 EnemySnowman.prototype.getSnowballHit = function(damage){
-	this.life -= this.damage;
+	this.life -= damage;
 	if(this.life <= 0){
 		this.life = 0;
+		numGifts = entityManager.getLoot(2.2,this.getPos());
 		this.kill();
 	}
 };

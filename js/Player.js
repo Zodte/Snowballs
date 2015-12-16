@@ -30,7 +30,7 @@ _mojoBars: 1,
 _snowBallCraft: 45,
 _snowBallsCapacity: 10,
 _snowBallMagicRadius: 	{base	:50,
-						 level	: 0,
+						 level	: 5,
 						 levels : [1,2,3,4,5,6]
 						},
 _totalGifts: 3000,
