@@ -86,7 +86,7 @@ deferredSetup : function () {
 },
 
 init: function() {	
-	this._generateForeGrounds();
+	//this._generateForeGrounds();
 	this._generateBgs();
 },
 
