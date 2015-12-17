@@ -1,7 +1,7 @@
 function foreGround(descr) {
 	this.setup(descr);
 	
-	this.sprite = this.sprite || g_sprites.foreGround;
+	this.foreGroundSprite = g_sprites.foreGround;
 	this.UISprite = g_sprites.UI;
 };
 
@@ -19,6 +19,7 @@ foreGround.prototype.update = function(du) {
 	if(this.cx < 0) {
 		this.cx = g_canvas.width;
 	}
+	this.lived++;
 };
 
 foreGround.prototype.UIrender = function(ctx) {
@@ -27,7 +28,7 @@ foreGround.prototype.UIrender = function(ctx) {
 
 foreGround.prototype.render = function(ctx) {
 	this.UIrender(ctx);
-	this.sprite.drawWrappedCentredAt(
+	this.foreGroundSprite.drawWrappedCentredAt(
 	ctx, this.cx, this.cy, this.rotation
 	);
 
