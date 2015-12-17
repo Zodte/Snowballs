@@ -83,11 +83,7 @@ function createSprites(images, sprites, animatedSprites) {
 	
 	sprites.scoreGift.push(new Sprite(images.scoreGift, 11, 0, 64, 57));
 	sprites.scoreGift.push(new Sprite(images.scoreGift, 100, 0, 64, 57));
-	/*
-	sprites.snowManHead.push(new Sprite(images.snowManHead, 0, 0, 39, 29));
-	sprites.snowManHead.push(new Sprite(images.snowManHead, 40, 0, 39, 29));
-	sprites.snowManHead.push(new Sprite(images.snowManHead, 80, 0, 39, 29));
-	*/
+
 	sprites.snowBlastExplosion.push(new Sprite(images.snowBlast, 16, 15, 17, 14));
 	sprites.snowBlastExplosion.push(new Sprite(images.snowBlast, 59, 10, 30, 26));
 	sprites.snowBlastExplosion.push(new Sprite(images.snowBlast, 102, 2, 46, 44));

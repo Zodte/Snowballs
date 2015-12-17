@@ -3,11 +3,8 @@ function EnemySnowman(descr) {
 	
 	this.bodySprite = g_sprites.snowManBody;
 	this.headSprite = g_sprites.snowManHead;
-	//this.oriScale = this.sprite.scale;
 	this.scale = this.scale || 0.6;	
-	this.sprites = this.headSprite;
 	this.spriteIndex = 0;
-	this.sprite = this.sprites[this.spriteIndex];
 	this.cy = entityManager.GROUND_HEIGHT - 46*this.scale;
 	this.oriLife = util.randRange(26,32);
 	this.life = this.oriLife;
@@ -18,6 +15,7 @@ EnemySnowman.prototype = new Entity();
 
 EnemySnowman.prototype.update = function(du) {
 	this.lived++;
+	this.computeSprite(du);
 	spatialManager.unregister(this);
 	if(this._isDeadNow) return entityManager.KILL_ME_NOW;
 	
@@ -26,16 +24,10 @@ EnemySnowman.prototype.update = function(du) {
 
 	// head curve
 	this.headDegree();
-	
+
 	// shoot
-	if(this.lived < 0) {
-		this.spriteIndex = 0;
-	} else {
-		if(this.spriteIndex < 3) {
-			this.spriteIndex++;
-			if(this.spriteIndex == 2) this.fire();
-		}
-	}
+	this.fire();
+
 	//handle collision
 
 	var hitEntity = this.findHitEntity();
@@ -63,18 +55,20 @@ EnemySnowman.prototype.headDegree = function() {
 
 EnemySnowman.prototype.fire = function (){
 	var pos = entityManager.getSleighPos();
-	var dx = pos.posX - this.cx;
-	var dy = pos.posY-(Math.abs(dx)/4) - this.cy;
-	var mag = Math.sqrt(dx*dx + dy*dy);
-	var strength = this.oriLife;
-	var velX = (dx/mag)*strength;
-	var velY = (dy/mag)*strength;
-	
-	this.damage = strength * 2;
-	entityManager.generateEnemySnowball(
-		this.cx, this.cy+4,
-		velX,velY,this.damage
-	);
+	if(this.spriteIndex == 2){
+		var dx = pos.posX - this.cx;
+		var dy = pos.posY-(Math.abs(dx)/4) - this.cy;
+		var mag = Math.sqrt(dx*dx + dy*dy);
+		var strength = this.oriLife/3;
+		var velX = (dx/mag)*strength;
+		var velY = (dy/mag)*strength;
+		
+		this.damage = strength * 2;
+		entityManager.generateEnemySnowball(
+			this.cx, this.cy+4,
+			velX,velY,this.damage
+		);
+	}
 };
 
 EnemySnowman.prototype.getSnowballHit = function(damage){
@@ -87,8 +81,21 @@ EnemySnowman.prototype.getSnowballHit = function(damage){
 };
 
 EnemySnowman.prototype.getRadius = function() {
-	return (this.sprite.width/2)*this.scale;
+	return (this.headSprite[this.spriteIndex].width/2) * this.scale;
 };
+
+EnemySnowman.prototype.delay = 10;
+EnemySnowman.prototype.elapsedDelay = 0;
+EnemySnowman.prototype.computeSprite = function(du) {
+    this.elapsedDelay += du;
+    if(this.elapsedDelay >= this.delay) {
+        this.elapsedDelay = 0;
+        this.spriteIndex = (this.spriteIndex + 1);
+    }
+	if(this.spriteIndex >= 3) {
+		this.spriteIndex = 0;
+	}
+}
 
 EnemySnowman.prototype.render = function(ctx) {
 
@@ -96,8 +103,8 @@ EnemySnowman.prototype.render = function(ctx) {
 	this.bodySprite.drawCentredAt(
 	ctx, this.cx-2*this.scale, this.cy+22*this.scale, 0
 	);
-	this.sprite.scale = this.scale;
-	this.sprite.drawCentredAt(
+	this.headSprite[this.spriteIndex].scale = this.scale;
+	this.headSprite[this.spriteIndex].drawCentredAt(
 	ctx, this.cx, this.cy, this.rotation
 	);
 	ctx.fillRect(this.cx-this.getRadius(),this.cy-this.getRadius()-2,(this.getRadius()*2)*(this.life/(this.oriLife)),3)
