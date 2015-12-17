@@ -2,6 +2,7 @@ function BombGift(descr) {
 	this.setup(descr);
 	
 	this.sprite = this.sprite || g_sprites.bombGift;
+	this.level = this.level || 1;
 	this.decideC();
 	this.oriScale = this.sprite.scale
 	this.scale = this.oriScale;
@@ -75,6 +76,17 @@ BombGift.prototype.update = function(du) {
 
 BombGift.prototype.explode = function(){
 	this.kill();
+	var bombShells = this.level*4;
+	var dist = 2*Math.PI / bombShells;
+	for(var i = 0; i < bombShells; i++){
+		var dir = util.randRange(i*dist,(i+1) * dist);
+		var velX = Math.cos(dir) * 5;
+		var velY = Math.sin(dir) * 5;
+		entityManager.generateEnemySnowball(
+			this.cx, this.cy,
+			velX,velY,this.damage
+		);
+	}
 	entityManager.createExplosion({
 		cx : this.cx, 
 		cy : this.cy,
