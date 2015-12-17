@@ -6,17 +6,17 @@ var Player = {
 _strength: {base 	: 5,
 			level 	: 0,
 			levels	: [1,2,4,8,16,32],
-			cost	: [10,100,200,400,800,99999]
+			cost	: [10,100,200,400,800,"Maxed"]
 			},
 _speed:    {base	: 3.00,
 			level 	: 0,
 			levels	: [1,1.233,1.366,1.5],
-			cost	: [30,300,900,99999]
+			cost	: [30,300,900,"Maxed"]
 			},
 _magicCapacity: {base	: 100,
 				 level	: 0,
 				 levels	: [1,1.2,1.4,1.6,1.8,2],
-				 cost 	: [10,50,100,200,400,99999]
+				 cost 	: [10,50,100,200,400,"Maxed"]
 				},
 _magicComsuption: {base 	: -0.1,
 				   level 	: 0,
@@ -25,41 +25,44 @@ _magicComsuption: {base 	: -0.1,
 _magnetRadius: {base	: 30,
 				level	: 0,
 				levels	: [1,3,5,7,10],
-				cost	: [20,200,400,800,99999]
+				cost	: [20,200,400,800,"Maxed"]
 				},
 _luck: {base	: 1,
 				level	: 0,
 				levels	: [1,2,3,5,8,13,21],
-				cost	: [6,60,120,240,480,960,99999]
+				cost	: [6,60,120,240,480,960,"Maxed"]
 				},
 _piercing: {base : 1,
 			level : 0,
 			levels : [1,2,3,4],
-			cost : [50,500,1000,99999]
+			cost : [50,500,1000,"Maxed"]
 			},
 
 _snowBallCraft: {base : 46,
 				level : 0,
 				levels : [0,2,4,6,8,10],
-				cost:	[10,100,200,400,800,99999]
+				cost:	[10,100,200,400,800,"Maxed"]
 				},			
 _snowBallsCapacity: {base : 4,
 					level : 0,
 					levels : [0,2,4,6,8,10],
-					cost:	[10,100,200,400,800,99999]
+					cost:	[10,100,200,400,800,"Maxed"]
 					},
 _snowBallMagicRadius: 	{base	:50,
 						 level	: 0,
 						 levels : [1,2,3,4,5,6],
-						 cost : [10,100,200,400,800,99999]
+						 cost : [10,100,200,400,800,"Maxed"]
 						},
 _mojoBars: 1,
 
 
-_totalGifts: 0,
+_totalGifts : 10000,
 
-allUpgrades: [this._strength, this._speed, this._magicCapacity, this._magnetRadius, this._luck, this._piercing, this._snowBallCraft, this._snowBallMagicRadius],
 
+deferredSetup: function(){
+	this._allUpgrades = [this._strength, this._speed, this._magicCapacity, this._magnetRadius, 
+						 this._luck, this._piercing, this._snowBallCraft, this._snowBallMagicRadius]
+},
 
 buyFor: function(x){
 	this._totalGifts -= x;
@@ -237,15 +240,18 @@ getTotalGifts: function(){
 
 getCostAndLevel: function(){
 	var costAndLevel = [];
-	for(var i = 0; i < this.allUpgrades.length; i++){
-		//costAndLevel.push([this.allUpgrades[i].cost[this.allUpgrades[i].level],this.allUpgrades[i].level,this.allUpgrades.levels.length])
+	for(var i = 0; i < this._allUpgrades.length; i++){
+		costAndLevel.push([this._allUpgrades[i].cost[this._allUpgrades[i].level],this._allUpgrades[i].level,this._allUpgrades[i].levels.length-1])
 	}
 	return costAndLevel;
 },
 
 addGifts: function(gifts){
 	this._totalGifts += gifts;
-}
+},
 
 
 }
+
+
+Player.deferredSetup();

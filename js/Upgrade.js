@@ -18,7 +18,7 @@ Upgrade.prototype.buttons = [{upgrade : "upgradeStrength", canUp : "canUpStrengt
 
 Upgrade.prototype.init = function(){
 	for(var i = 0; i < this.buttons.length; i++){
-		entityManager.generateAddButton({cx: 200, cy: 200+i*30, upCall : this.buttons[i]});
+		entityManager.generateAddButton({cx: 200, cy: 198+i*30, upCall : this.buttons[i]});
 	}
 }
 
@@ -30,8 +30,17 @@ Upgrade.prototype.fillTexts = function(ctx){
 	var costAndLevel = Player.getCostAndLevel();
 	ctx.font = "12px Arial";
 	for(var i = 0; i < this.buttons.length; i++){
+		ctx.fillStyle = "white";
 		ctx.fillText(this.buttons[i].title, 10, 202+i*30);
-		ctx.fillText(costAndLevel[0], 220,202+i*30);
+		ctx.fillText(costAndLevel[i][0], 220,202+i*30);	
+		for(var j = 0; j < costAndLevel[i][2]; j++){
+			if(costAndLevel[i][1] > j){
+				ctx.fillStyle = "green"
+			}else{
+				ctx.fillStyle = "white"
+			}
+			ctx.fillRect(130+ 7*j,194+i*30,6,10);
+		}
 	}
 };
 
