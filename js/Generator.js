@@ -1,6 +1,6 @@
 function Generator(descr) {
 	this.setup(descr);
-	this.enemiesArray = [this.straightGift, this.snakeGift, this.bombGift, this.homingGift, this.enemySnowMan];
+	this.enemiesArray = [this.straightGift, this.snakeGift, this.bombGift, this.homingGift, this.enemySnowMan, this.cloudEnemy];
 	this.setFirstEnemy();
 };
 
@@ -52,7 +52,16 @@ Generator.prototype.enemySnowMan = {next: 200,
 										rotation : 0
 									});
 								}};
-							
+				
+Generator.prototype.cloudEnemy = {next: 200,
+								frequency: [[200,260],[200,250],[180,240]],
+								generate: function() {
+									entityManager.generateCloudEnemy({
+										cx : g_canvas.width,
+										cy : util.randRange(30,entityManager.GROUND_HEIGHT-30)
+									});
+								}};								
+												
 Generator.prototype.frontTree = {next: 0,
 								generate: function() {
 									entityManager.generateTree({
