@@ -202,15 +202,15 @@ isPlayerDead: function(){
 	return (this._sleighs.length === 0);
 },
 
-getLoot: function(lvl,pos){
+getLoot: function(giftMin,pos){
 	var amountArr = [0,0,0,0];
 	var luck = Player.getLuck();
-	var amount = Math.floor(util.randRange(1,1.999+luck+lvl))
-	while(amount >= 20){
+	var amount = Math.floor(util.randRange(giftMin,1+luck+giftMin))
+	while(amount >= 125){
 		amountArr[3] +=1;
 		amount -= 20;
 	}
-	while(amount >= 10){
+	while(amount >= 25){
 		amountArr[2] +=1;
 		amount -= 10;
 	}
@@ -223,7 +223,7 @@ getLoot: function(lvl,pos){
 		amount -= 1;
 	}
 	
-	if(util.randRange(1,10) > 8-Player.getLuck()-lvl){
+	if(util.randRange(1,10) > 8-luck-giftMin){
 		this.generatePowerUp({
 			cx : pos.posX,
 			cy : pos.posY,

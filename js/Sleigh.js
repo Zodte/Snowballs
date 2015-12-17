@@ -6,6 +6,15 @@ function Sleigh(descr){
 	this.scoreGiftSprite = g_sprites.scoreGift;
 	this.scale = 0.45;
 	this.speed = Player.getSpeed();
+	
+	//Magic
+	this.iniMagic = Player.getMagicCapacity();
+	this.magic = Player.getMagicCapacity();
+	this.magicComsumption = Player.getMagicComsuption();
+	
+	//Reloading
+	this.craftSpeed = Player.getSnowBallCraftSpeed();
+    this.snowBallsCapacity = Player.getSnowBallCapacity();
 }
 
 Sleigh.prototype = new Entity();
@@ -31,19 +40,10 @@ Sleigh.prototype.reloading = 0;
 Sleigh.prototype.pressedFire = false;
 
 //Reloading
-Sleigh.prototype.craftedBalls = 0;
-Sleigh.prototype.craftSpeed = Player.getSnowBallCraftSpeed();
-Sleigh.prototype.snowBallsCapacity = Player.getSnowBallCapacity();
+Sleigh.prototype.craftedBalls = 1;
 
-//Magic
-Sleigh.prototype.iniMagic = Player.getMagicCapacity();
-Sleigh.prototype.magic = Player.getMagicCapacity();
-Sleigh.prototype.magicComsumption = Player.getMagicComsuption();
-//Sleigh.prototype.halfHeight = g_images.sleigh.height/2;
-
-//probability testing, not for actual game
-Sleigh.prototype.hits = 0;
 Sleigh.prototype.velY = 1;
+
 
 
 Sleigh.prototype.update = function(du){
@@ -51,17 +51,16 @@ Sleigh.prototype.update = function(du){
 	this.lived++;
 	spatialManager.unregister(this);
 	
-	if(this.magic == 0 && this.cy+this.getRadius() > entityManager.GROUND_HEIGHT && this.lived%40 == 0) {
+	if((this.magic == 0 || this._isDeadNow) && this.cy+this.getRadius() > entityManager.GROUND_HEIGHT && this.lived%40 == 0) {
+		var numGifts = 0;
+		var giftValues = [1,5,25,175]
+		for(var i = 0; i < this.gifts.length;i++){
+			numGifts += this.gifts[i] * giftValues[i];
+		}
+		Player.addGifts(numGifts);
 		entityManager.gameLost();
 		return entityManager.KILL_ME_NOW;
 	}
-	if(util.randRange(1,100) > 99.99){
-		this.hits +=1;
-	}
-	
-    if( this._isDeadNow ) {
-        return entityManager.KILL_ME_NOW;
-    }
 	
 	//Craft snowballs
 	if(this.lived % this.craftSpeed == 0 && this.craftedBalls < this.snowBallsCapacity) this.craftedBalls++;
@@ -252,8 +251,9 @@ Sleigh.prototype.pullGift = function(){
 //Render functions
 Sleigh.prototype.displayAmountGifts = function(ctx) {
 	var numGifts = 0;
+	var giftValues = [1,5,25,175]
 	for(var i = 0; i < this.gifts.length;i++){
-		numGifts += this.gifts[i];
+		numGifts += this.gifts[i] * giftValues[i];
 	}
 	ctx.font = '30px sans-serif';
 	ctx.fillStyle = 'white';

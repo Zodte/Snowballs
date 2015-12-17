@@ -6,7 +6,10 @@ function Upgrade(descr){
 } 
 Upgrade.prototype = new Entity();
 
-Upgrade.prototype.buttons = [{upgrade : "upgradeStrength", canUp : "canUpStrength"},{upgrade : "upgradeSpeed", canUp : "canUpSpeed"}]; 
+Upgrade.prototype.buttons = [{upgrade : "upgradeStrength", canUp : "canUpStrength"},{upgrade : "upgradeSpeed", canUp : "canUpSpeed"}, 
+							 {upgrade : "upgradeMagicFuel", canUp : "canUpMagicFuel"},{upgrade : "upgradeMagnet", canUp : "canUpMagnet"},
+							 {upgrade : "upgradeLuck", canUp : "canUpLuck"},{upgrade : "upgradePiercing", canUp : "canUpPiercing"},
+							 {upgrade : "upgradeSnowBallCraft", canUp : "canUpSnowBallCraft"}]; 
 
 Upgrade.prototype.init = function(){
 	for(var i = 0; i < this.buttons.length; i++){
@@ -21,4 +24,7 @@ Upgrade.prototype.update = function(du){
 Upgrade.prototype.render = function(ctx){
 	ctx.fillStyle = "Brown";
 	ctx.fillRect(0,0,g_canvas.width,g_canvas.height);
+	ctx.fillStyle = 'white';	
+	ctx.font = "32px Arial";
+	ctx.fillText("Gifts "+Player.getTotalGifts() ,300,34);
 }
