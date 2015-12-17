@@ -7,14 +7,14 @@ function Generator(descr) {
 Generator.prototype = new Entity();
 
 Generator.prototype.setFirstEnemy = function(){
-	var list = [0,500,5000,6000,200];
+	var list = [0,500,0,6000,200];
 	for(var i = 0; i < this.enemiesArray.length; i++){
 		this.enemiesArray[i].next = list[i];
 	}
 }
 
 Generator.prototype.curFase = 0;
-Generator.prototype.changeFase = [5000,10000]
+Generator.prototype.changeFase = [10000,15000];
 Generator.prototype.straightGift = {next: 0, 
 									frequency: [[200,260],[180,240],[180,240]],
 									generate: function(){
@@ -31,8 +31,8 @@ Generator.prototype.snakeGift = {next: 500,
 										cy : util.randRange(100,entityManager.GROUND_HEIGHT-30)
 									});
 								}};
-Generator.prototype.bombGift = {next: 5000, 
-								frequency: [[-1],[4000,5000],[2000,3000]],
+Generator.prototype.bombGift = {next: 0, 
+								frequency: [[200,260],[200,260],[2000,3000]],
 								generate: function(){
 									entityManager.generateBombGifts({});
 								}};
@@ -80,7 +80,10 @@ Generator.prototype.update = function(du) {
 	
 	this.lived += MAP_SPEED;
 	
-	if(this.changeFase[this.curFase] >= this.lived) this.curFase++;
+	if(this.changeFase[this.curFase] <= this.lived) {
+		console.log("Fase increse, now: ",this.curFase)
+		this.curFase++;
+	}
 		
 	for(var i = 0; i < this.enemiesArray.length; i++){
 		var enemy = this.enemiesArray[i];
