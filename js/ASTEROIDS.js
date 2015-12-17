@@ -199,7 +199,8 @@ function requestPreloads() {
 		snowManBody : "./images/snowManBody.png",
 		cloudEnemy  : "./images/cloudEnemy.gif",
 		snowBlast 	: "./images/snowBlast.gif",
-		button		: "./images/addButton.gif"
+		button		: "./images/addButton.gif",
+		underUI		: "./images/underUI.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);

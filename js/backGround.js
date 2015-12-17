@@ -3,6 +3,7 @@ function backGround(descr) {
 	
 	this.sprite = this.sprite || g_sprites.bgColor;
 	this.bgMountainsprite = g_sprites.bgMountains;
+	this.underUI = g_sprites.underUI;
 };
 
 backGround.prototype = new Entity();
@@ -28,10 +29,11 @@ backGround.prototype.update = function(du) {
 };
 
 backGround.prototype.render = function(ctx) {
-
+	
 	for(var i = 0; i < 8; i++){
 		this.sprite.drawWrappedCentredAt(ctx,this.sprite.width/2 + i*this.sprite.width, this.sprite.height/2,this.rotation);
 	}
 	this.bgMountainsprite.drawAt(ctx,this.cx,this.sprite.height/2);
+	this.underUI.drawWrappedCentredAt(ctx,this.cx/4, this.cy+55, this.rotation);
 };
 

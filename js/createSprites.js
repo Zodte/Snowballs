@@ -19,6 +19,7 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.blueStardust = new Sprite(images.blueStardust);
 	sprites.goldStardust = new Sprite(images.goldStardust);
 	sprites.UI = new Sprite(images.UI);
+	sprites.underUI = new Sprite(images.underUI);
 	
 	//Animated Sprites
 	sprites.sleigh = [];
