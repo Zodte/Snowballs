@@ -133,6 +133,10 @@ generateSnowMan: function(descr) {
 	this._enemies.push(new EnemySnowman(descr));
 },
 
+generateCloudEnemy: function(descr) {
+	this._enemies.push(new CloudEnemy(descr));
+},
+
 generatePowerUp : function(descr) {
     this._powerups.push(new PowerUp(descr));
 },

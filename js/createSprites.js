@@ -34,6 +34,8 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.homingGift = [];
 	sprites.homingGiftBackward = [];
 	sprites.snowManHead = [];
+	sprites.cloudEnemy = [];
+	sprites.cloudEnemyBack = [];
 	sprites.snowBlastExplosion = [];
 	sprites.addButton = [];
 	
@@ -100,7 +102,13 @@ function createSprites(images, sprites, animatedSprites) {
 		sprites.snowManHead.push(new Sprite(images.snowManHead, 40*i, 0, 39, 29));
 	}
 	
+	for(i = 0; i < 4; i++) {
+		sprites.cloudEnemy.push(new Sprite(images.cloudEnemy, 69*i, 3, 69, 55));
+	}
 	
+	for(i = 4; i < 8; i++) {
+		sprites.cloudEnemyBack.push(new Sprite(images.cloudEnemy, 69*i, 3, 69, 55));
+	}
 	
 	//Animation Only Sprites
 

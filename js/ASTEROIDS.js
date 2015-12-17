@@ -197,6 +197,7 @@ function requestPreloads() {
 		homingGift  : "./images/homingGift.png",
 		snowManHead : "./images/snowManHead.gif",
 		snowManBody : "./images/snowManBody.png",
+		cloudEnemy  : "./images/cloudEnemy.gif",
 		snowBlast 	: "./images/snowBlast.gif",
 		button		: "./images/addButton.gif"
     };

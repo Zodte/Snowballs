@@ -97,7 +97,7 @@ EnemySnowman.prototype.computeSprite = function(du) {
 	if(this.spriteIndex >= 3) {
 		this.spriteIndex = 0;
 	}
-}
+};
 
 EnemySnowman.prototype.render = function(ctx) {
 
