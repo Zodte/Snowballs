@@ -10,8 +10,8 @@ _strength: {base 	: 5,
 			},
 _speed:    {base	: 3.00,
 			level 	: 0,
-			levels	: [1,1.233,1.366,1.5],
-			cost	: [30,300,900,"Maxed"]
+			levels	: [1,1.15,1.3,1.45,1.6],
+			cost	: [30,300,500,900,"Maxed"]
 			},
 _magicCapacity: {base	: 100,
 				 level	: 0,
@@ -72,49 +72,41 @@ buyFor: function(x){
 upgradeStrength: function(){
 	this.buyFor(this._strength.cost[this._strength.level]);
 	this._strength.level++;	
-	console.log("Strength++")
 },
 
 upgradeSpeed: function(){
 	this.buyFor(this._speed.cost[this._speed.level]);
 	this._speed.level++;
-	console.log(this._speed.level)
 },
 
 upgradeMagicFuel: function(){
 	this.buyFor(this._magicCapacity.cost[this._magicCapacity.level]);
 	this._magicCapacity.level++;
-	console.log(this._magicCapacity.level)
 },
 
 upgradeMagnet: function(){
 	this.buyFor(this._magnetRadius.cost[this._magnetRadius.level]);
 	this._magnetRadius.level++;
-	console.log(this._magnetRadius.level)
 },
 
 upgradeLuck: function(){
 	this.buyFor(this._luck.cost[this._luck.level]);
 	this._luck.level++;
-	console.log(this._luck.level)
 },
 
 upgradePiercing: function(){
 	this.buyFor(this._piercing.cost[this._piercing.level]);
 	this._piercing.level++;
-	console.log(this._piercing.level)
 },
 
 upgradeSnowBallCraft: function(){
 	this.buyFor(this._snowBallCraft.cost[this._snowBallCraft.level]);
 	this._snowBallCraft.level++;
-	console.log(this._snowBallCraft.level)
 },
 
 upgradeSnowBallMagicRadius: function(){
 	this.buyFor(this._snowBallMagicRadius.cost[this._snowBallMagicRadius.level]);
 	this._snowBallMagicRadius.level++;
-	console.log(this._snowBallMagicRadius.level)
 },
 
 

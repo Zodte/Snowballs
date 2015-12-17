@@ -5,7 +5,9 @@ function Sleigh(descr){
 	this.sprite = this.sprites[0];
 	this.scoreGiftSprite = g_sprites.scoreGift;
 	this.scale = 0.45;
+
 	this.speed = Player.getSpeed();
+	this.mapSpeed = 0.4 + Player.getSpeed()-3 ;
 	
 	//Magic
 	this.iniMagic = Player.getMagicCapacity();
@@ -25,6 +27,7 @@ Sleigh.prototype.BACKWARD = 'A'.charCodeAt(0);
 Sleigh.prototype.UP = 'W'.charCodeAt(0);
 Sleigh.prototype.DOWN = 'S'.charCodeAt(0);
 Sleigh.prototype.FIRE = ' '.charCodeAt(0);
+Sleigh.prototype.SUPERSPEED = '1'.charCodeAt(0);
 
 Sleigh.prototype.bugged = true;
 
@@ -51,6 +54,9 @@ Sleigh.prototype.update = function(du){
 	this.lived++;
 	spatialManager.unregister(this);
 	
+	//Set global map speed
+	this.setMapSpeed();
+	
 	if((this.magic == 0 || this._isDeadNow) && this.cy+this.getRadius() > entityManager.GROUND_HEIGHT && this.lived%40 == 0) {
 		var numGifts = 0;
 		var giftValues = [1,5,25,175]
@@ -67,6 +73,7 @@ Sleigh.prototype.update = function(du){
 	
 	//Moving
 	this.movement(du);
+	if(eatKey(this.SUPERSPEED)) MAP_SPEED = 4;
 	
 	this.sprite = this.sprites[0];
 	
@@ -188,6 +195,16 @@ Sleigh.prototype.throwSnowball = function(){
 		this.reloading = this.reloadTime;
 		this.craftedBalls--;
     }
+};
+
+Sleigh.prototype.setMapSpeed = function(){
+	if(Math.abs(MAP_SPEED - this.mapSpeed) <= 0.01){
+		MAP_SPEED = this.mapSpeed;
+	}else if(MAP_SPEED < this.mapSpeed){
+		MAP_SPEED += 0.01;
+	}else{
+		MAP_SPEED -= 0.01;
+	}
 };
 
 Sleigh.prototype.fire = function(){
