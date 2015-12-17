@@ -55,19 +55,22 @@ EnemySnowman.prototype.headDegree = function() {
 
 EnemySnowman.prototype.fire = function (){
 	var pos = entityManager.getSleighPos();
-	if(this.spriteIndex == 2){
+	if(this.spriteIndex == 2) {
 		var dx = pos.posX - this.cx;
 		var dy = pos.posY-(Math.abs(dx)/4) - this.cy;
 		var mag = Math.sqrt(dx*dx + dy*dy);
-		var strength = this.oriLife/3;
-		var velX = (dx/mag)*strength;
-		var velY = (dy/mag)*strength;
+		var xmag = -Math.asin(dy/mag);
+		if(pos.posX < this.cx-pos.posX) {
+			var strength = this.oriLife/3;
+			var velX = (dx/mag)*strength;
+			var velY = (dy/mag)*strength;
 		
-		this.damage = strength * 2;
-		entityManager.generateEnemySnowball(
-			this.cx, this.cy+4,
-			velX,velY,this.damage
-		);
+			this.damage = strength * 2;
+			entityManager.generateEnemySnowball(
+				this.cx, this.cy+4,
+				velX,velY,this.damage
+			);
+		}
 	}
 };
 
