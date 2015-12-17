@@ -48,7 +48,7 @@ EnemySnowman.prototype.headDegree = function() {
 	var dy = pos.posY-(Math.abs(dx)/3) - this.cy;
 	var mag = Math.sqrt(dx * dx + dy * dy);
 	var xmag = -Math.asin(dy/mag);
-	if(xmag <= 0.8){
+	if(xmag <= 1){
 		this.rotation = xmag;
 	}
 };
@@ -59,7 +59,6 @@ EnemySnowman.prototype.fire = function (){
 		var dx = pos.posX - this.cx;
 		var dy = pos.posY-(Math.abs(dx)/4) - this.cy;
 		var mag = Math.sqrt(dx*dx + dy*dy);
-		var xmag = -Math.asin(dy/mag);
 		if(pos.posX < this.cx-pos.posX) {
 			var strength = this.oriLife/3;
 			var velX = (dx/mag)*strength;
