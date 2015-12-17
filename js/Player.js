@@ -1,6 +1,7 @@
 "use strict";
 
 var Player = {
+	
 //Private Data
 _strength: {base 	: 5,
 			level 	: 0,
@@ -48,13 +49,16 @@ _snowBallsCapacity: {base : 4,
 					cost:	[10,100,200,400,800,99999]
 					},
 _snowBallMagicRadius: 	{base	:50,
-						 level	: 5,
-						 levels : [1,2,3,4,5,6]
+						 level	: 0,
+						 levels : [1,2,3,4,5,6],
+						 cost : [10,100,200,400,800,99999]
 						},
 _mojoBars: 1,
 
 
-_totalGifts: 3000,
+_totalGifts: 0,
+
+allUpgrades: [this._strength, this._speed, this._magicCapacity, this._magnetRadius, this._luck, this._piercing, this._snowBallCraft, this._snowBallMagicRadius],
 
 
 buyFor: function(x){
@@ -102,6 +106,12 @@ upgradeSnowBallCraft: function(){
 	this.buyFor(this._snowBallCraft.cost[this._snowBallCraft.level]);
 	this._snowBallCraft.level++;
 	console.log(this._snowBallCraft.level)
+},
+
+upgradeSnowBallMagicRadius: function(){
+	this.buyFor(this._snowBallMagicRadius.cost[this._snowBallMagicRadius.level]);
+	this._snowBallMagicRadius.level++;
+	console.log(this._snowBallMagicRadius.level)
 },
 
 
@@ -163,6 +173,14 @@ canUpSnowBallCraft: function(){
 	}
 },
 
+canUpSnowBallMagicRadius: function(){
+	if(this._snowBallMagicRadius.cost[this._snowBallMagicRadius.level] <= this._totalGifts && this._snowBallMagicRadius.level < this._snowBallMagicRadius.levels.length-1){
+		return true;
+	}else{
+		return false;
+	}
+},
+
 //Getters------------------------------
 
 getDamage: function(){
@@ -215,6 +233,14 @@ getSnowBallMagicRadius: function(){
 
 getTotalGifts: function(){
 	return this._totalGifts;
+},
+
+getCostAndLevel: function(){
+	var costAndLevel = [];
+	for(var i = 0; i < this.allUpgrades.length; i++){
+		//costAndLevel.push([this.allUpgrades[i].cost[this.allUpgrades[i].level],this.allUpgrades[i].level,this.allUpgrades.levels.length])
+	}
+	return costAndLevel;
 },
 
 addGifts: function(gifts){
