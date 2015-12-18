@@ -5,6 +5,7 @@ function CloudEnemy(descr) {
 	this.cloudSpriteBack = g_sprites.cloudEnemyBack;
 	
 	this.spriteIndex = 0;
+	this.sprites = this.cloudSprite;
 	this.sprite = this.cloudSprite[this.spriteIndex];
 	
 	this.oriScale = this.sprite.scale
@@ -13,6 +14,9 @@ function CloudEnemy(descr) {
 	this.oriLife = util.randRange(20,24);
 	this.life = this.oriLife;
 	this.damage = this.oriLife;
+	
+	this.vel = 0.04;
+	this.maxVel = 2;
 	
 	this.decideDirection();
 };
@@ -24,8 +28,8 @@ CloudEnemy.prototype.velY = 0;
 
 
 CloudEnemy.prototype.decideDirection = function(){
-	this.gx = util.randRange(50,g_canvas.width/2 - 50);
-	this.gy = util.randRange(50,entityManager.GROUND_HEIGTH-50);
+	this.gx = util.randRange(50,g_canvas.width - 50);
+	this.gy = util.randRange(50,entityManager.GROUND_HEIGHT-50);
 }
 
 CloudEnemy.prototype.update = function(du) {
@@ -36,25 +40,33 @@ CloudEnemy.prototype.update = function(du) {
 	
 	var difX = this.cx - this.gx;
 	var difY = this.cy - this.gy;
-	if(Math.abs(difX) <= 10 && Math.abs(difY) < 10) this.decideDirection();
-	if(difX < -10){ this.velX += 0.01; }
-	else if(difX > 10){ this.velX -= 0.01; }
-	if(difY < -10) { this.velY += 0.01; }
-	else if(difY > 10){ this.velY -= 0.01; }
+	if(Math.abs(difX) <= 50 && Math.abs(difY) < 50) this.decideDirection();
+		
+	if(difX < 0 && this.velX < this.maxVel){ this.velX += this.vel; }
+	else if(difX > 0 && this.velX > -this.maxVel){ this.velX -= this.vel; }
 	
+	if(difY < 0 && this.velY < this.maxVel) { this.velY += this.vel; }
+	else if(difY > 0 && this.velY > -this.maxVel){ this.velY -= this.vel; }
 	
 	this.cx += this.velX;
 	this.cy += this.velY;
+	
+	var pos = entityManager.getSleighPos();
+	if(this.cx < pos.posX){
+		this.sprites = this.cloudSpriteBack;
+	}else{
+		this.sprites = this.cloudSprite;
+	}
 
 	spatialManager.register(this);
 };
 
 CloudEnemy.prototype.getRadius = function() {
-	return this.sprite.scale * (this.sprite.width/2);
+	return this.sprite.scale * (this.sprite.width/2) * 0.6;
 };
 
 CloudEnemy.prototype.render = function(ctx) {
-	//this.sprite = this.sprites[this.spriteIndex];
+	this.sprite = this.sprites[this.spriteIndex];
 	this.sprite.scale = this.scale;
 	this.sprite.drawCentredAt(
 	ctx, this.cx, this.cy, this.rotation
