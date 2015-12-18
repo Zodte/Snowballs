@@ -73,7 +73,7 @@ Sleigh.prototype.update = function(du){
 	
 	//Moving
 	this.movement(du);
-	if(eatKey(this.SUPERSPEED)) MAP_SPEED = 4;
+	if(eatKey(this.SUPERSPEED)) MAP_SPEED = 50;
 	
 	this.sprite = this.sprites[0];
 	

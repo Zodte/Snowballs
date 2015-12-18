@@ -93,15 +93,15 @@ Generator.prototype.update = function(du) {
 		console.log("Fase increse, now: ",this.curFase)
 		this.curFase++;
 	}
-		
-	for(var i = 0; i < this.enemiesArray.length; i++){
-		var enemy = this.enemiesArray[i];
-		if(enemy.next < this.lived && enemy.frequency[this.curFase] != -1) {
-			enemy.next = this.lived + util.randRange(enemy.frequency[this.curFase][0],enemy.frequency[this.curFase][1]);
-			enemy.generate();
+	if(MAP_SPEED < 5) {	
+		for(var i = 0; i < this.enemiesArray.length; i++){
+			var enemy = this.enemiesArray[i];
+			if(enemy.next < this.lived && enemy.frequency[this.curFase] != -1) {
+				enemy.next = this.lived + util.randRange(enemy.frequency[this.curFase][0],enemy.frequency[this.curFase][1]);
+				enemy.generate();
+			}
 		}
 	}
-	
 	if(this.frontTree.next < this.lived) {
 		this.frontTree.next = this.lived+Math.floor(util.randRange(50,g_canvas.width*0.5));
 	} else if (this.frontTree.next == this.lived) {
