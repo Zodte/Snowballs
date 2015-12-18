@@ -275,6 +275,12 @@ playAgain: function(){
 	this._generateBgs();
 },
 
+btnsDecideColor: function(){
+	this._buttons.forEach(function(decide){
+		decide.decideSprites();
+	});
+},
+
 resetAll: function(){
 	this._generator.forEach(function(enemy){
         enemy.kill();

@@ -56,7 +56,7 @@ Button.prototype.clicked = function(){
 	if(Player[this.upCall.canUp]()){
 		Player[this.upCall.upgrade]();
 	}
-	this.decideSprites();
+	entityManager.btnsDecideColor();
 };
 
 
