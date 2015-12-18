@@ -44,7 +44,7 @@ Generator.prototype.homingGift = {next: 6000,
 										cy : util.randRange(30,entityManager.GROUND_HEIGHT-30)
 									});
 								}};
-Generator.prototype.enemySnowMan = {next: 200,
+Generator.prototype.enemySnowMan = {next: 1000,
 								frequency: [[200,260],[200,250],[180,240]],
 								generate: function() {
 									entityManager.generateSnowMan({

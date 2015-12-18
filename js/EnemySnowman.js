@@ -26,8 +26,9 @@ EnemySnowman.prototype.update = function(du) {
 	this.headDegree();
 
 	// shoot
+	if(this.reloadCount != this.reload) {this.reloadCount++;}
 	this.fire();
-
+	
 	//handle collision
 
 	var hitEntity = this.findHitEntity();
@@ -53,11 +54,13 @@ EnemySnowman.prototype.headDegree = function() {
 	}
 };
 
-EnemySnowman.prototype.fire = function (){
+EnemySnowman.prototype.reloadCount = 0;
+EnemySnowman.prototype.reload = 90;
+EnemySnowman.prototype.fire = function() {
 	var pos = entityManager.getSleighPos();
-	if(this.spriteIndex == 2) {
+	if(this.spriteIndex == 2 && this.reloadCount == this.reload) {
 		var dx = pos.posX - this.cx;
-		var dy = pos.posY-(Math.abs(dx)/4) - this.cy;
+		var dy = pos.posY-(Math.abs(dx)/7) - this.cy+4;
 		var mag = Math.sqrt(dx*dx + dy*dy);
 		if(pos.posX < this.cx-pos.posX) {
 			var strength = this.oriLife/3;
@@ -69,6 +72,7 @@ EnemySnowman.prototype.fire = function (){
 				this.cx, this.cy+4,
 				velX,velY,this.damage
 			);
+			this.reloadCount = 0;
 		}
 	}
 };
@@ -86,7 +90,7 @@ EnemySnowman.prototype.getRadius = function() {
 	return (this.headSprite[this.spriteIndex].width/2) * this.scale;
 };
 
-EnemySnowman.prototype.delay = 10;
+EnemySnowman.prototype.delay = 40;
 EnemySnowman.prototype.elapsedDelay = 0;
 EnemySnowman.prototype.computeSprite = function(du) {
     this.elapsedDelay += du;
