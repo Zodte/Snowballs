@@ -104,11 +104,11 @@ function createSprites(images, sprites, animatedSprites) {
 	}
 	
 	for(i = 0; i < 4; i++) {
-		sprites.cloudEnemy.push(new Sprite(images.cloudEnemy, 69*i, 3, 69, 55));
+		sprites.cloudEnemy.push(new Sprite(images.cloudEnemy, 70*i, 3, 69, 55));
 	}
 	
 	for(i = 4; i < 8; i++) {
-		sprites.cloudEnemyBack.push(new Sprite(images.cloudEnemy, 69*i, 3, 69, 55));
+		sprites.cloudEnemyBack.push(new Sprite(images.cloudEnemy, 70*i, 3, 69, 55));
 	}
 	
 	//Animation Only Sprites
