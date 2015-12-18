@@ -53,10 +53,13 @@ _snowBallMagicRadius: 	{base	:50,
 						 levels : [1,2,3,4,5,6],
 						 cost : [10,100,200,400,800,"Maxed"]
 						},
-_mojoBars: 1,
+_mojoBars: {base : 1,
+			level : 0,
+			levels : [1,2,3,],
+			cost : [400,960,"Maxed"]
+			},
 
-
-_totalGifts : 10000,
+_totalGifts : 0,
 
 
 deferredSetup: function(){
@@ -211,7 +214,7 @@ getPiercing: function(){
 },
 
 getMojoBars: function(){
-	return this._mojoBars;
+	return this._mojoBars.base * this._mojoBars.levels[this._mojoBars.level];
 },
 
 getSnowBallCraftSpeed: function(){

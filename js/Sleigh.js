@@ -14,9 +14,14 @@ function Sleigh(descr){
 	this.magic = Player.getMagicCapacity();
 	this.magicComsumption = Player.getMagicComsuption();
 	
+	this.mojoLvel = Player.getMojoBars();
+	this.mojo = 150;
+	
 	//Reloading
 	this.craftSpeed = Player.getSnowBallCraftSpeed();
     this.snowBallsCapacity = Player.getSnowBallCapacity();
+	
+	this.gifts = [0,0,0,0];
 }
 
 Sleigh.prototype = new Entity();
@@ -35,7 +40,7 @@ Sleigh.prototype.bugged = true;
 
 
 Sleigh.prototype.rotation = 0;
-Sleigh.prototype.gifts = [0,0,0,0];
+
 
 //Shooting
 Sleigh.prototype.reloadTime = 0.36*SECS_TO_NOMINALS;
@@ -73,7 +78,8 @@ Sleigh.prototype.update = function(du){
 	
 	//Moving
 	this.movement(du);
-	if(eatKey(this.SUPERSPEED)) MAP_SPEED = 50;
+	
+	this.fireSpecials();
 	
 	this.sprite = this.sprites[0];
 	
@@ -197,6 +203,15 @@ Sleigh.prototype.throwSnowball = function(){
     }
 };
 
+Sleigh.prototype.fireSpecials = function(){
+	if(this.mojo >= 50){
+		if(eatKey(this.SUPERSPEED)){
+			MAP_SPEED = 4;
+			this.mojo -= 50;
+		}
+	}
+};
+
 Sleigh.prototype.setMapSpeed = function(){
 	if(Math.abs(MAP_SPEED - this.mapSpeed) <= 0.01){
 		MAP_SPEED = this.mapSpeed;
@@ -245,6 +260,11 @@ Sleigh.prototype.addGifts = function(x) {
 	this.gifts[x] += 1;
 	this.delay = 6;
 	this.scoreGiftIndex = 1;
+};
+
+Sleigh.prototype.addMojo = function(x) {
+	this.mojo += x;
+	if(this.mojo > this.mojoLevel * 50) this.mojo = this.mojoLevel;
 };
 
 //Collision function
@@ -299,6 +319,10 @@ Sleigh.prototype.renderMagicBar = function(ctx){
 
 };
 
+Sleigh.prototype.renderMojoBar = function(ctx){
+	ctx.fillRect(81, 550,(this.mojo/150*200),9)
+};
+
 Sleigh.prototype.displayCraftedSnowBalls = function(ctx){
 	for(var i = 0; i < this.craftedBalls; i++){
 		g_sprites.snowball.drawCentredAt(ctx,10+i*4,10)
@@ -307,6 +331,7 @@ Sleigh.prototype.displayCraftedSnowBalls = function(ctx){
 
 Sleigh.prototype.render = function(ctx){
 	this.renderMagicBar(ctx);
+	this.renderMojoBar(ctx);
 	this.renderGifts(ctx);
 	this.displayAmountGifts(ctx);
 	this.displayCraftedSnowBalls(ctx);
