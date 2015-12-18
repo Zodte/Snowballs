@@ -9,7 +9,7 @@ function CloudEnemy(descr) {
 	this.sprite = this.cloudSprite[this.spriteIndex];
 	
 	this.oriScale = this.sprite.scale
-	this.scale = this.oriScale/2;
+	this.scale = 0.6;
 	
 	this.oriLife = util.randRange(20,24);
 	this.life = this.oriLife;
@@ -61,11 +61,31 @@ CloudEnemy.prototype.update = function(du) {
 	spatialManager.register(this);
 };
 
+CloudEnemy.prototype.getSnowballHit = function(damage){
+	this.life -= damage;
+	if(this.life <= 0){
+		this.life = 0;
+		numGifts = entityManager.getLoot(4,this.getPos());
+		this.kill();
+	}
+};
+
 CloudEnemy.prototype.getRadius = function() {
 	return this.sprite.scale * (this.sprite.width/2) * 0.6;
 };
 
+CloudEnemy.prototype.createStarDust = function(){
+	entityManager.generateStardust({
+		cx 	: this.cx,
+		cy 	: util.randRange(this.cy - this.getRadius(), this.cy+this.getRadius()),
+		velX: -this.velX,
+		velY: this.velY,
+		color: "rgba(248,248,255,0.2)"
+	})
+}
+
 CloudEnemy.prototype.render = function(ctx) {
+	if(util.randRange(0,1) > 0.7)	this.createStarDust();
 	this.sprite = this.sprites[this.spriteIndex];
 	this.sprite.scale = this.scale;
 	this.sprite.drawCentredAt(
