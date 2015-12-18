@@ -25,6 +25,10 @@ function Sleigh(descr){
 }
 
 Sleigh.prototype = new Entity();
+
+Sleigh.prototype.shootSound = new Audio( 
+	"sounds/Laser_shoot.wav"
+);
 //Controls ============================
 
 Sleigh.prototype.FOWARD = 'D'.charCodeAt(0);
@@ -200,6 +204,7 @@ Sleigh.prototype.throwSnowball = function(){
 			velX,velY,damage);
 		this.reloading = this.reloadTime;
 		this.craftedBalls--;
+		this.shootSound.play();
     }
 };
 
