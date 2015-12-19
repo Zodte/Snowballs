@@ -62,7 +62,7 @@ EnemySnowman.prototype.fire = function() {
 		var dx = pos.posX - this.cx;
 		var dy = pos.posY-(Math.abs(dx)/7) - this.cy+4;
 		var mag = Math.sqrt(dx*dx + dy*dy);
-		if(pos.posX < this.cx-pos.posX) {
+		if(pos.posX < this.cx-50) {
 			var strength = this.oriLife/3;
 			var velX = (dx/mag)*strength;
 			var velY = (dy/mag)*strength;
