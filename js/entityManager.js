@@ -352,26 +352,17 @@ update: function(du) {
     }
 },
 
-renderGameLost: function(ctx){
-	ctx.font = '40px sans-serif';
-	ctx.fillStyle = 'white';
-	ctx.fillText("You Lost", g_canvas.width/2-80, g_canvas.height/2);
-	ctx.font = '20px sans-serif';
-	ctx.fillText("Press 'T' to play Again", g_canvas.width/2-100, g_canvas.height/2+30);
-
-},
-
 //RENDER-----------------------------------------------------------------------------------------------
 renderStartGame: function(ctx){
-    /*
-	ctx.font = '40px sans-serif';
+    /*ctx.font = '40px sans-serif';
     ctx.fillStyle = 'white';
-    ctx.fillText("Welcome to R-Type", g_canvas.width/2-150, g_canvas.height/2);
+    ctx.fillText("Welcome to Snowballs", g_canvas.width/2-150, g_canvas.height/2);
     ctx.font = '20px sans-serif';
     ctx.fillText("Press 'T' to start the game", g_canvas.width/2-100, g_canvas.height/2+30);
 	*/
 	var sprites = g_sprites.mainScreen;
-	sprites.drawAt(ctx, 0, 0);
+	sprites.drawAt(ctx,0,0);
+	
 },
 
 renderGameWon: function(ctx){
@@ -401,13 +392,24 @@ render: function(ctx) {
         }
         debugY += 10;
     }
-	
-	if(this.isGameLost){
-		this.renderGameLost(ctx);	
-	}
 
     if(!entityManager.gameHasStarted){
         this.renderStartGame(ctx);
+    }
+
+    if(entityManager.gameIsWon){
+        this.renderGameWon(ctx);
+    }
+}
+
+//----------------------------------------------------------------------------------------------------------
+
+}
+
+// Some deferred setup which needs the object to have been created first
+entityManager.deferredSetup();
+
+   this.renderStartGame(ctx);
     }
 
     if(entityManager.gameIsWon){

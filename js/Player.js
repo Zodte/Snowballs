@@ -59,16 +59,48 @@ _mojoBars: {base : 1,
 			cost : [400,960,"Maxed"]
 			},
 
-_totalGifts : 0,
+_totalGifts : 100,
 
 
 deferredSetup: function(){
 	this._allUpgrades = [this._strength, this._speed, this._magicCapacity, this._magnetRadius, 
 						 this._luck, this._piercing, this._snowBallCraft, this._snowBallMagicRadius]
+	if(typeof(Storage) !== "undefined") {
+		this._totalGifts = parseInt(localStorage.totalGifts,10) || 0;
+		for(var i = 0; i < this._allUpgrades.length; i++){
+			this._allUpgrades[i].level = parseInt(localStorage[i],10) || 0;
+		}
+	} else {
+		// Sorry! No Web Storage support..
+	}					 
 },
 
 buyFor: function(x){
 	this._totalGifts -= x;
+},
+
+saveGame: function(){
+	if(typeof(Storage) !== "undefined") {
+		localStorage.totalGifts = this._totalGifts;
+		for(var i = 0; i < this._allUpgrades.length; i++){
+			localStorage[i] = this._allUpgrades[i].level;
+			console.log("localStorage",i,localStorage[i])
+		}
+	} else {
+		// Sorry! No Web Storage support..
+	}
+},
+
+clearGame: function(){
+	if(typeof(Storage) !== "undefined") {
+		localStorage.clear();
+		this._totalGifts = 0;
+		for(var i = 0; i < this._allUpgrades.length; i++){
+			this._allUpgrades[i].level = 0;
+		}
+	} else {
+		// Sorry! No Web Storage support..
+	}
 },
 //Upgrades-----------------------------
 

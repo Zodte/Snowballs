@@ -73,6 +73,7 @@ Sleigh.prototype.update = function(du){
 			numGifts += this.gifts[i] * giftValues[i];
 		}
 		Player.addGifts(numGifts);
+		Player.saveGame();
 		entityManager.gameLost();
 		return entityManager.KILL_ME_NOW;
 	}

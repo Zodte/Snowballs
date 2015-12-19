@@ -18,7 +18,7 @@ Upgrade.prototype.buttons = [{upgrade : "upgradeStrength", canUp : "canUpStrengt
 
 Upgrade.prototype.init = function(){
 	for(var i = 0; i < this.buttons.length; i++){
-		entityManager.generateAddButton({cx: 200, cy: 198+i*30, upCall : this.buttons[i]});
+		entityManager.generateAddButton({cx: 220, cy: 198+i*30, upCall : this.buttons[i]});
 	}
 }
 
@@ -31,17 +31,24 @@ Upgrade.prototype.fillTexts = function(ctx){
 	ctx.font = "12px Arial";
 	for(var i = 0; i < this.buttons.length; i++){
 		ctx.fillStyle = "white";
-		ctx.fillText(this.buttons[i].title, 10, 202+i*30);
-		ctx.fillText(costAndLevel[i][0], 220,202+i*30);	
+		ctx.fillText(this.buttons[i].title, 30, 202+i*30);
+		ctx.fillText(costAndLevel[i][0], 240,202+i*30);	
 		for(var j = 0; j < costAndLevel[i][2]; j++){
 			if(costAndLevel[i][1] > j){
 				ctx.fillStyle = "green"
 			}else{
 				ctx.fillStyle = "white"
 			}
-			ctx.fillRect(130+ 7*j,194+i*30,6,10);
+			ctx.fillRect(150 + 7*j,194+i*30,6,10);
 		}
 	}
+};
+
+
+Upgrade.prototype.renderTexts = function(ctx){
+	ctx.fillStyle = 'white';
+	ctx.font = '20px sans-serif';
+	ctx.fillText("Press 'T' to play Again", g_canvas.width/2+100, g_canvas.height-50);
 };
 
 Upgrade.prototype.render = function(ctx){
@@ -51,4 +58,5 @@ Upgrade.prototype.render = function(ctx){
 	ctx.font = "32px Arial";
 	ctx.fillText("Gifts "+Player.getTotalGifts() ,300,34);
 	this.fillTexts(ctx);
+	this.renderTexts(ctx)
 }

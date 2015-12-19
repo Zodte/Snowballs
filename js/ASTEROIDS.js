@@ -102,10 +102,10 @@ var KEY_0 = keyCode('0');
 var KEY_1 = keyCode('1');
 var KEY_2 = keyCode('2');
 
-var KEY_K = keyCode('K');
 
 var PLAY_AGAIN = keyCode('T');
 var MUTE_KEY = keyCode('M');
+var CLEAR_DATA = keyCode('K');
 
 function processDiagnostics() {
 
@@ -120,9 +120,9 @@ function processDiagnostics() {
 
     if (eatKey(KEY_HALT)) entityManager.haltShips();
 
-    if (eatKey(KEY_RESET)) entityManager.resetShips();
-
     if (eatKey(KEY_0)) entityManager.toggleRocks();
+	
+	if(eatKey(CLEAR_DATA)) Player.clearGame();
 
     /*if (eatKey(KEY_1)) entityManager.generateShip({
         cx : g_mouseX,
@@ -131,9 +131,6 @@ function processDiagnostics() {
         sprite : g_sprites.ship[2],
         sprites : g_sprites.ship
     });*/
-
-    if (eatKey(KEY_K)) entityManager.killNearestShip(
-        g_mouseX, g_mouseY);
 	
 	if(eatKey(PLAY_AGAIN) && entityManager.isPlayerDead()) {
         entityManager.playAgain();
@@ -201,7 +198,7 @@ function requestPreloads() {
 		snowBlast 	: "./images/snowBlast.gif",
 		button		: "./images/addButton.gif",
 		underUI		: "./images/underUI.png",
-		mainScreen  : "./images/mainScreen.png"
+		mainsScreen : "./images/mainsScreen.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
