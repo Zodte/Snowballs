@@ -363,11 +363,15 @@ renderGameLost: function(ctx){
 
 //RENDER-----------------------------------------------------------------------------------------------
 renderStartGame: function(ctx){
-    ctx.font = '40px sans-serif';
+    /*
+	ctx.font = '40px sans-serif';
     ctx.fillStyle = 'white';
     ctx.fillText("Welcome to R-Type", g_canvas.width/2-150, g_canvas.height/2);
     ctx.font = '20px sans-serif';
     ctx.fillText("Press 'T' to start the game", g_canvas.width/2-100, g_canvas.height/2+30);
+	*/
+	var sprites = g_sprites.mainScreen;
+	sprites.drawAt(ctx, 0, 0);
 },
 
 renderGameWon: function(ctx){

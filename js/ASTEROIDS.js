@@ -200,7 +200,8 @@ function requestPreloads() {
 		cloudEnemy  : "./images/cloudEnemy.gif",
 		snowBlast 	: "./images/snowBlast.gif",
 		button		: "./images/addButton.gif",
-		underUI		: "./images/underUI.png"
+		underUI		: "./images/underUI.png",
+		mainScreen  : "./images/mainScreen.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
