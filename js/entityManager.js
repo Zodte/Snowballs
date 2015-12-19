@@ -409,18 +409,4 @@ render: function(ctx) {
 // Some deferred setup which needs the object to have been created first
 entityManager.deferredSetup();
 
-   this.renderStartGame(ctx);
-    }
-
-    if(entityManager.gameIsWon){
-        this.renderGameWon(ctx);
-    }
-}
-
-//----------------------------------------------------------------------------------------------------------
-
-}
-
-// Some deferred setup which needs the object to have been created first
-entityManager.deferredSetup();
 
