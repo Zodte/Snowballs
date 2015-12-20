@@ -8,13 +8,30 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.bgColor = new Sprite(images.bgColor);
 	sprites.bgMountains = new Sprite(images.bgMountains);
 	sprites.bgMountains.scale = 1.5;
+	
 	sprites.straightGift = new Sprite(images.straightGift);
-	sprites.straightGift.scale = 0.5;
+	sprites.straightGift.scale = 0.5;	
+	sprites.straightGift2 = new Sprite(images.straightGift2);
+	sprites.straightGift2.scale = 0.5;	
+	sprites.straightGift3 = new Sprite(images.straightGift3);
+	sprites.straightGift3.scale = 0.5;
+	
 	sprites.snakeGift = new Sprite(images.snakeGift);
-	sprites.snakeGift.scale = 0.7;
+	sprites.snakeGift.scale = 0.7;	
+	sprites.snakeGift2 = new Sprite(images.snakeGift2);
+	sprites.snakeGift2.scale = 0.7;	
+	sprites.snakeGift3 = new Sprite(images.snakeGift3);
+	sprites.snakeGift3.scale = 0.7;
+	
 	sprites.bombGift = new Sprite(images.bombGift);
 	sprites.bombGift.scale = 0.5;
+	sprites.bombGift2 = new Sprite(images.bombGift2);
+	sprites.bombGift2.scale = 0.5;
+	sprites.bombGift3 = new Sprite(images.bombGift3);
+	sprites.bombGift3.scale = 0.5;
+	
 	sprites.snowManBody = new Sprite(images.snowManBody);
+	
 	sprites.blueStardust = new Sprite(images.blueStardust);
 	sprites.goldStardust = new Sprite(images.goldStardust);
 	sprites.UI = new Sprite(images.UI);
@@ -34,10 +51,20 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.gifts = [];
 	sprites.scoreGift = [];
 	sprites.homingGift = [];
+	sprites.homingGift2 = [];
+	sprites.homingGift3 = [];
 	sprites.homingGiftBackward = [];
+	sprites.homingGiftBackward2 = [];
+	sprites.homingGiftBackward3 = [];
 	sprites.snowManHead = [];
+	sprites.snowManHead2 = [];
+	sprites.snowManHead3 = [];
 	sprites.cloudEnemy = [];
+	sprites.cloudEnemy2 = [];
+	sprites.cloudEnemy3 = [];
 	sprites.cloudEnemyBack = [];
+	sprites.cloudEnemyBack2 = [];
+	sprites.cloudEnemyBack3 = [];
 	sprites.snowBlastExplosion = [];
 	sprites.addButton = [];
 	
@@ -99,19 +126,53 @@ function createSprites(images, sprites, animatedSprites) {
 	for(i = 8; i<16; i++){
 		sprites.homingGiftBackward.push(new Sprite(images.homingGift, 20*i+15+i*60,5,55,67));	
 	}
+
+	for(var i = 0; i <8; i++){
+		sprites.homingGift2.push(new Sprite(images.homingGift2, 20*i+15+i*60,5,55,67));
+	}
+	for(i = 8; i<16; i++){
+		sprites.homingGiftBackward2.push(new Sprite(images.homingGift2, 20*i+15+i*60,5,55,67));	
+	}
+
+	for(var i = 0; i <8; i++){
+		sprites.homingGift3.push(new Sprite(images.homingGift3, 20*i+15+i*60,5,55,67));
+	}
+	for(i = 8; i<16; i++){
+		sprites.homingGiftBackward3.push(new Sprite(images.homingGift3, 20*i+15+i*60,5,55,67));	
+	}
+	
 	
 	for(i = 0; i < 3; i++) {
 		sprites.snowManHead.push(new Sprite(images.snowManHead, 40*i, 0, 39, 29));
 	}
-	
+	for(i = 0; i < 3; i++) {
+		sprites.snowManHead2.push(new Sprite(images.snowManHead2, 40*i, 0, 39, 29));
+	}
+	for(i = 0; i < 3; i++) {
+		sprites.snowManHead3.push(new Sprite(images.snowManHead3, 40*i, 0, 39, 29));
+	}
+		
+
 	for(i = 0; i < 4; i++) {
 		sprites.cloudEnemy.push(new Sprite(images.cloudEnemy, 70*i, 3, 69, 55));
 	}
-	
 	for(i = 4; i < 8; i++) {
 		sprites.cloudEnemyBack.push(new Sprite(images.cloudEnemy, 70*i, 3, 69, 55));
 	}
 	
+	for(i = 0; i < 4; i++) {
+		sprites.cloudEnemy2.push(new Sprite(images.cloudEnemy2, 70*i, 3, 69, 55));
+	}
+	for(i = 4; i < 8; i++) {
+		sprites.cloudEnemyBack2.push(new Sprite(images.cloudEnemy2, 70*i, 3, 69, 55));
+	}
+	
+	for(i = 0; i < 4; i++) {
+		sprites.cloudEnemy3.push(new Sprite(images.cloudEnemy3, 70*i, 3, 69, 55));
+	}
+	for(i = 4; i < 8; i++) {
+		sprites.cloudEnemyBack3.push(new Sprite(images.cloudEnemy3, 70*i, 3, 69, 55));
+	}
 	//Animation Only Sprites
 
     // When ship is moving up and down
