@@ -5,7 +5,7 @@ var Player = {
 //Private Data
 _strength: {base 	: 5,
 			level 	: 0,
-			levels	: [1,2,4,8,16,32],
+			levels	: [1,2,4,6,10,14],
 			cost	: [10,100,200,400,800,"Maxed"]
 			},
 _speed:    {base	: 3.00,
@@ -29,7 +29,7 @@ _magnetRadius: {base	: 30,
 				},
 _luck: {base	: 1,
 				level	: 0,
-				levels	: [1,2,3,5,8,13,21],
+				levels	: [1,2,3,4,5,6,7],
 				cost	: [6,60,120,240,480,960,"Maxed"]
 				},
 _piercing: {base : 1,
@@ -48,7 +48,7 @@ _snowBallsCapacity: {base : 4,
 					levels : [0,2,4,6,8,10],
 					cost:	[10,100,200,400,800,"Maxed"]
 					},
-_snowBallMagicRadius: 	{base	:50,
+_snowBallMagicRadius: 	{base	:26,
 						 level	: 0,
 						 levels : [1,2,3,4,5,6],
 						 cost : [10,100,200,400,800,"Maxed"]

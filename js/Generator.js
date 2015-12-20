@@ -9,17 +9,17 @@ function Generator(descr) {
 Generator.prototype = new Entity();
 
 Generator.prototype.setFirstEnemy = function(){
-	var list = [0,1000,2000,30,4000,5000,60,7000,8000,90,10000,1100,120,13000,14000];
+	var list = [0,7000,7000,0,7000,7000,1000,7000,7000,7000,7000,7000,7000,7000,7000];
 	for(var i = 0; i < this.enemiesArray.length; i++){
 		this.enemiesArray[i].next = list[i];
 	}
 }
 
 Generator.prototype.curFase = 0;
-Generator.prototype.changeFase = [10000,15000];
+Generator.prototype.changeFase = [600,650,1500,15000];
 
 Generator.prototype.straightGift = {next: 0, 
-									frequency: [[100,120],[180,240],[180,240]],
+									frequency: [[80,100],[1,2],[180,240]],
 									generate: function(){
 										entityManager.generateStraightGifts({
 											cx : g_canvas.width,
@@ -47,7 +47,7 @@ Generator.prototype.straightGift3 = {next: 0,
 									}};
 									
 Generator.prototype.snakeGift = {next: 0, 
-								frequency: [[400,500],[500,800],[500,800]],
+								frequency: [[120,140],[2,3],[500,800]],
 								generate: function(){
 									entityManager.generateSnakeGifts({
 										cx : util.randRange(g_canvas.width, g_canvas.width+200 ),
@@ -197,7 +197,13 @@ Generator.prototype.update = function(du) {
 		for(var i = 0; i < this.enemiesArray.length; i++){
 			var enemy = this.enemiesArray[i];
 			if(enemy.next < this.lived && enemy.frequency[this.curFase] != -1) {
-				enemy.next = this.lived + util.randRange(enemy.frequency[this.curFase][0],enemy.frequency[this.curFase][1]);
+				console.log(this.lived + enemy.frequency[this.curFase][0],this.changeFase[this.curFase])
+				if(this.lived + enemy.frequency[this.curFase][0] > this.changeFase[this.curFase]){
+					enemy.next = this.changeFase[this.curFase];
+					console.log(enemy.next);
+				}else{
+					enemy.next = this.lived + util.randRange(enemy.frequency[this.curFase][0],enemy.frequency[this.curFase][1]);
+				}
 				enemy.generate();
 			}
 		}
