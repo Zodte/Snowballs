@@ -63,7 +63,6 @@ Sleigh.prototype.update = function(du){
 	
 	//Set global map speed
 	this.setMapSpeed();
-	
 	if((this.magic == 0 || this._isDeadNow) && this.cy+this.getRadius() > entityManager.GROUND_HEIGHT && this.lived%40 == 0) {
 		var numGifts = 0;
 		var giftValues = [1,5,25,175]

@@ -13,7 +13,7 @@ _speed:    {base	: 3.00,
 			levels	: [1,1.15,1.3,1.45,1.6],
 			cost	: [30,300,500,900,"Maxed"]
 			},
-_magicCapacity: {base	: 100000,
+_magicCapacity: {base	: 100,
 				 level	: 0,
 				 levels	: [1,1.2,1.4,1.6,1.8,2],
 				 cost 	: [10,50,100,200,400,"Maxed"]
@@ -52,6 +52,10 @@ _snowBallMagicRadius: 	{base	:50,
 						 level	: 0,
 						 levels : [1,2,3,4,5,6],
 						 cost : [10,100,200,400,800,"Maxed"]
+						},
+_snowBallMagicDamage: 	{base	:0.1,
+						 level	: 0,
+						 levels : [1,2,3,4,5,6]
 						},
 _mojoBars: {base : 1,
 			level : 0,
@@ -270,6 +274,10 @@ getSnowBallCapacity: function(){
 
 getSnowBallMagicRadius: function(){
 	return this._snowBallMagicRadius.base * this._snowBallMagicRadius.levels[this._snowBallMagicRadius.level];
+},
+
+getSnowBallMagicDamage: function(){
+	return this._snowBallMagicDamage.base * this._snowBallMagicDamage.levels[this._snowBallMagicRadius.level];
 },
 
 getTotalGifts: function(){

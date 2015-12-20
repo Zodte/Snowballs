@@ -1,7 +1,7 @@
 function CloudEnemy(descr) {
 	this.setup(descr);
 	
-	this.level = this.level || 2;
+	this.level = this.level || 0;
 	this.cloudSprite = g_sprites.cloudEnemy;
 	this.cloudSpriteBack = g_sprites.cloudEnemyBack;
 	
@@ -17,9 +17,13 @@ function CloudEnemy(descr) {
 	this.life = this.oriLife;
 	this.damage = this.oriLife;
 	
-	this.vel = 0.04;
-	var velocities = [2,2.5,3]
+	var vel = [0.04,0.06,0.08]
+	this.vel = vel[this.level];
+	var velocities = [2,2.2,2.4]
 	this.maxVel = velocities[this.level];
+	
+	this.reloadTime = 50;
+	this.reloading = 0;
 	
 	this.decideDirection();
 	
@@ -32,6 +36,7 @@ CloudEnemy.prototype.velX = 0;
 CloudEnemy.prototype.velY = 0;
 
 
+
 CloudEnemy.prototype.decideDirection = function(){
 	this.gx = util.randRange(50,g_canvas.width - 50);
 	this.gy = util.randRange(50,entityManager.GROUND_HEIGHT-50);
@@ -42,6 +47,8 @@ CloudEnemy.prototype.update = function(du) {
 	spatialManager.unregister(this);
 	
 	if(this._isDeadNow) return entityManager.KILL_ME_NOW;
+	
+	if(this.reloadTime > this.reloading) this.reloading++;
 	
 	var difX = this.cx - this.gx;
 	var difY = this.cy - this.gy;
@@ -56,14 +63,38 @@ CloudEnemy.prototype.update = function(du) {
 	this.cx += this.velX;
 	this.cy += this.velY;
 	
+	this.maybeShoot();
+	
 	var pos = entityManager.getSleighPos();
 	if(this.cx < pos.posX){
 		this.sprites = this.cloudSpriteBack;
 	}else{
 		this.sprites = this.cloudSprite;
 	}
+	
+	var hitEntity = this.findHitEntity();
+	if (hitEntity) {
+		var canGetEnemyHit = hitEntity.getEnemyHit;
+		if (canGetEnemyHit) {
+			canGetEnemyHit.call(hitEntity, this.damage);
+			return entityManager.KILL_ME_NOW;
+		}
+	}
 
 	spatialManager.register(this);
+};
+
+CloudEnemy.prototype.maybeShoot = function(){
+	if(this.reloadTime === this.reloading){
+		this.spriteIndex++;
+		if(this.spriteIndex === 2){
+			
+		}
+		if(this.spriteIndex === 3){
+			this.reloading = 0;
+			this.spriteIndex = 0;
+		}
+	}
 };
 
 CloudEnemy.prototype.getSnowballHit = function(damage){

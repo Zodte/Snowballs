@@ -272,11 +272,6 @@ playAgain: function(){
         cy : 200,
 		sprite : g_sprites.sleigh
     }); 
-	
-	this.generateCloudEnemy({
-		cx : 600,
-		cy : 300
-	})
 
 	this._generateGenerator();
 	this._generateForeGrounds();

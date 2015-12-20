@@ -1,9 +1,12 @@
 function straightGift(descr) {
 	this.setup(descr);
 	
-	this.sprite = this.sprite || g_sprites.straightGift;
+	this.level = this.level || 0;
 	
-	this.level = this.level || 2;
+	var sprites = [g_sprites.straightGift,g_sprites.straightGift2,g_sprites.straightGift3];
+	this.sprite = sprites[this.level];
+	
+	
 	
 	var velocities = [[1.5,2],[2,2.5],[2.5,3]];
 	this.vel = util.randRange(velocities[this.level][0],velocities[this.level][1]);

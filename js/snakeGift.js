@@ -1,10 +1,10 @@
 function snakeGift(descr) {
 	this.setup(descr);
 	
-	this.sprite = this.sprite || g_sprites.snakeGift;
 	this.level = this.level || 0;
 	
-	
+	var sprites = [g_sprites.snakeGift,g_sprites.snakeGift2,g_sprites.snakeGift3];
+	this.sprite = sprites[this.level];	
 	
 	this.oriScale = this.sprite.scale;
 	this.scale = this.oriScale;
