@@ -1,7 +1,7 @@
 function BombGift(descr) {
 	this.setup(descr);
 	
-	this.level = this.level || 2;
+	this.level = this.level || 0;
 	
 	this.sprite = this.sprite || g_sprites.bombGift;
 	
@@ -115,7 +115,7 @@ BombGift.prototype.getSnowballHit = function(damage){
 	this.life -= damage;
 	if(this.life <= 0){
 		this.life = 0;
-		numGifts = entityManager.getLoot(0.5,this.getPos());
+		numGifts = entityManager.getLoot(this.reward[this.level],this.getPos());
 		this.kill();
 	}
 };

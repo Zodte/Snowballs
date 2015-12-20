@@ -1,6 +1,7 @@
 function CloudEnemy(descr) {
 	this.setup(descr);
 	
+	this.level = this.level || 2;
 	this.cloudSprite = g_sprites.cloudEnemy;
 	this.cloudSpriteBack = g_sprites.cloudEnemyBack;
 	
@@ -11,12 +12,14 @@ function CloudEnemy(descr) {
 	this.oriScale = this.sprite.scale
 	this.scale = 0.6;
 	
-	this.oriLife = util.randRange(20,24);
+	lives = [[20,24],[90,94],[128,132]];
+	this.oriLife = util.randRange(lives[this.level][0],lives[this.level][1]);
 	this.life = this.oriLife;
 	this.damage = this.oriLife;
 	
 	this.vel = 0.04;
-	this.maxVel = 2;
+	var velocities = [2,2.5,3]
+	this.maxVel = velocities[this.level];
 	
 	this.decideDirection();
 	
@@ -67,7 +70,7 @@ CloudEnemy.prototype.getSnowballHit = function(damage){
 	this.life -= damage;
 	if(this.life <= 0){
 		this.life = 0;
-		numGifts = entityManager.getLoot(4,this.getPos());
+		numGifts = entityManager.getLoot(this.reward[this.level],this.getPos());
 		this.kill();
 	}
 };

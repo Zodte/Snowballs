@@ -66,20 +66,22 @@ EnemySnowman.prototype.reload = 90;
 EnemySnowman.prototype.fire = function() {
 	var pos = entityManager.getSleighPos();
 	if(this.spriteIndex == 2 && this.reloadCount == this.reload) {
-		var dx = pos.posX - this.cx;
-		var dy = pos.posY-(Math.abs(dx)/7) - this.cy+4;
-		var mag = Math.sqrt(dx*dx + dy*dy);
-		if(pos.posX < this.cx-50) {
-			var strength = this.oriLife/3;
-			var velX = (dx/mag)*strength;
-			var velY = (dy/mag)*strength;
-		
-			this.damage = strength * 2;
-			entityManager.generateEnemySnowball(
-				this.cx, this.cy+4,
-				velX,velY,this.damage
-			);
-			this.reloadCount = 0;
+		for(var i = 0; i < this.level+1; i++){
+			var dx = pos.posX - this.cx;
+			var dy = pos.posY-(Math.abs(dx)/7) - this.cy+util.randRange(-50*this.level,80*this.level);
+			var mag = Math.sqrt(dx*dx + dy*dy);
+			if(pos.posX < this.cx-50) {
+				var strength = 8 + this.level;
+				var velX = (dx/mag)*strength;
+				var velY = (dy/mag)*strength;
+			
+				this.damage = strength * 2;
+				entityManager.generateEnemySnowball(
+					this.cx, this.cy+4,
+					velX,velY,this.damage
+				);
+				this.reloadCount = 0;
+			}
 		}
 	}
 };
@@ -88,7 +90,7 @@ EnemySnowman.prototype.getSnowballHit = function(damage){
 	this.life -= damage;
 	if(this.life <= 0){
 		this.life = 0;
-		numGifts = entityManager.getLoot(2.2,this.getPos());
+		numGifts = entityManager.getLoot(this.reward[this.level],this.getPos());
 		this.kill();
 	}
 };
