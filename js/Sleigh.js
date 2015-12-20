@@ -14,9 +14,6 @@ function Sleigh(descr){
 	this.magic = Player.getMagicCapacity();
 	this.magicComsumption = Player.getMagicComsuption();
 	
-	this.mojoLvel = Player.getMojoBars();
-	this.mojo = 150;
-	
 	//Reloading
 	this.craftSpeed = Player.getSnowBallCraftSpeed();
     this.snowBallsCapacity = Player.getSnowBallCapacity();
@@ -86,8 +83,6 @@ Sleigh.prototype.update = function(du){
 	
 	//Moving
 	this.movement(du);
-	
-	this.fireSpecials();
 	
 	this.sprite = this.sprites[0];
 	
@@ -212,15 +207,6 @@ Sleigh.prototype.throwSnowball = function(){
     }
 };
 
-Sleigh.prototype.fireSpecials = function(){
-	if(this.mojo >= 50){
-		if(eatKey(this.SUPERSPEED)){
-			MAP_SPEED = 4;
-			this.mojo -= 50;
-		}
-	}
-};
-
 Sleigh.prototype.setMapSpeed = function(){
 	if(Math.abs(MAP_SPEED - this.mapSpeed) <= 0.01){
 		MAP_SPEED = this.mapSpeed;
@@ -275,12 +261,6 @@ Sleigh.prototype.addKills = function() {
 	this.kills += 1;
 };
 
-
-Sleigh.prototype.addMojo = function(x) {
-	this.mojo += x;
-	if(this.mojo > this.mojoLevel * 50) this.mojo = this.mojoLevel;
-};
-
 //Collision function
 
 Sleigh.prototype.takePowerUp = function(power){
@@ -329,12 +309,8 @@ Sleigh.prototype.renderMagicBar = function(ctx){
 	ctx.font = "10px Arial";
 	//ctx.fillText("Magic",5,12);
 	//ctx.restore();
-	ctx.fillRect(81,524,(this.magic/this.iniMagic)*200,9);
+	ctx.fillRect(81,550,(this.magic/this.iniMagic)*200,9);
 
-};
-
-Sleigh.prototype.renderMojoBar = function(ctx){
-	ctx.fillRect(81, 550,(this.mojo/150*200),9)
 };
 
 Sleigh.prototype.displayCraftedSnowBalls = function(ctx){
@@ -345,7 +321,6 @@ Sleigh.prototype.displayCraftedSnowBalls = function(ctx){
 
 Sleigh.prototype.render = function(ctx){
 	this.renderMagicBar(ctx);
-	this.renderMojoBar(ctx);
 	this.renderGifts(ctx);
 	this.displayAmountGifts(ctx);
 	this.displayCraftedSnowBalls(ctx);

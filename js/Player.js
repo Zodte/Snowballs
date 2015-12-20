@@ -13,7 +13,7 @@ _speed:    {base	: 3.00,
 			levels	: [1,1.15,1.3,1.45,1.6],
 			cost	: [30,300,500,900,"Maxed"]
 			},
-_magicCapacity: {base	: 100,
+_magicCapacity: {base	: 100000,
 				 level	: 0,
 				 levels	: [1,1.2,1.4,1.6,1.8,2],
 				 cost 	: [10,50,100,200,400,"Maxed"]

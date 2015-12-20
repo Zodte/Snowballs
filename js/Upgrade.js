@@ -49,8 +49,11 @@ Upgrade.prototype.fillTexts = function(ctx){
 Upgrade.prototype.render = function(ctx){
 	this.upgradeSprite.drawAt(ctx, 0, 0);
 	ctx.fillStyle = 'white';	
+	ctx.save();
+	ctx.font = "bold 16px Arial";
+	ctx.fillText(Player.getCurGifts() ,100, 132);
+	ctx.restore();
 	ctx.font = "bold 12px Arial";
-	ctx.fillText(Player.getCurGifts() ,100, 133);
 	ctx.fillText("Total Gifts", 450, 380);
 	ctx.fillText(Player.getTotalGifts(), 700, 380);
 	ctx.fillText("Total Knock Outs", 450, 400);

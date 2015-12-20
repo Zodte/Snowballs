@@ -106,7 +106,6 @@ var KEY_2 = keyCode('2');
 var PLAY_AGAIN = keyCode('T');
 var MUTE_KEY = keyCode('M');
 var CLEAR_DATA = keyCode('K');
-
 function processDiagnostics() {
 
     if (eatKey(KEY_MIXED))
@@ -122,8 +121,9 @@ function processDiagnostics() {
 
     if (eatKey(KEY_0)) entityManager.toggleRocks();
 	
-	if(eatKey(CLEAR_DATA)) Player.clearGame();
-
+	if(eatKey(CLEAR_DATA)) {
+		Player.clearGame();
+	}
     /*if (eatKey(KEY_1)) entityManager.generateShip({
         cx : g_mouseX,
         cy : g_mouseY,
