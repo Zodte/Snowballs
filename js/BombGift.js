@@ -1,17 +1,27 @@
 function BombGift(descr) {
 	this.setup(descr);
 	
+	this.level = this.level || 2;
+	
 	this.sprite = this.sprite || g_sprites.bombGift;
-	this.level = this.level || 1;
+	
 	this.decideC();
+	
 	this.oriScale = this.sprite.scale
 	this.scale = this.oriScale;
-	this.oriLife = util.randRange(16,20);
+	
+	var lives = [[16,20],[45,59],[75,79]]
+	this.oriLife = util.randRange(lives[this.level][0],lives[this.level][1]);
 	this.life = this.oriLife;
-	this.lifeLength = 360;
+	
+	var lifeLenghts = [360,340,320]
+	this.lifeLength = lifeLenghts[this.level];
 	this.damage = this.oriLife;
 	this.blinkRate = (this.lifeLength/6);
-	this.blinkRateIncrease = [1.23,1.28]
+	var blinkRates = [1.23,1.26,1.29];
+	this.blinkRateIncrease = blinkRates[this.level];
+	
+	this.reward = [3,9,15];
 };
 
 BombGift.prototype = new Entity();
@@ -61,7 +71,7 @@ BombGift.prototype.update = function(du) {
 	}
 	if(this.alpha >= 1){
 		this.alphaUpOrDown *= -1;
-		this.blinkRate *= this.blinkRateIncrease[0];
+		this.blinkRate *= this.blinkRateIncrease;
 		this.alpha = 1;
 	}	
 	
@@ -82,7 +92,7 @@ BombGift.prototype.update = function(du) {
 BombGift.prototype.explode = function(){
 	this.eplodeSound.play();
 	this.kill();
-	var bombShells = this.level*4;
+	var bombShells = (this.level+1)*5;
 	var dist = 2*Math.PI / bombShells;
 	for(var i = 0; i < bombShells; i++){
 		var dir = util.randRange(i*dist,(i+1) * dist);

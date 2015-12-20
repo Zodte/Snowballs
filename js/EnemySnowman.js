@@ -1,14 +1,21 @@
 function EnemySnowman(descr) {
 	this.setup(descr);
 	
+	this.level = this.level || 0;
+	
 	this.bodySprite = g_sprites.snowManBody;
 	this.headSprite = g_sprites.snowManHead;
 	this.scale = this.scale || 0.6;	
 	this.spriteIndex = 0;
+	
 	this.cy = entityManager.GROUND_HEIGHT - 46*this.scale;
-	this.oriLife = util.randRange(26,32);
+	
+	lives = [[26,32],[96,102],[136,142]];
+	this.oriLife = util.randRange(lives[this.level][0],lives[this.level][1]);
 	this.life = this.oriLife;
 	this.damage = this.oriLife;
+	
+	this.reward = [5,11,17];
 };
 
 EnemySnowman.prototype = new Entity();

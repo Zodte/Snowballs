@@ -18,8 +18,7 @@ function straightGift(descr) {
 	this.life = this.oriLife;
 	this.damage = this.oriLife;
 	
-	this.reward = [1,3,5];
-	
+	this.reward = [1,7,13];
 };
 
 straightGift.prototype = new Entity();

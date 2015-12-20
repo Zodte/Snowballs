@@ -1,20 +1,28 @@
 function HomingGift(descr) {
 	this.setup(descr);
 	
+	this.level = this.level || 0;
+	
 	this.spritesFowards = g_sprites.homingGift;
 	this.spritesBackwards = g_sprites.homingGiftBackward;
 	this.sprites = this.spritesFowards;
 	this.spriteIndex = 0;
 	this.sprite = this.sprites[this.spriteIndex];
-	this.vel = 2.4;
+	
+	var velocities = [2.4,2.8,3.2];
+	this.vel = velocities[this.level];
 	this.follow = 140;
 	this.pause = 70
 	
 	this.oriScale = this.sprite.scale
 	this.scale = this.oriScale/2;
-	this.oriLife = util.randRange(20,24);
+	
+	var lives = [[20,24],[80,84],[120,124]]
+	this.oriLife = util.randRange(lives[this.level][0],lives[this.level][1]);
 	this.life = this.oriLife;
 	this.damage = this.oriLife;
+	
+	this.reward = [4,10,16];
 };
 
 HomingGift.prototype = new Entity();
@@ -83,7 +91,7 @@ HomingGift.prototype.fire = function (){
 	var dx = pos.posX - this.cx;
 	var dy = pos.posY - this.cy;
 	var mag = Math.sqrt(dx * dx + dy * dy);
-	var strength = this.oriLife/3;
+	var strength = 9 + this.level;
 	var velX = (dx / mag) * strength;
 	var velY = (dy / mag) * strength;
 	
@@ -98,7 +106,7 @@ HomingGift.prototype.getSnowballHit = function(damage){
 	this.life -= damage;
 	if(this.life <= 0){
 		this.life = 0;
-		numGifts = entityManager.getLoot(2,this.getPos());
+		numGifts = entityManager.getLoot(this.reward[this.level],this.getPos());
 		this.kill();
 	}
 };

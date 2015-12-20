@@ -19,6 +19,8 @@ function CloudEnemy(descr) {
 	this.maxVel = 2;
 	
 	this.decideDirection();
+	
+	this.reward = [6,12,18];
 };
 
 CloudEnemy.prototype = new Entity();

@@ -4,6 +4,8 @@ function snakeGift(descr) {
 	this.sprite = this.sprite || g_sprites.snakeGift;
 	this.level = this.level || 0;
 	
+	
+	
 	this.oriScale = this.sprite.scale;
 	this.scale = this.oriScale;
 	
@@ -14,6 +16,10 @@ function snakeGift(descr) {
 	
 	this.vel = 1;
 	this.waveLength = [1,2,3];
+	
+	this.cy = util.randRange(30,entityManager.GROUND_HEIGHT - 100 * (this.waveLength[this.level]/3) - 30)
+	
+	this.reward = [2,8,14];
 
 };
 
@@ -47,9 +53,9 @@ snakeGift.prototype.update = function(du) {
 };
 
 snakeGift.prototype.computeFloatingStep = function(du) {
-	var val1 = Math.sin((this.lived % 100 * (this.waveLength[this.level]+1))/(100 * (this.waveLength[this.level]+1)) * (2*Math.PI));
+	var val1 = Math.sin((this.lived % 200 * (this.waveLength[this.level]+1))/(200 * (this.waveLength[this.level]+1)) * (2*Math.PI));
 	this.velX = this.vel * du;
-	this.velY = val1 * this.waveLength[this.level] * du;
+	this.velY = val1 * (this.waveLength[this.level]+1) /3 * du;
 	var nextX = this.cx - this.velX;
 	var nextY = this.cy + this.velY;
 	this.cx = nextX;
@@ -60,7 +66,7 @@ snakeGift.prototype.getSnowballHit = function(damage){
 	this.life -= damage
 	if(this.life <= 0){
 		this.life = 0;
-		numGifts = entityManager.getLoot(0.8,this.getPos());
+		numGifts = entityManager.getLoot(this.reward[this.level],this.getPos());
 		this.kill();
 	}
 }
