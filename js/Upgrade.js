@@ -30,7 +30,7 @@ Upgrade.prototype.update = function(du){
 
 Upgrade.prototype.fillTexts = function(ctx){
 	var costAndLevel = Player.getCostAndLevel();
-	ctx.font = "12px Arial";
+	ctx.font = "bold 12px Arial";
 	for(var i = 0; i < this.buttons.length; i++){
 		ctx.fillStyle = "white";
 		ctx.fillText(this.buttons[i].title, 40, 202+i*30);
@@ -49,11 +49,13 @@ Upgrade.prototype.fillTexts = function(ctx){
 Upgrade.prototype.render = function(ctx){
 	this.upgradeSprite.drawAt(ctx, 0, 0);
 	ctx.fillStyle = 'white';	
-	ctx.font = "20px Arial";
+	ctx.font = "bold 12px Arial";
 	ctx.fillText(Player.getCurGifts() ,100, 133);
-	ctx.fillText("Total Gifts", 450, 420);
-	ctx.fillText(Player.getTotalGifts(), 650, 420);
-	ctx.fillText("Total Knock Outs", 450, 440);
-	ctx.fillText(Player.getTotalKills(), 650, 440);
+	ctx.fillText("Total Gifts", 450, 380);
+	ctx.fillText(Player.getTotalGifts(), 700, 380);
+	ctx.fillText("Total Knock Outs", 450, 400);
+	ctx.fillText(Player.getTotalKills(), 700, 400);
+	ctx.fillText("Max Distance Traveled", 450, 420);
+	ctx.fillText(Player.getMaxDistance(),700, 420);
 	this.fillTexts(ctx);
 }

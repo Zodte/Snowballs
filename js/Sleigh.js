@@ -75,6 +75,7 @@ Sleigh.prototype.update = function(du){
 		}
 		Player.addGifts(numGifts);
 		Player.addTotalKills(this.kills);
+		Player.addMaxDistance(entityManager.getDistance());
 		Player.saveGame();
 		entityManager.gameLost();
 		return entityManager.KILL_ME_NOW;
@@ -273,6 +274,7 @@ Sleigh.prototype.addGifts = function(x) {
 Sleigh.prototype.addKills = function() {
 	this.kills += 1;
 };
+
 
 Sleigh.prototype.addMojo = function(x) {
 	this.mojo += x;

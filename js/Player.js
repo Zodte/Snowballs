@@ -302,7 +302,8 @@ addGifts: function(gifts){
 },
 
 addMaxDistance: function(distance) {
-	this._maxDistance += distance;
+	if(this._maxDistance < distance)
+		this._maxDistance = distance;
 },
 
 addTotalKills: function(kill) {

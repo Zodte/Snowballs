@@ -210,6 +210,10 @@ isPlayerDead: function(){
 	return (this._sleighs.length === 0);
 },
 
+getDistance: function() {
+	return this._generator[0].getDistance();
+},
+
 getLoot: function(giftMin,pos){
 	var amountArr = [0,0,0,0];
 	var luck = Player.getLuck();

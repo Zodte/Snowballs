@@ -82,6 +82,9 @@ Generator.prototype.backTree = {next: 0,
 								}
 };
 
+Generator.prototype.getDistance = function() {
+	return Math.round(this.lived/100);
+};
 
 Generator.prototype.update = function(du) {
 	
