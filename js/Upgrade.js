@@ -56,6 +56,6 @@ Upgrade.prototype.render = function(ctx){
 	ctx.fillText("Total Knock Outs", 450, 400);
 	ctx.fillText(Player.getTotalKills(), 700, 400);
 	ctx.fillText("Max Distance Traveled", 450, 420);
-	ctx.fillText(Player.getMaxDistance(),700, 420);
+	ctx.fillText(Player.getMaxDistance()+"m",700, 420);
 	this.fillTexts(ctx);
 }

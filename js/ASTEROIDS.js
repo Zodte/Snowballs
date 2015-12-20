@@ -191,7 +191,7 @@ function requestPreloads() {
 		blueStardust: "./images/stardust.png",
 		goldStardust: "./images/stardust2.png",
 		UI			: "./images/UI.png",
-		homingGift  : "./images/homingGift.png",
+		homingGift  : "./images/homingGift.gif",
 		snowManHead : "./images/snowManHead.gif",
 		snowManBody : "./images/snowManBody.png",
 		cloudEnemy  : "./images/cloudEnemy.gif",
