@@ -2,26 +2,37 @@ function snakeGift(descr) {
 	this.setup(descr);
 	
 	this.sprite = this.sprite || g_sprites.snakeGift;
+	this.level = this.level || 0;
+	
 	this.oriScale = this.sprite.scale;
 	this.scale = this.oriScale;
-	this.oriLife = util.randRange(13,17);
+	
+	var lives = [[13,17],[50,54],[100,104]]
+	this.oriLife = util.randRange(lives[this.level][0],lives[this.level][1]);
 	this.life = this.oriLife;
 	this.damage = this.oriLife;
+	
+	this.vel = 1;
+	this.waveLength = [1,2,3];
+
 };
 
 snakeGift.prototype = new Entity();
 
-snakeGift.prototype.vel = 1;
-snakeGift.prototype.damage = this.vel*10;
+
 snakeGift.prototype.velX = 0;
 snakeGift.prototype.velY = 0;
 
 snakeGift.prototype.update = function(du) {
 
 	spatialManager.unregister(this);
+	this.lived++;
 	
 	this.computeFloatingStep(du);
-	if(this.cx < -this.getRadius() || this._isDeadNow) return entityManager.KILL_ME_NOW;
+	if(this.cx < -this.getRadius() || this._isDeadNow) {
+		if(!entityManager.isPlayerDead()) entityManager.addEnemyKill();
+		return entityManager.KILL_ME_NOW;
+	}
 
 	var hitEntity = this.findHitEntity();
 	if (hitEntity) {
@@ -36,9 +47,9 @@ snakeGift.prototype.update = function(du) {
 };
 
 snakeGift.prototype.computeFloatingStep = function(du) {
-	var val1 = Math.sin(this.cx*Math.PI/0.1);
+	var val1 = Math.sin((this.lived % 100 * (this.waveLength[this.level]+1))/(100 * (this.waveLength[this.level]+1)) * (2*Math.PI));
 	this.velX = this.vel * du;
-	this.velY = val1/0.9 * du;
+	this.velY = val1 * this.waveLength[this.level] * du;
 	var nextX = this.cx - this.velX;
 	var nextY = this.cy + this.velY;
 	this.cx = nextX;

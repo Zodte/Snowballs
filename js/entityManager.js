@@ -202,6 +202,10 @@ getSleighPos: function(){
 	return this._sleighs[0].getPos();
 },
 
+addEnemyKill : function(){
+	this._sleighs[0].addKills();
+},
+
 isPlayerDead: function(){
 	return (this._sleighs.length === 0);
 },

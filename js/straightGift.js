@@ -2,19 +2,27 @@ function straightGift(descr) {
 	this.setup(descr);
 	
 	this.sprite = this.sprite || g_sprites.straightGift;
+	
+	this.level = this.level || 2;
+	
+	var velocities = [[1.5,2],[2,2.5],[2.5,3]];
+	this.vel = util.randRange(velocities[this.level][0],velocities[this.level][1]);
 	this.endCy = util.randRange(0, entityManager.GROUND_HEIGHT);
 	this.decideDirection();
+	
 	this.oriScale = this.sprite.scale
 	this.scale = this.oriScale;
-	this.oriLife = util.randRange(8,12);
+	
+	var lives = [[8,12],[40,44],[90,94]]
+	this.oriLife = util.randRange(lives[this.level][0],lives[this.level][1]);
 	this.life = this.oriLife;
 	this.damage = this.oriLife;
+	
+	this.reward = [1,3,5];
+	
 };
 
 straightGift.prototype = new Entity();
-
-straightGift.prototype.vel = util.randRange(1.5,2.5);
-
 
 straightGift.prototype.decideDirection = function() {
 	var endCx = -50;
@@ -52,7 +60,7 @@ straightGift.prototype.getSnowballHit = function(damage){
 	this.life -= damage;
 	if(this.life <= 0){
 		this.life = 0;
-		numGifts = entityManager.getLoot(0.5,this.getPos());
+		numGifts = entityManager.getLoot(this.reward[this.level],this.getPos());
 		this.kill();
 	}
 }

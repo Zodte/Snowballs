@@ -7,7 +7,7 @@ function Generator(descr) {
 Generator.prototype = new Entity();
 
 Generator.prototype.setFirstEnemy = function(){
-	var list = [0,500,0,6000,200];
+	var list = [500,0,500,6000,200,500];
 	for(var i = 0; i < this.enemiesArray.length; i++){
 		this.enemiesArray[i].next = list[i];
 	}
@@ -16,15 +16,15 @@ Generator.prototype.setFirstEnemy = function(){
 Generator.prototype.curFase = 0;
 Generator.prototype.changeFase = [10000,15000];
 Generator.prototype.straightGift = {next: 0, 
-									frequency: [[200,260],[180,240],[180,240]],
+									frequency: [[100,120],[180,240],[180,240]],
 									generate: function(){
 										entityManager.generateStraightGifts({
 											cx : g_canvas.width,
 											cy : util.randRange(30,entityManager.GROUND_HEIGHT-30)
 										});
 									}};
-Generator.prototype.snakeGift = {next: 500, 
-								frequency: [[500,800],[500,800],[500,800]],
+Generator.prototype.snakeGift = {next: 0, 
+								frequency: [[50,100],[500,800],[500,800]],
 								generate: function(){
 									entityManager.generateSnakeGifts({
 										cx : g_canvas.width,
