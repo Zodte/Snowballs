@@ -59,14 +59,19 @@ _mojoBars: {base : 1,
 			cost : [400,960,"Maxed"]
 			},
 
-_totalGifts : 100,
-
+_curGifts : 0,
+_totalGifts : 0,
+_maxDistance: 0,
+_totalKills: 0,
 
 deferredSetup: function(){
 	this._allUpgrades = [this._strength, this._speed, this._magicCapacity, this._magnetRadius, 
 						 this._luck, this._piercing, this._snowBallCraft, this._snowBallMagicRadius]
 	if(typeof(Storage) !== "undefined") {
 		this._totalGifts = parseInt(localStorage.totalGifts,10) || 0;
+		this._maxDistance = parseInt(localStorage.maxDistance,10) || 0;
+		this._totalKills = parseInt(localStorage.totalKills, 10) || 0;
+		this._curGifts = parseInt(localStorage.curGifts,10) || 0;
 		for(var i = 0; i < this._allUpgrades.length; i++){
 			this._allUpgrades[i].level = parseInt(localStorage[i],10) || 0;
 		}
@@ -76,12 +81,15 @@ deferredSetup: function(){
 },
 
 buyFor: function(x){
-	this._totalGifts -= x;
+	this._curGifts -= x;
 },
 
 saveGame: function(){
 	if(typeof(Storage) !== "undefined") {
 		localStorage.totalGifts = this._totalGifts;
+		localStorage.maxDistance = this._maxDistance;
+		localStorage.totalKills = this._totalKills;
+		localStorage.curGifts = this._curGifts;
 		for(var i = 0; i < this._allUpgrades.length; i++){
 			localStorage[i] = this._allUpgrades[i].level;
 			console.log("localStorage",i,localStorage[i])
@@ -95,6 +103,9 @@ clearGame: function(){
 	if(typeof(Storage) !== "undefined") {
 		localStorage.clear();
 		this._totalGifts = 0;
+		this._maxDistance = 0;
+		this._totalKills = 0;
+		this._curGifts = 0;
 		for(var i = 0; i < this._allUpgrades.length; i++){
 			this._allUpgrades[i].level = 0;
 		}
@@ -148,7 +159,7 @@ upgradeSnowBallMagicRadius: function(){
 
 //CanUps-------------------------------
 canUpStrength: function(){
-	if(this._strength.cost[this._strength.level] <= this._totalGifts && this._strength.level < this._strength.levels.length-1){
+	if(this._strength.cost[this._strength.level] <= this._curGifts && this._strength.level < this._strength.levels.length-1){
 		return true;
 	}else{
 		return false;
@@ -156,7 +167,7 @@ canUpStrength: function(){
 },
 
 canUpSpeed: function(){
-	if(this._speed.cost[this._speed.level] <= this._totalGifts && this._speed.level < this._speed.levels.length-1){
+	if(this._speed.cost[this._speed.level] <= this._curGifts && this._speed.level < this._speed.levels.length-1){
 		return true;
 	}else{
 		return false;
@@ -164,7 +175,7 @@ canUpSpeed: function(){
 },
 
 canUpMagicFuel: function(){
-	if(this._magicCapacity.cost[this._magicCapacity.level] <= this._totalGifts && this._magicCapacity.level < this._magicCapacity.levels.length-1){
+	if(this._magicCapacity.cost[this._magicCapacity.level] <= this._curGifts && this._magicCapacity.level < this._magicCapacity.levels.length-1){
 		return true;
 	}else{
 		return false;
@@ -172,7 +183,7 @@ canUpMagicFuel: function(){
 },
 
 canUpMagnet: function(){
-	if(this._magnetRadius.cost[this._magnetRadius.level] <= this._totalGifts && this._magnetRadius.level < this._magnetRadius.levels.length-1){
+	if(this._magnetRadius.cost[this._magnetRadius.level] <= this._curGifts && this._magnetRadius.level < this._magnetRadius.levels.length-1){
 		return true;
 	}else{
 		return false;
@@ -180,7 +191,7 @@ canUpMagnet: function(){
 },
 
 canUpLuck: function(){
-	if(this._luck.cost[this._luck.level] <= this._totalGifts && this._luck.level < this._luck.levels.length-1){
+	if(this._luck.cost[this._luck.level] <= this._curGifts && this._luck.level < this._luck.levels.length-1){
 		return true;
 	}else{
 		return false;
@@ -188,7 +199,7 @@ canUpLuck: function(){
 },
 
 canUpPiercing: function(){
-	if(this._piercing.cost[this._piercing.level] <= this._totalGifts && this._piercing.level < this._piercing.levels.length-1){
+	if(this._piercing.cost[this._piercing.level] <= this._curGifts && this._piercing.level < this._piercing.levels.length-1){
 		return true;
 	}else{
 		return false;
@@ -196,7 +207,7 @@ canUpPiercing: function(){
 },
 
 canUpSnowBallCraft: function(){
-	if(this._snowBallCraft.cost[this._snowBallCraft.level] <= this._totalGifts && this._snowBallCraft.level < this._snowBallCraft.levels.length-1){
+	if(this._snowBallCraft.cost[this._snowBallCraft.level] <= this._curGifts && this._snowBallCraft.level < this._snowBallCraft.levels.length-1){
 		return true;
 	}else{
 		return false;
@@ -204,7 +215,7 @@ canUpSnowBallCraft: function(){
 },
 
 canUpSnowBallMagicRadius: function(){
-	if(this._snowBallMagicRadius.cost[this._snowBallMagicRadius.level] <= this._totalGifts && this._snowBallMagicRadius.level < this._snowBallMagicRadius.levels.length-1){
+	if(this._snowBallMagicRadius.cost[this._snowBallMagicRadius.level] <= this._curGifts && this._snowBallMagicRadius.level < this._snowBallMagicRadius.levels.length-1){
 		return true;
 	}else{
 		return false;
@@ -265,6 +276,18 @@ getTotalGifts: function(){
 	return this._totalGifts;
 },
 
+getCurGifts: function() {
+	return this._curGifts;
+},
+
+getMaxDistance: function() {
+	return this._maxDistance;
+},
+
+getTotalKills: function() {
+	return this._totalKills;
+},
+
 getCostAndLevel: function(){
 	var costAndLevel = [];
 	for(var i = 0; i < this._allUpgrades.length; i++){
@@ -275,8 +298,16 @@ getCostAndLevel: function(){
 
 addGifts: function(gifts){
 	this._totalGifts += gifts;
+	this._curGifts += gifts;
 },
 
+addMaxDistance: function(distance) {
+	this._maxDistance += distance;
+},
+
+addTotalKills: function(kill) {
+	this._totalKills += kill;
+},
 
 }
 

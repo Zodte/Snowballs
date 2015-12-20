@@ -22,6 +22,7 @@ function Sleigh(descr){
     this.snowBallsCapacity = Player.getSnowBallCapacity();
 	
 	this.gifts = [0,0,0,0];
+	this.kills = 0;
 }
 
 Sleigh.prototype = new Entity();
@@ -73,6 +74,7 @@ Sleigh.prototype.update = function(du){
 			numGifts += this.gifts[i] * giftValues[i];
 		}
 		Player.addGifts(numGifts);
+		Player.addTotalKills(this.kills);
 		Player.saveGame();
 		entityManager.gameLost();
 		return entityManager.KILL_ME_NOW;
@@ -266,6 +268,10 @@ Sleigh.prototype.addGifts = function(x) {
 	this.gifts[x] += 1;
 	this.delay = 6;
 	this.scoreGiftIndex = 1;
+};
+
+Sleigh.prototype.addKills = function() {
+	this.kills += 1;
 };
 
 Sleigh.prototype.addMojo = function(x) {

@@ -63,7 +63,11 @@ Button.prototype.clicked = function(){
 Button.prototype.render = function(ctx){
 	this.sprite.scale = 1 - this.clickedCounter/this.clickedAnimLength;
 	this.sprite.drawCentredAt(ctx,this.cx,this.cy,0);
-	
+	if(this.mouseIsOver()) {
+		ctx.fillStyle = 'white';
+		ctx.font = 'bold 12px Arial';
+		ctx.fillText(this.upCall.text, 40, 450);
+	}
 	ctx.save();
 	ctx.beginPath();
 	ctx.globalAlpha = this.clickedCounter/this.clickedAnimLength;

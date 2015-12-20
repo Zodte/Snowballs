@@ -198,7 +198,8 @@ function requestPreloads() {
 		snowBlast 	: "./images/snowBlast.gif",
 		button		: "./images/addButton.gif",
 		underUI		: "./images/underUI.png",
-		mainScreen : "./images/mainScreen.png"
+		mainScreen  : "./images/mainScreen.png",
+		upgradeScreen : "./images/upgradeScreen.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);

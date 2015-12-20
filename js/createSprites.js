@@ -20,7 +20,8 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.UI = new Sprite(images.UI);
 	sprites.underUI = new Sprite(images.underUI);
 	sprites.mainScreen = new Sprite(images.mainScreen);
-	
+	sprites.upgradeScreen = new Sprite(images.upgradeScreen);
+
 	//Animated Sprites
 	sprites.sleigh = [];
 	sprites.milk = [];
@@ -44,9 +45,9 @@ function createSprites(images, sprites, animatedSprites) {
 	sprites.sleigh.push(new Sprite(images.sleigh,0,12,99,86));
 	sprites.sleigh.push(new Sprite(images.sleigh,100,12,99,86));
 	
-	sprites.addButton.push(new Sprite(images.button,1,1,17,17));
-	sprites.addButton.push(new Sprite(images.button,21,1,17,17));
-	sprites.addButton.push(new Sprite(images.button,41,1,17,17));
+	sprites.addButton.push(new Sprite(images.button,0,0,19,19));
+	sprites.addButton.push(new Sprite(images.button,20,0,19,19));
+	sprites.addButton.push(new Sprite(images.button,40,0,19,19));
 	
 	sprites.powerUps.push(sprites.milk);
 	sprites.powerUps.push(sprites.cookie);
