@@ -189,11 +189,11 @@ Generator.prototype.update = function(du) {
 	
 	this.lived += MAP_SPEED;
 	if(this.lived/100 > 70 && entityManager._enemies.length === 0) {
+		console.log(entityManager._enemies.length )
 		entityManager.isGameWon = true;
 		entityManager.killSleigh();
 	}
 	if(this.changeFase[this.curFase] <= this.lived) {
-		console.log("Fase increse, now: ",this.curFase)
 		this.curFase++;
 	}
 	if(MAP_SPEED < 5) {	
@@ -202,7 +202,6 @@ Generator.prototype.update = function(du) {
 			if(enemy.next < this.lived && enemy.frequency[this.curFase] != -1) {
 				if(this.lived + enemy.frequency[this.curFase][0] > this.changeFase[this.curFase]){
 					enemy.next = this.changeFase[this.curFase] - enemy.frequency[this.curFase+1][0] + (util.randRange(enemy.frequency[this.curFase+1][0],enemy.frequency[this.curFase+1][1]));
-					console.log(this.lived, enemy.next, this.changeFase[this.curFase], enemy.frequency[this.curFase+1][0])
 				}else{
 					enemy.next = this.lived + util.randRange(enemy.frequency[this.curFase][0],enemy.frequency[this.curFase][1]);
 				}

@@ -96,7 +96,6 @@ saveGame: function(){
 		localStorage.curGifts = this._curGifts;
 		for(var i = 0; i < this._allUpgrades.length; i++){
 			localStorage[i] = this._allUpgrades[i].level;
-			console.log("localStorage",i,localStorage[i])
 		}
 	} else {
 		// Sorry! No Web Storage support..

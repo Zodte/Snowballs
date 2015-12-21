@@ -1,20 +1,24 @@
 function Gift(descr) {
 	this.setup(descr);
 	
+	this.vel = 5;
+	this.life = 300;
 	this.gift = this.gift || 0;
 	this.giftSprite = g_sprites.gifts;
 	this.sprite = this.giftSprite[this.gift] || g_sprites.straightGift;
 	this.decideDirection();
 	this.oriScale = this.sprite.scale
 	this.scale = this.oriScale*0.55;
+	
+	
+	
 
 };
 
 Gift.prototype = new Entity();
 
-Gift.prototype.vel = 5;
 Gift.prototype.rotation = 0;
-Gift.prototype.life = 300;
+
 
 Gift.prototype.decideDirection = function() {
 	var dir = util.randRange(0,2*Math.PI);

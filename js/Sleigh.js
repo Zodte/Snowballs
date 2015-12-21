@@ -100,7 +100,7 @@ Sleigh.prototype.update = function(du){
 
 Sleigh.prototype.dustVel = 2.4;
 Sleigh.prototype.movement = function(du){
-	if(this.magic > 0){
+	if(this.magic > 0 && !this._isDeadNow){
 		if(keys[this.FOWARD]){
 			if(this.cx < g_canvas.width-this.getRadius()){
 				this.cx += this.speed * du;
@@ -129,7 +129,7 @@ Sleigh.prototype.movement = function(du){
 				dustVelY = -this.dustVel;
 			}else {this.cy = entityManager.GROUND_HEIGHT - this.getRadius()/2;}
 		}
-	}else if(this.magic <= 0 && this.cy < entityManager.GROUND_HEIGHT - this.getRadius()/2){
+	}else if((this.magic == 0 || this._isDeadNow) && this.cy < entityManager.GROUND_HEIGHT - this.getRadius()/2){
 		this.velY += GRAVITY;
 		this.cy += this.velY;
 		this.rotation += 0.05;

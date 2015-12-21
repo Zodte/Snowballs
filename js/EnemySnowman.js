@@ -24,7 +24,7 @@ EnemySnowman.prototype.update = function(du) {
 	this.lived++;
 	this.computeSprite(du);
 	spatialManager.unregister(this);
-	if(this._isDeadNow) return entityManager.KILL_ME_NOW;
+	if(this._isDeadNow || this.cx < -50) return entityManager.KILL_ME_NOW;
 	
 	this.cx -= MAP_SPEED;
 	
