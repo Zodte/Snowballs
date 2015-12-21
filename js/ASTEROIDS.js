@@ -211,7 +211,8 @@ function requestPreloads() {
 		button		: "./images/addButton.gif",
 		underUI		: "./images/underUI.png",
 		mainScreen  : "./images/mainScreen.png",
-		upgradeScreen : "./images/upgradeScreen.png"
+		upgradeScreen: "./images/upgradeScreen.png",
+		finishScreen: "./images/finishScreen.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
