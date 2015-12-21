@@ -189,7 +189,7 @@ Generator.prototype.update = function(du) {
 	
 	this.lived += MAP_SPEED;
 	if(this.lived/100 > 4) {
-		entityManager.gameIsWon();
+		entityManager.gameWin();
 	}
 	if(this.changeFase[this.curFase] <= this.lived) {
 		console.log("Fase increse, now: ",this.curFase)
