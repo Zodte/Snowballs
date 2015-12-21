@@ -25,11 +25,11 @@ function BombGift(descr) {
 };
 
 BombGift.prototype = new Entity();
-
+/*
 BombGift.prototype.eplodeSound = new Audio(
 	"sounds/explosion.wav"
 );
-
+*/
 BombGift.prototype.alpha = 1;
 BombGift.prototype.alphaUpOrDown = 1;
 
@@ -90,7 +90,7 @@ BombGift.prototype.update = function(du) {
 };
 
 BombGift.prototype.explode = function(){
-	this.eplodeSound.play();
+	//this.eplodeSound.play();
 	this.kill();
 	var bombShells = (this.level+1)*5;
 	var dist = 2*Math.PI / bombShells;
