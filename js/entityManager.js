@@ -235,7 +235,7 @@ getLoot: function(giftMin,pos){
 		amount -= 1;
 	}
 	
-	if(util.randRange(1,10) > 8-luck-giftMin){
+	if(util.randRange(1,10) > 6){
 		this.generatePowerUp({
 			cx : pos.posX,
 			cy : pos.posY,
@@ -289,6 +289,10 @@ resetAll: function(){
         enemy.kill();
     });
 	this._enemies.forEach(function(enemy){
+        enemy.kill();
+    });
+	this._gifts
+	.forEach(function(enemy){
         enemy.kill();
     });
 	this._trees.forEach(function(enemy){

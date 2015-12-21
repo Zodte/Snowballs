@@ -305,11 +305,11 @@ Sleigh.prototype.renderGifts = function(ctx) {
 Sleigh.prototype.renderMagicBar = function(ctx){
 	var color = ["#80FF00","#FF8000","#FF0000"]; // green, yellow, red
 	for(var i = 0; i < color.length; i++) {
-		if(this.magic >= 50) {
+		if(this.magic >= this.iniMagic * 0.5) {
 			ctx.fillStyle = color[0];
-		} else if(this.magic > 25 && this.magic/2 < 50) {
+		} else if(this.magic > this.iniMagic * 0.25 && this.magic/2 < this.iniMagic * 0.5) {
 			ctx.fillStyle = color[1];
-			} if(this.magic <= 25) {
+			} if(this.magic <= this.iniMagic * 0.25) {
 				ctx.fillStyle = color[2];
 			}
 	}

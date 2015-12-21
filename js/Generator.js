@@ -9,7 +9,7 @@ function Generator(descr) {
 Generator.prototype = new Entity();
 
 Generator.prototype.setFirstEnemy = function(){
-	var list = [0,2750,5500,0,7000,7000,650,7000,7000,7000,7000,7000,7000,7000,7000];
+	var list = [0,2750,5500,0,7000,7000,650,7000,7000,1350,7000,7000,0,2050,4850];
 	for(var i = 0; i < this.enemiesArray.length; i++){
 		this.enemiesArray[i].next = list[i];
 	}
@@ -72,7 +72,7 @@ Generator.prototype.snakeGift3 = {next: 0,
 								}};
 								
 Generator.prototype.bombGift = {next: 0, 
-								frequency: [[20,40],[200,260],[150,170],[150,170],[150,170],[150,170],[150,170],[150,170],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
+								frequency: [[20,40],[200,260],[150,170],[2,4],[150,170],[150,170],[150,170],[150,170],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 								generate: function(){
 									entityManager.generateBombGifts({
 										level : 0
@@ -94,7 +94,7 @@ Generator.prototype.bombGift3 = {next: 0,
 								}};
 								
 Generator.prototype.homingGift = {next: 0, 
-								frequency: [[100,120],[6000,10000],[4000,6000],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
+								frequency: [[-1],[-1],[-1],[-1],[200,260],[2,4],[200,260],[200,260],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 								generate: function(){
 									entityManager.generateHomingGifts({
 										cx : g_canvas.width,
@@ -124,7 +124,7 @@ Generator.prototype.homingGift3 = {next: 0,
 								}};
 								
 Generator.prototype.enemySnowMan = {next: 1000,
-								frequency: [[200,260],[200,250],[180,240],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
+								frequency: [[1000,1200],[1000,1200],[1000,1200],[1000,1200],[1000,1200],[1000,1200],[1000,1200],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 								generate: function() {
 									entityManager.generateSnowMan({
 										cx : g_canvas.width,
@@ -133,7 +133,7 @@ Generator.prototype.enemySnowMan = {next: 1000,
 								}};
 								
 Generator.prototype.enemySnowMan2 = {next: 1000,
-								frequency: [[200,260],[200,250],[180,240],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
+								frequency: [[-1],[-1],[-1],[-1],[-1],[-1],[-1],[1000,1200],[1000,1200],[1000,1200],[1000,1200],[1000,1200],[1000,1200],[1000,1200],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 								generate: function() {
 									entityManager.generateSnowMan({
 										cx : g_canvas.width,
@@ -142,7 +142,7 @@ Generator.prototype.enemySnowMan2 = {next: 1000,
 								}};
 								
 Generator.prototype.enemySnowMan3 = {next: 1000,
-								frequency: [[200,260],[200,250],[180,240],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
+								frequency: [[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[1000,1200],[1000,1200],[1000,1200],[1000,1200],[1000,1200],[500,600],[-1]],
 								generate: function() {
 									entityManager.generateSnowMan({
 										cx : g_canvas.width,
@@ -188,7 +188,7 @@ Generator.prototype.update = function(du) {
 	if(this._isDeadNow) return entityManager.KILL_ME_NOW;
 	
 	this.lived += MAP_SPEED;
-	if(this.lived/100 > 70) entityManager.gameIsWon = true;
+	if(this.lived/100 > 72) entityManager.gameIsWon = true;
 	if(this.changeFase[this.curFase] <= this.lived) {
 		console.log("Fase increse, now: ",this.curFase)
 		this.curFase++;

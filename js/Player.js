@@ -6,19 +6,19 @@ var Player = {
 _strength: {base 	: 5,
 			level 	: 0,
 			levels	: [1,2,4,6,10,14],
-			cost	: [10,100,200,400,800,"Maxed"]
+			cost	: [10,100,200,400,1000,"Maxed"]
 			},
 _speed:    {base	: 3.00,
 			level 	: 0,
-			levels	: [1,1.15,1.3,1.45,1.6],
+			levels	: [1,1.1,1.2,1.3,1.4],
 			cost	: [30,300,500,900,"Maxed"]
 			},
-_magicCapacity: {base	: 100,
+_magicCapacity: {base	: 60,
 				 level	: 0,
 				 levels	: [1,1.2,1.4,1.6,1.8,2],
-				 cost 	: [10,50,100,200,400,"Maxed"]
+				 cost 	: [10,100,200,400,1000,"Maxed"]
 				},
-_magicComsuption: {base 	: -0.1,
+_magicComsuption: {base 	: -0.06,
 				   level 	: 0,
 				   levels	: [1,0.9,0.85,0.8,0.75,0.7]
 				   }, 
@@ -41,17 +41,17 @@ _piercing: {base : 1,
 _snowBallCraft: {base : 46,
 				level : 0,
 				levels : [0,2,4,6,8,10],
-				cost:	[10,100,200,400,800,"Maxed"]
+				cost:	[10,100,200,400,1000,"Maxed"]
 				},			
 _snowBallsCapacity: {base : 4,
 					level : 0,
 					levels : [0,2,4,6,8,10],
-					cost:	[10,100,200,400,800,"Maxed"]
+					cost:	[10,100,200,400,1000,"Maxed"]
 					},
 _snowBallMagicRadius: 	{base	:26,
 						 level	: 0,
 						 levels : [1,2,3,4,5,6],
-						 cost : [10,100,200,400,800,"Maxed"]
+						 cost : [10,100,200,400,1000,"Maxed"]
 						},
 _snowBallMagicDamage: 	{base	:0.1,
 						 level	: 0,
