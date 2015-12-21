@@ -325,6 +325,13 @@ gameLost: function(){
 	this.resetAll();
 	this.generateUpgrade();
 },
+
+gameWin: function() {
+	entityManager.gameIsWon = true;
+	this.isGameLost = false;
+	this.resetAll();
+	this.generateUpgrade();
+},
 //-------------------------------------------------------------------------------------------------------------------
 
 
@@ -361,22 +368,13 @@ update: function(du) {
 
 //RENDER-----------------------------------------------------------------------------------------------
 renderStartGame: function(ctx){
-    /*ctx.font = '40px sans-serif';
-    ctx.fillStyle = 'white';
-    ctx.fillText("Welcome to Snowballs", g_canvas.width/2-150, g_canvas.height/2);
-    ctx.font = '20px sans-serif';
-    ctx.fillText("Press 'T' to start the game", g_canvas.width/2-100, g_canvas.height/2+30);
-	*/
 	var sprites = g_sprites.mainScreen;
 	sprites.drawAt(ctx,0,0);
-	
 },
 
 renderGameWon: function(ctx){
-    ctx.font = '40px sans-serif';
-    ctx.fillStyle = 'white';
-    ctx.fillText("Congratulations!!!", g_canvas.width/2-150, g_canvas.height/2);
-    ctx.font = '20px sans-serif';
+    var finishSprite = g_sprites.finishScreen;
+	finishSprite.drawAt(ctx, 0, 0);
 },
 
 render: function(ctx) {
@@ -405,7 +403,7 @@ render: function(ctx) {
     }
 
     if(entityManager.gameIsWon){
-        this.renderGameWon(ctx);
+        //this.renderGameWon(ctx);
     }
 }
 
