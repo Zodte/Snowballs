@@ -303,13 +303,17 @@ Sleigh.prototype.renderGifts = function(ctx) {
 };
 
 Sleigh.prototype.renderMagicBar = function(ctx){
-	ctx.fillStyle = 'white';	
-	//ctx.save();
-	ctx.font = "10px Arial";
-	//ctx.fillText("Magic",5,12);
-	//ctx.restore();
-	ctx.fillRect(81,550,(this.magic/this.iniMagic)*200,9);
-
+	var color = ["#80FF00","#FF8000","#FF0000"]; // green, yellow, red
+	for(var i = 0; i < color.length; i++) {
+		if(this.magic >= 50) {
+			ctx.fillStyle = color[0];
+		} else if(this.magic > 25 && this.magic/2 < 50) {
+			ctx.fillStyle = color[1];
+			} if(this.magic <= 25) {
+				ctx.fillStyle = color[2];
+			}
+	}
+	ctx.fillRect(81, 550, (this.magic/this.iniMagic)*200, 9);
 };
 
 Sleigh.prototype.displayCraftedSnowBalls = function(ctx){
