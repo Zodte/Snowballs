@@ -188,8 +188,9 @@ Generator.prototype.update = function(du) {
 	if(this._isDeadNow) return entityManager.KILL_ME_NOW;
 	
 	this.lived += MAP_SPEED;
-	if(this.lived/100 > 4) {
-		entityManager.gameWin();
+	if(this.lived/100 > 70 && entityManager._enemies.length === 0) {
+		entityManager.isGameWon = true;
+		entityManager.killSleigh();
 	}
 	if(this.changeFase[this.curFase] <= this.lived) {
 		console.log("Fase increse, now: ",this.curFase)

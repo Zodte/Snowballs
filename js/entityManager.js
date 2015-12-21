@@ -316,6 +316,9 @@ resetAll: function(){
 	this._foreGround.forEach(function(enemy){
         enemy.kill();
     });
+	this._sleighs.forEach(function(enemy){
+        enemy.kill();
+    });
 },
 
 isGameLost: false,
@@ -323,27 +326,27 @@ gameLost: function(){
 	entityManager.gameIsWon = false;
 	this.isGameLost = true;
 	this.resetAll();
-	this.generateUpgrade();
+	if(!this._upgrade[0]){
+		console.log("duuh")
+		this.generateUpgrade();
+	}
 },
 
 gameWin: function() {
+	this.generateUpgrade();
 	entityManager.gameIsWon = true;
 	this.isGameLost = false;
 	this.resetAll();
-	this.generateUpgrade();
 },
+
+killSleigh: function(){
+	this._sleighs[0].kill();
+},
+
+
+
+
 //-------------------------------------------------------------------------------------------------------------------
-
-
-/*
-resetShips: function() {
-    this._forEachOf(this._ships, Ship.prototype.reset);
-},
-
-haltShips: function() {
-    this._forEachOf(this._ships, Ship.prototype.halt);
-},	
-*/
 
 update: function(du) {
     for (var c = 0; c < this._categories.length; ++c) {
@@ -403,7 +406,7 @@ render: function(ctx) {
     }
 
     if(entityManager.gameIsWon){
-        //this.renderGameWon(ctx);
+        this.renderGameWon(ctx);
     }
 }
 

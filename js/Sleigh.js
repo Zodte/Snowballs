@@ -73,7 +73,11 @@ Sleigh.prototype.update = function(du){
 		Player.addTotalKills(this.kills);
 		Player.addMaxDistance(entityManager.getDistance());
 		Player.saveGame();
-		entityManager.gameLost();
+		if(!entityManager.isGameWon){
+			entityManager.gameLost();
+		}else{
+			entityManager.gameWin();
+		}
 		return entityManager.KILL_ME_NOW;
 	}
 	
