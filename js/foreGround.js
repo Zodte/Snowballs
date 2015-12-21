@@ -35,7 +35,7 @@ foreGround.prototype.render = function(ctx) {
 	);
 	ctx.save();
 	ctx.fillStyle = "white";
-	ctx.font = "10px Arial";
+	ctx.font = " bold 10px Arial";
 	ctx.fillText("Magic", 90, 545);
 	ctx.restore();
 };

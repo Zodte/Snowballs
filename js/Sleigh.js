@@ -307,7 +307,7 @@ Sleigh.prototype.renderMagicBar = function(ctx){
 	for(var i = 0; i < color.length; i++) {
 		if(this.magic >= this.iniMagic * 0.5) {
 			ctx.fillStyle = color[0];
-		} else if(this.magic > this.iniMagic * 0.25 && this.magic/2 < this.iniMagic * 0.5) {
+		} else if(this.magic > this.iniMagic * 0.25 && this.magic < this.iniMagic * 0.5) {
 			ctx.fillStyle = color[1];
 			} if(this.magic <= this.iniMagic * 0.25) {
 				ctx.fillStyle = color[2];
