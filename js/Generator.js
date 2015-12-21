@@ -9,7 +9,7 @@ function Generator(descr) {
 Generator.prototype = new Entity();
 
 Generator.prototype.setFirstEnemy = function(){
-	var list = [0,2750,5500,0,7000,7000,650,7000,7000,1350,7000,7000,0,2050,4850];
+	var list = [0,2750,4850,0,2750,4850,650,7000,7000,1350,7000,7000,0,2050,4850];
 	for(var i = 0; i < this.enemiesArray.length; i++){
 		this.enemiesArray[i].next = list[i];
 	}
@@ -28,7 +28,7 @@ Generator.prototype.straightGift = {next: 0,
 										});
 									}};
 Generator.prototype.straightGift2 = {next: 0, 
-									frequency: [[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[180,200],[180,200],[180,200],[180,200],[180,200],[180,200],[180,200],[-1],[-1],[-1],[-1],[-1],[-1]],
+									frequency: [[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[180,200],[180,200],[180,200],[180,200],[180,200],[180,200],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 									generate: function(){
 										entityManager.generateStraightGifts({
 											cx : g_canvas.width,
@@ -55,7 +55,7 @@ Generator.prototype.snakeGift = {next: 0,
 									});
 								}};
 Generator.prototype.snakeGift2 = {next: 0, 
-								frequency: [[400,500],[500,800],[500,800],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
+								frequency: [[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[180,200],[180,200],[180,200],[180,200],[180,200],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 								generate: function(){
 									entityManager.generateSnakeGifts({
 										cx : util.randRange(g_canvas.width, g_canvas.width+200 ),
@@ -63,7 +63,7 @@ Generator.prototype.snakeGift2 = {next: 0,
 									});
 								}};
 Generator.prototype.snakeGift3 = {next: 0, 
-								frequency: [[400,500],[500,800],[500,800],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
+								frequency: [[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[180,200],[180,200],[180,200],[180,200],[180,200],[-1]],
 								generate: function(){
 									entityManager.generateSnakeGifts({
 										cx : util.randRange(g_canvas.width, g_canvas.width+200 ),
@@ -79,14 +79,14 @@ Generator.prototype.bombGift = {next: 0,
 									});
 								}};
 Generator.prototype.bombGift2 = {next: 0, 
-								frequency: [[20,40],[200,260],[2000,3000],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
+								frequency: [[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 								generate: function(){
 									entityManager.generateBombGifts({
 										level : 1
 									});
 								}};
 Generator.prototype.bombGift3 = {next: 0, 
-								frequency: [[20,40],[200,260],[2000,3000],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
+								frequency: [[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 								generate: function(){
 									entityManager.generateBombGifts({
 										level : 2
@@ -104,7 +104,7 @@ Generator.prototype.homingGift = {next: 0,
 								}};
 								
 Generator.prototype.homingGift2 = {next: 0, 
-								frequency: [[100,120],[6000,10000],[4000,6000],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
+								frequency: [[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 								generate: function(){
 									entityManager.generateHomingGifts({
 										cx : g_canvas.width,
@@ -114,7 +114,7 @@ Generator.prototype.homingGift2 = {next: 0,
 								}};
 								
 Generator.prototype.homingGift3 = {next: 0, 
-								frequency: [[100,120],[6000,10000],[4000,6000],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
+								frequency: [[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 								generate: function(){
 									entityManager.generateHomingGifts({
 										cx : g_canvas.width,
@@ -188,7 +188,9 @@ Generator.prototype.update = function(du) {
 	if(this._isDeadNow) return entityManager.KILL_ME_NOW;
 	
 	this.lived += MAP_SPEED;
-	if(this.lived/100 > 72) entityManager.gameIsWon = true;
+	if(this.lived/100 > 4) {
+		entityManager.gameIsWon();
+	}
 	if(this.changeFase[this.curFase] <= this.lived) {
 		console.log("Fase increse, now: ",this.curFase)
 		this.curFase++;
