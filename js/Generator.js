@@ -9,17 +9,17 @@ function Generator(descr) {
 Generator.prototype = new Entity();
 
 Generator.prototype.setFirstEnemy = function(){
-	var list = [0,7000,7000,0,7000,7000,1000,7000,7000,7000,7000,7000,7000,7000,7000];
+	var list = [0,2750,5500,0,7000,7000,650,7000,7000,7000,7000,7000,7000,7000,7000];
 	for(var i = 0; i < this.enemiesArray.length; i++){
 		this.enemiesArray[i].next = list[i];
 	}
 }
 
 Generator.prototype.curFase = 0;
-Generator.prototype.changeFase = [600,650,1500,15000];
+Generator.prototype.changeFase = [600,650,1300,1350,2000,2050,2700,2750,3400,3450,4100,4150,4800,4850,5500,5550,6200,6250,6900,7000,80000];
 
 Generator.prototype.straightGift = {next: 0, 
-									frequency: [[80,100],[1,2],[180,240]],
+									frequency: [[80,100],[2,3],[140,160],[140,160],[180,200],[180,200],[180,200],[180,200],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 									generate: function(){
 										entityManager.generateStraightGifts({
 											cx : g_canvas.width,
@@ -28,7 +28,7 @@ Generator.prototype.straightGift = {next: 0,
 										});
 									}};
 Generator.prototype.straightGift2 = {next: 0, 
-									frequency: [[100,120],[180,240],[180,240]],
+									frequency: [[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[180,200],[180,200],[180,200],[180,200],[180,200],[180,200],[180,200],[-1],[-1],[-1],[-1],[-1],[-1]],
 									generate: function(){
 										entityManager.generateStraightGifts({
 											cx : g_canvas.width,
@@ -37,7 +37,7 @@ Generator.prototype.straightGift2 = {next: 0,
 										});
 									}};
 Generator.prototype.straightGift3 = {next: 0, 
-									frequency: [[100,120],[180,240],[180,240]],
+									frequency: [[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[180,200],[180,200],[180,200],[180,200],[180,200],[180,200],[-1]],
 									generate: function(){
 										entityManager.generateStraightGifts({
 											cx : g_canvas.width,
@@ -47,7 +47,7 @@ Generator.prototype.straightGift3 = {next: 0,
 									}};
 									
 Generator.prototype.snakeGift = {next: 0, 
-								frequency: [[120,140],[2,3],[500,800]],
+								frequency: [[120,140],[3,4],[140,160],[180,200],[180,200],[180,200],[180,200],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 								generate: function(){
 									entityManager.generateSnakeGifts({
 										cx : util.randRange(g_canvas.width, g_canvas.width+200 ),
@@ -55,7 +55,7 @@ Generator.prototype.snakeGift = {next: 0,
 									});
 								}};
 Generator.prototype.snakeGift2 = {next: 0, 
-								frequency: [[400,500],[500,800],[500,800]],
+								frequency: [[400,500],[500,800],[500,800],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 								generate: function(){
 									entityManager.generateSnakeGifts({
 										cx : util.randRange(g_canvas.width, g_canvas.width+200 ),
@@ -63,7 +63,7 @@ Generator.prototype.snakeGift2 = {next: 0,
 									});
 								}};
 Generator.prototype.snakeGift3 = {next: 0, 
-								frequency: [[400,500],[500,800],[500,800]],
+								frequency: [[400,500],[500,800],[500,800],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 								generate: function(){
 									entityManager.generateSnakeGifts({
 										cx : util.randRange(g_canvas.width, g_canvas.width+200 ),
@@ -72,21 +72,21 @@ Generator.prototype.snakeGift3 = {next: 0,
 								}};
 								
 Generator.prototype.bombGift = {next: 0, 
-								frequency: [[20,40],[200,260],[2000,3000]],
+								frequency: [[20,40],[200,260],[150,170],[150,170],[150,170],[150,170],[150,170],[150,170],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 								generate: function(){
 									entityManager.generateBombGifts({
 										level : 0
 									});
 								}};
 Generator.prototype.bombGift2 = {next: 0, 
-								frequency: [[20,40],[200,260],[2000,3000]],
+								frequency: [[20,40],[200,260],[2000,3000],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 								generate: function(){
 									entityManager.generateBombGifts({
 										level : 1
 									});
 								}};
 Generator.prototype.bombGift3 = {next: 0, 
-								frequency: [[20,40],[200,260],[2000,3000]],
+								frequency: [[20,40],[200,260],[2000,3000],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 								generate: function(){
 									entityManager.generateBombGifts({
 										level : 2
@@ -94,7 +94,7 @@ Generator.prototype.bombGift3 = {next: 0,
 								}};
 								
 Generator.prototype.homingGift = {next: 0, 
-								frequency: [[100,120],[6000,10000],[4000,6000]],
+								frequency: [[100,120],[6000,10000],[4000,6000],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 								generate: function(){
 									entityManager.generateHomingGifts({
 										cx : g_canvas.width,
@@ -104,7 +104,7 @@ Generator.prototype.homingGift = {next: 0,
 								}};
 								
 Generator.prototype.homingGift2 = {next: 0, 
-								frequency: [[100,120],[6000,10000],[4000,6000]],
+								frequency: [[100,120],[6000,10000],[4000,6000],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 								generate: function(){
 									entityManager.generateHomingGifts({
 										cx : g_canvas.width,
@@ -114,7 +114,7 @@ Generator.prototype.homingGift2 = {next: 0,
 								}};
 								
 Generator.prototype.homingGift3 = {next: 0, 
-								frequency: [[100,120],[6000,10000],[4000,6000]],
+								frequency: [[100,120],[6000,10000],[4000,6000],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 								generate: function(){
 									entityManager.generateHomingGifts({
 										cx : g_canvas.width,
@@ -124,7 +124,7 @@ Generator.prototype.homingGift3 = {next: 0,
 								}};
 								
 Generator.prototype.enemySnowMan = {next: 1000,
-								frequency: [[200,260],[200,250],[180,240]],
+								frequency: [[200,260],[200,250],[180,240],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 								generate: function() {
 									entityManager.generateSnowMan({
 										cx : g_canvas.width,
@@ -133,7 +133,7 @@ Generator.prototype.enemySnowMan = {next: 1000,
 								}};
 								
 Generator.prototype.enemySnowMan2 = {next: 1000,
-								frequency: [[200,260],[200,250],[180,240]],
+								frequency: [[200,260],[200,250],[180,240],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 								generate: function() {
 									entityManager.generateSnowMan({
 										cx : g_canvas.width,
@@ -142,7 +142,7 @@ Generator.prototype.enemySnowMan2 = {next: 1000,
 								}};
 								
 Generator.prototype.enemySnowMan3 = {next: 1000,
-								frequency: [[200,260],[200,250],[180,240]],
+								frequency: [[200,260],[200,250],[180,240],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1],[-1]],
 								generate: function() {
 									entityManager.generateSnowMan({
 										cx : g_canvas.width,
@@ -197,10 +197,9 @@ Generator.prototype.update = function(du) {
 		for(var i = 0; i < this.enemiesArray.length; i++){
 			var enemy = this.enemiesArray[i];
 			if(enemy.next < this.lived && enemy.frequency[this.curFase] != -1) {
-				console.log(this.lived + enemy.frequency[this.curFase][0],this.changeFase[this.curFase])
 				if(this.lived + enemy.frequency[this.curFase][0] > this.changeFase[this.curFase]){
-					enemy.next = this.changeFase[this.curFase];
-					console.log(enemy.next);
+					enemy.next = this.changeFase[this.curFase] - enemy.frequency[this.curFase+1][0] + (util.randRange(enemy.frequency[this.curFase+1][0],enemy.frequency[this.curFase+1][1]));
+					console.log(this.lived, enemy.next, this.changeFase[this.curFase], enemy.frequency[this.curFase+1][0])
 				}else{
 					enemy.next = this.lived + util.randRange(enemy.frequency[this.curFase][0],enemy.frequency[this.curFase][1]);
 				}
@@ -225,5 +224,6 @@ Generator.prototype.render = function(ctx) {
 	ctx.fillStyle = 'white';	
 	ctx.font = "24px Arial";
 	ctx.fillText(Math.round(this.lived/100)+"m",g_canvas.width/2 - 20,20);
+	ctx.fillRect(324 + this.lived * 0.0274285,538,4,50);
 };
 
