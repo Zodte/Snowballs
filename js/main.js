@@ -60,10 +60,10 @@ main._updateClocks = function (frameTime) {
 main._iterCore = function (dt) {
     
     // Handle QUIT
-    if (requestedQuit()) {
+    /*if (requestedQuit()) {
         this.gameOver();
         return;
-    }
+    }*/
     
     gatherInputs();
     update(dt);
@@ -79,10 +79,10 @@ main.gameOver = function () {
 
 // Simple voluntary quit mechanism
 //
-var KEY_QUIT = 'N'.charCodeAt(0);
-function requestedQuit() {
-    return keys[KEY_QUIT];
-}
+//var KEY_QUIT = 'N'.charCodeAt(0);
+//function requestedQuit() {
+ //   return keys[KEY_QUIT];
+//}
 
 // Annoying shim for Firefox and Safari
 window.requestAnimationFrame = 
@@ -101,21 +101,21 @@ main._requestNextIteration = function () {
 
 // Mainloop-level debug-rendering
 
-var TOGGLE_TIMER_SHOW = 'T'.charCodeAt(0);
+//var TOGGLE_TIMER_SHOW = 'T'.charCodeAt(0);
 
 main._doTimerShow = false;
 
 main._debugRender = function (ctx) {
     
-    if (eatKey(TOGGLE_TIMER_SHOW)) this._doTimerShow = !this._doTimerShow;
+    //if (eatKey(TOGGLE_TIMER_SHOW)) this._doTimerShow = !this._doTimerShow;
     
-    if (!this._doTimerShow) return;
+   /* if (!this._doTimerShow) return;
     
     var y = 350;
     ctx.fillText('FT ' + this._frameTime_ms, 50, y+10);
     ctx.fillText('FD ' + this._frameTimeDelta_ms, 50, y+20);
     ctx.fillText('UU ' + g_prevUpdateDu, 50, y+30); 
-    ctx.fillText('FrameSync ON', 50, y+40);
+    ctx.fillText('FrameSync ON', 50, y+40);*/
 };
 
 main.init = function () {
