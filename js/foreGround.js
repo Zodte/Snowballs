@@ -16,7 +16,7 @@ foreGround.prototype.update = function(du) {
 	if( this._isDeadNow ) {
         return entityManager.KILL_ME_NOW;
     }
-	this.cx -= FOREGROUND_SPEED * du;
+	this.cx -= MAP_SPEED * du;
 	if(this.cx < 0) {
 		this.cx = g_canvas.width;
 	}
@@ -35,7 +35,7 @@ foreGround.prototype.render = function(ctx) {
 	);
 	ctx.save();
 	ctx.fillStyle = "white";
-	ctx.font = " bold 10px Arial";
+	ctx.font = " bold 16px Arial";
 	ctx.fillText("Magic", 90, 545);
 	ctx.restore();
 };

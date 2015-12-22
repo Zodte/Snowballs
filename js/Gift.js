@@ -9,10 +9,6 @@ function Gift(descr) {
 	this.decideDirection();
 	this.oriScale = this.sprite.scale
 	this.scale = this.oriScale*0.55;
-	
-	
-	
-
 };
 
 Gift.prototype = new Entity();
@@ -58,6 +54,9 @@ Gift.prototype.update = function(du) {
 			this.velX = (dx / mag) * strength;
 			this.velY = (dy / mag) * strength;
 		}
+	}
+	if(this.lived % 100 === 0){
+		console.log(this.velX, this.velY)
 	}
 	if(this.cx + this.velX <= g_canvas.width - this.getRadius() && this.cx + this.velX > this.getRadius()){
 		this.cx += this.velX;

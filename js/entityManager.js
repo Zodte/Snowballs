@@ -327,7 +327,6 @@ gameLost: function(){
 	this.isGameLost = true;
 	this.resetAll();
 	if(!this._upgrade[0]){
-		console.log("duuh")
 		this.generateUpgrade();
 	}
 },

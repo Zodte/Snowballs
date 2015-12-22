@@ -223,6 +223,7 @@ Generator.prototype.render = function(ctx) {
 	ctx.fillStyle = 'white';	
 	ctx.font = "24px Arial";
 	ctx.fillText(Math.round(this.lived/100)+"m",g_canvas.width/2 - 20,20);
+	ctx.fillStyle = "#80FF00";
 	ctx.fillRect(324 + this.lived * 0.0274285,538,4,50);
 };
 
