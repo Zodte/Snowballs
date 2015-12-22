@@ -40,24 +40,20 @@ Gift.prototype.update = function(du) {
 		this.velY = 0;
 	}
 	
-	var inMagnetRange = spatialManager.findEntityInRange(
-						this.cx,this.cy, Player.getMagnetRadius()
-						);
-	if(inMagnetRange && this.lived > 14){
-		var canPullGift = inMagnetRange.pullGift;
-		if(canPullGift){
-			var pos = inMagnetRange.getPos();
-			var dx = pos.posX - this.cx;
-			var dy = pos.posY - this.cy;
-			var mag = Math.sqrt(dx * dx + dy * dy);
+
+	if(!entityManager.isPlayerDead())
+	{
+		var pos = entityManager.getSleighPos();
+		var dx = pos.posX - this.cx;
+		var dy = pos.posY - this.cy;
+		var mag = Math.sqrt(dx * dx + dy * dy);
+		if(Math.abs(Math.sqrt(util.distSq(this.cx,this.cy,pos.posX,pos.posY))) < Player.getMagnetRadius()){
 			var strength = 3;
 			this.velX = (dx / mag) * strength;
 			this.velY = (dy / mag) * strength;
 		}
 	}
-	if(this.lived % 100 === 0){
-		console.log(this.velX, this.velY)
-	}
+
 	if(this.cx + this.velX <= g_canvas.width - this.getRadius() && this.cx + this.velX > this.getRadius()){
 		this.cx += this.velX;
 	}
