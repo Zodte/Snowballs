@@ -29,8 +29,8 @@ _magnetRadius: {base	: 30,
 				},
 _luck: {base	: 1,
 				level	: 0,
-				levels	: [1,2,3,4,5,6,7],
-				cost	: [6,60,120,240,480,960,"Maxed"]
+				levels	: [1,2,3,4,5,6],
+				cost	: [6,60,120,240,480,"Maxed"]
 				},
 _piercing: {base : 1,
 			level : 0,
@@ -50,8 +50,8 @@ _snowBallsCapacity: {base : 4,
 					},
 _snowBallMagicRadius: 	{base	:26,
 						 level	: 0,
-						 levels : [1,2,3,4,5,6],
-						 cost : [10,100,200,400,1000,"Maxed"]
+						 levels : [1,2,3,4,5],
+						 cost : [20,200,400,1200,"Maxed"]
 						},
 _snowBallMagicDamage: 	{base	:0.1,
 						 level	: 0,

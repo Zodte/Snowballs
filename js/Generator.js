@@ -189,7 +189,24 @@ Generator.prototype.update = function(du) {
 	
 	this.lived += MAP_SPEED;
 	if(this.lived/100 > 70 && entityManager._enemies.length === 0) {
-		console.log(entityManager._enemies.length )
+		console.log(
+			"bg",entityManager._bg.length,
+			"generator",entityManager._generator.length,
+			"trees",entityManager._trees.length,
+			"snowballs",entityManager._snowballs.length,
+			"sleighs",entityManager._sleighs.length,
+			"enemies",entityManager._enemies.length,
+			"gifts",entityManager._gifts.length,
+			"snakegifts",entityManager._snakeGifts.length,
+			"powerups",entityManager._powerups.length,
+			"animations",entityManager._animations.length,
+			"stardust",entityManager._stardust.length,
+			"snow",entityManager._snow.length,
+			"foreground",entityManager._foreGround.length,
+			"upgrade",entityManager._upgrade.length,
+			"buttons",entityManager._buttons.length
+			
+		)
 		entityManager.isGameWon = true;
 		entityManager.killSleigh();
 	}

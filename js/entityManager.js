@@ -275,7 +275,7 @@ playAgain: function(){
 
 	this._generateGenerator();
 	this._generateForeGrounds();
-	this._generateBgs();
+	if(!this._bg[0]) this._generateBgs();
 },
 
 btnsDecideColor: function(){

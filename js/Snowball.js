@@ -89,7 +89,7 @@ Snowball.prototype.update = function (du) {
 		for(var i = 0; i < hitEntity.length; i++){
 			var canTakeHit = hitEntity[i].getSnowballHit;
 			if (canTakeHit) {
-				canTakeHit.call(hitEntity[i], Player.getSnowBallMagicDamage()); 
+				canTakeHit.call(hitEntity[i], (Player.getSnowBallMagicDamage()/2) * this.damage); 
 			}
 		}
     }
