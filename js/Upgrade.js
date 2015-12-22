@@ -54,11 +54,11 @@ Upgrade.prototype.render = function(ctx){
 	ctx.fillText(Player.getCurGifts() ,100, 132);
 	ctx.restore();
 	ctx.font = "bold 12px Arial";
-	ctx.fillText("Total Gifts", 450, 380);
-	ctx.fillText(Player.getTotalGifts(), 700, 380);
-	ctx.fillText("Total Knock Outs", 450, 400);
-	ctx.fillText(Player.getTotalKills(), 700, 400);
-	ctx.fillText("Max Distance Traveled", 450, 420);
-	ctx.fillText(Player.getMaxDistance()+"m",700, 420);
+	ctx.fillText("Total Gifts", 450, 202);
+	ctx.fillText(Player.getTotalGifts(), 700, 202);
+	ctx.fillText("Total Knock Outs", 450, 222);
+	ctx.fillText(Player.getTotalKills(), 700, 222);
+	ctx.fillText("Max Distance Traveled", 450, 242);
+	ctx.fillText(Player.getMaxDistance()+"m",700, 242);
 	this.fillTexts(ctx);
 }
