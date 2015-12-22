@@ -48,38 +48,11 @@ var g_useAveVel = true;
 var g_renderSpatialDebug = false;
 
 
-var KEY_MIXED   = keyCode('L');
-var KEY_GRAVITY = keyCode('G');
-var KEY_AVE_VEL = keyCode('V');
-var KEY_SPATIAL = keyCode('X');
-
-var KEY_HALT  = keyCode('H');
-var KEY_RESET = keyCode('R');
-
-var KEY_0 = keyCode('0');
-
-var KEY_1 = keyCode('1');
-var KEY_2 = keyCode('2');
-
-
 var PLAY_AGAIN = keyCode('T');
 var MUTE_KEY = keyCode('M');
 var CLEAR_DATA = keyCode('K');
 function processDiagnostics() {
 
-    if (eatKey(KEY_MIXED))
-        g_allowMixedActions = !g_allowMixedActions;
-
-    if (eatKey(KEY_GRAVITY)) g_useGravity = !g_useGravity;
-
-    if (eatKey(KEY_AVE_VEL)) g_useAveVel = !g_useAveVel;
-
-    if (eatKey(KEY_SPATIAL)) g_renderSpatialDebug = !g_renderSpatialDebug;
-
-    if (eatKey(KEY_HALT)) entityManager.haltShips();
-
-    if (eatKey(KEY_0)) entityManager.toggleRocks();
-	
 	if(eatKey(CLEAR_DATA) && !entityManager.gameHasStarted) {
 		Player.clearGame();
 	}
